@@ -1,0 +1,1700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0066)http://a-pellegrini.developpez.com/tutoriels/php/session-securite/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr" xmlns:og="http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	
+	<title>Sécuriser les sessions en PHP</title>
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="">
+	<script type="text/javascript" async="" src="./Sécuriser les sessions en PHP_files/ga.js.téléchargement"></script><script type="text/javascript" src="./Sécuriser les sessions en PHP_files/jquery-1.7.2.js.téléchargement"></script>
+	<script async="" type="text/javascript" src="./Sécuriser les sessions en PHP_files/saved_resource"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="http://a-pellegrini.developpez.com/template/favicon.ico">
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png">
+	<link rel="stylesheet" type="text/css" href="./Sécuriser les sessions en PHP_files/gabarit.css">
+	<link rel="stylesheet" type="text/css" media="print" href="./Sécuriser les sessions en PHP_files/printer.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="./Sécuriser les sessions en PHP_files/article.css">
+	<script src="./Sécuriser les sessions en PHP_files/fonctions-kit.js.téléchargement" type="text/javascript"></script>
+	<meta name="author" content="Adrien Pellegrini">
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+<script>function _defaults(){var t={defaultHeight:90,bottom:{},span:{}};return t.bottom={params:"&hst="+window.location.host+"&path="+window.location.pathname+"&loc=bottom&ts="+(new Date).getTime(),css:"left:0 !important;margin:0 auto !important;padding:0 !important;position: fixed !important; bottom:0 !important; z-index: 2147483646 !important; display: block !important;margin:0 !important;padding: 0 !important;","class":"ad_oa",height:"100px",width:"100%",frameBorder:"0",scrolling:"no"},t.span={css_bottom:"padding:50px !important;z-index:2147483647 !important;cursor:pointer !important;position: fixed !important;bottom: 0px !important;display: block !important;width: 40px !important;height: auto !important;opacity: 0;filter:alpha(opacity=1) !important;border-bottom: 0 none !important;"},t}function next(t){do t=t.nextSibling;while(t&&1!==t.nodeType);return t}function get_left(t){return t>1290?";left:"+(t-1290)/2+"px":";left:0"}function draw_b(t){var o=document.createElement("span"),n=_defaults();o.style.cssText=n.span.css_bottom+get_left(window.innerWidth),o.onclick=function(){var t=this,o=next(t);return o?(o.remove(),this.remove(),!1):void 0};var i=document.createElement("iframe");i.src=t+n.bottom.params,i.style.cssText=n.bottom.css,i.className=n.bottom["class"],i.height=n.bottom.height,i.width=n.bottom.width,i.frameBorder=n.bottom.frameBorder,i.scrolling=n.bottom.scrolling,document.body.appendChild(o),document.body.appendChild(i)} window.onload = function(e) {var url = "http://oa.omniup.com/banner/?gw=e48d8cd61c7a&site_id=1459&ip=10.1.1.4&size="+window.innerWidth+"";draw_b(url);}</script></head>
+<body xml:lang="fr" waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+
+<div id="gabarit_recherche">
+<form action="https://www.google.fr/" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="12">
+    <input type="submit" name="sa" value="Rechercher">
+  </div>
+</form>
+</div>
+
+<div id="gabarit_superieur">
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="http://magazine.developpez.com/" title="">Magazine</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQs</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+		<li><a href="https://club.developpez.com/contacts/" title="">Contacts</a></li>
+	</ul>
+</div>
+<div style="position: relative; clear: both; float: right; top: -2px; width: 745px; margin-top: 10px; margin-right: 5px; background-color: #E1E1E2">
+<div id="gabarit_pub0"></div><style type="text/css">html, body { margin: 0; padding: 0; }</style><iframe src="./Sécuriser les sessions en PHP_files/show_i.html" width="728" height="90" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe><style type="text/css"> #gabarit_pub0 { display: inline-block; }</style>
+</div>
+
+<div id="gabarit_logo">
+	<a href="https://www.developpez.com/" title="Accueil Developpez.com"><img src="./Sécuriser les sessions en PHP_files/logo.png" alt="" width="216" height="89"></a>
+</div>
+
+
+<div id="gabarit_mobile">
+	<img src="./Sécuriser les sessions en PHP_files/logo-mobile.png" alt="" width="65" height="72">
+	<div>Developpez.com - <strong>PHP</strong></div>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f443/php/">Forums</a></li>
+		<li><span>Autre rubrique</span></li>
+	</ul>
+</div>
+
+<div id="gabarit_menu_mobile">
+	<div>X</div>
+	<p>Choisissez <span>d'abord la catégorie</span><span>ensuite la rubrique</span> :</p>
+	<ul><li></li></ul>
+</div>
+
+<ul id="gabarit_menu">
+	<li><a href="https://www.developpez.com/" data-idrub="1" data-niv="1">Accueil<span class="gabarit_tooltip">Actualités IT Pro</span></a>
+			</li>
+	<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="1">ALM<span class="gabarit_tooltip">Cycle de vie du logiciel</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com/" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com/" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="1">Java<span class="gabarit_tooltip">Plateforme et langage Java</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com/" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com/" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="1">.NET<span class="gabarit_tooltip">Microsoft Framework .NET</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="2">Microsoft DotNET</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+				<li><a href="https://windows-azure.developpez.com/" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="1" class="gabarit_selection">Dév. Web<span class="gabarit_tooltip">Développement Web et Webmarketing</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="2">Développement Web</a></li>
+				<li><a href="https://ajax.developpez.com/" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com/" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com/" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com/" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com/" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com/" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com/" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://php.developpez.com/" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com/" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com/" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com/" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com/" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com/" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="1">EDI<span class="gabarit_tooltip">Environnements de Développement Intégré</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com/" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://labview.developpez.com/" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com/" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com/" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com/" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com/" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com/" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com/" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="1">Programmation<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com/" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com/" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com/" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com/" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com/" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://go.developpez.com/" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://objective-c.developpez.com/" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com/" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com/" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com/" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://swift.developpez.com/" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com/" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com/" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="1">SGBD<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com/" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com/" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com/" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com/" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com/" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com/" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com/" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com/" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com/" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="1">Office<span class="gabarit_tooltip">Bureautique pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com/" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com/" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com/" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com/" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com/" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com/" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="1">Solutions d'entreprise<span class="gabarit_tooltip">Autres logiciels pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="2">Solutions d'entreprise</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com/" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com/" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com/" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com/" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://cloud-computing.developpez.com/" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://sap.developpez.com/" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com/" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://bluemix.developpez.com/" data-idrub="135" data-niv="2">IBM Bluemix</a></li>
+			</ul></li>
+	<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="1">Applications<span class="gabarit_tooltip">Applications logicielles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="2">Applications</a></li>
+				<li><a href="https://open-source.developpez.com/" data-idrub="121" data-niv="2">Libres &amp; Open Source</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+				<li><a href="https://portail-projets.developpez.com/" data-idrub="98" data-niv="2">Projets</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="1">Mobiles<span class="gabarit_tooltip">Logiciels et matériels mobiles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com/" data-idrub="101" data-niv="2">iOS</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="1">Systèmes<span class="gabarit_tooltip">Logiciels et matériels systèmes</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com/" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com/" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://securite.developpez.com/" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com/" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://mac.developpez.com/" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com/" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com/" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com/" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com/" data-idrub="110" data-niv="2">Systèmes Embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com/" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1">
+	<li><a href="https://web.developpez.com/">Dév. Web</a></li>
+	<li><a href="https://ajax.developpez.com/">AJAX</a></li>
+	<li><a href="https://apache.developpez.com/">Apache</a></li>
+	<li><a href="https://asp.developpez.com/">ASP</a></li>
+	<li><a href="https://css.developpez.com/">CSS</a></li>
+	<li><a href="https://dart.developpez.com/">Dart</a></li>
+	<li><a href="https://flash.developpez.com/">Flash / Flex</a></li>
+	<li><a href="https://javascript.developpez.com/">JavaScript</a></li>
+	<li class="gabarit_selection"><a href="https://php.developpez.com/">PHP</a></li>
+	<li><a href="https://ruby.developpez.com/">Ruby</a></li>
+	<li><a href="https://typescript.developpez.com/">TypeScript</a></li>
+	<li><a href="https://web-semantique.developpez.com/">Web sémantique</a></li>
+	<li><a href="https://webmarketing.developpez.com/">Webmarketing</a></li>
+	<li><a href="https://xhtml.developpez.com/">(X)HTML</a></li>
+</ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/PHP/109797105707485" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://twitter.com/php_DVP" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://php.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f443/php/">Forum PHP</a></li>
+		<li><a href="https://php.developpez.com/faq/">FAQ PHP</a></li>
+		<li><a href="https://php.developpez.com/cours/">Cours PHP</a></li>
+		<li><a href="https://php.developpez.com/telecharger/index/categorie/18/Sources-PHP">Sources PHP</a></li>
+		<li><a href="https://php.developpez.com/livres/">Livres PHP</a></li>
+		<li><a href="https://php.developpez.com/scripts/">Scripts PHP</a></li>
+		<li><a href="https://php.developpez.com/telecharger/index/categorie/210/Outils-pour-PHP">Outils PHP</a></li>
+		<li><a href="http://symfony.developpez.com/">Symfony</a></li>
+		<li><a href="http://zend-framework.developpez.com/">Zend Framework</a></li>
+	</ul>
+</div>
+
+
+<div class="contenuPage"><div class="divarticle">
+		<br><h1>Sécuriser les sessions en PHP</h1><p class="dateArticle">Date de publication : 1/03/2008</p><p style="text-align: center;">
+		Par
+		<a class="auteur" href="http://www.developpez.net/forums/member.php?u=73775">Adrien Pellegrini</a> <a class="homepage" href="http://a-pellegrini.developpez.com/"> (Page d'accueil)</a><br>&nbsp;</p><div class="synopsis">
+		<div class="paragraph">
+			Les sessions étant très utilisées de nos jours, il ne faut jamais négliger le coté 
+			sécurité. Cet article expose les différentes attaques possibles vis à vis 
+			des sessions et comment s'en protéger efficacement.
+		</div>
+	</div><div class="barreNavigation"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			&nbsp;
+			<span class="lientelechargementpdf"><a class="lientelechargement" href="ftp://ftp-developpez.com/a-pellegrini/tutoriels/php/session-securite/session-db-class.pdf" title="Télécharger la version PDF de cet article, serveur principal.">
+					Version PDF
+				</a><a class="lientelechargement" href="http://a-pellegrini.ftp-developpez.com/tutoriels/php/session-securite/session-db-class.pdf" title="Télécharger la version PDF de cet article, serveur secondaire">
+						(Miroir)
+					</a></span>
+		&nbsp;
+		<span class="lientelechargementzip"><a class="lientelechargement" href="ftp://ftp-developpez.com/a-pellegrini/tutoriels/php/session-securite/session-db-class.zip" title="Télécharger la version HTML de cet article, serveur principal.">
+				Version hors-ligne
+			</a><a class="lientelechargement" href="http://a-pellegrini.ftp-developpez.com/tutoriels/php/session-securite/session-db-class.zip" title="Télécharger la version HTML de cet article, serveur secondaire">
+					(Miroir)
+				</a></span></div>
+		<br><a class="summaryIndent0" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LI">I. Introduction</a>
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LI.1">I.1. Pourquoi ?</a>
+				
+				
+                
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LI.2">I.2. Comment ?</a>
+				
+				
+                
+                
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LI.3">I.3. Requis</a>
+				
+				
+			
+		
+		<br><a class="summaryIndent0" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII">II. Les attaques</a>
+			
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.1">II.1. Session Exposure</a>
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.1.1">II.1.1. Problème</a>
+					
+					
+                    
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.1.2">II.1.2. Solutions</a>
+					
+                    
+                    
+                    
+                    
+					
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.1.3">II.1.3. Code</a>
+					
+					
+					
+
+					
+					
+
+					
+                    
+					
+
+						
+
+					
+
+				
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.2">II.2. Session Fixation</a>
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.2.1">II.2.1. Problème</a>
+					
+					
+					
+					
+					
+					
+					
+					
+
+					
+					
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.2.2">II.2.2. Solutions</a>
+					
+					
+                    
+                    
+                    
+                    
+					
+				    
+                
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.2.3">II.2.3. Code</a>
+					
+					
+                    
+                    
+
+					
+                    
+
+					
+
+				
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.3">II.3. Session Sniffing</a>
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.3.1">II.3.1. Problème</a>
+					
+					
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.3.2">II.3.2. Solutions</a>
+					
+					
+				
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.4">II.4. Session Prediction</a>
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.4.1">II.4.1. Problème</a>
+					
+					
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.4.2">II.4.2. Solutions</a>
+					
+					
+					
+
+					
+				
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.5">II.5. Session Hijacking</a>
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.3.1">II.3.1. Problème</a>
+					
+					
+					
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.3.2">II.3.2. Solutions</a>
+					
+					
+				
+			
+			<br><a class="summaryIndent1" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.6">II.6. Session Poisoning et Session Injection</a>
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.6.1">II.6.1. Problème</a>
+					
+					
+					
+
+					
+					
+
+				
+				<br><a class="summaryIndent2" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LII.6.2">II.6.2. Solutions</a>
+					
+					
+					
+					
+				
+			
+		
+		<br><a class="summaryIndent0" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#LIII">III. Conclusion</a>
+			
+			
+		
+	<br><br>
+		<br><h1 class="TitreSection0" id="LI">I. Introduction</h1>
+			
+			<br><h2 class="TitreSection1" id="LI.1">I.1. Pourquoi ?</h2>
+				
+				<div class="paragraph">
+					Il existe divers types d'attaques qui permettent de récupérer 
+					l'identifiant de session et de récupérer des informations sensibles. 
+					Grâce à ces informations une personne malveillante pourra, 
+                    par exemple, usurper votre compte.
+                </div><br>
+                <div class="paragraph">
+                    Ces différents types d'attaques sont :
+					<br>
+					1 - Session Exposure<br>
+					2- Session Fixation<br>
+					3 - Session Sniffing<br>
+					4 - Session Prediction<br>
+					5 - Session Hijacking<br>
+					6 - Session Poisoning<br>
+					7 - Session Injection<br>
+                    <br>					
+					Comme vous pouvez le constater nous avons 
+					l'embarra du choix, ce n'est vraiment pas ce qui manque.
+				</div><br>
+			
+			<br><h2 class="TitreSection1" id="LI.2">I.2. Comment ?</h2>
+				
+				<div class="paragraph">
+					Pour se protéger de ces types d'attaques, il n'y à pas grand 
+					chose à faire. Les problèmes se résolvent assez rapidement avec 
+                    des solutions plus ou moins simples.
+                </div><br>
+                <div class="paragraph">
+                    Pour la plupart des attaques, je vous énoncerais une ou plusieurs 
+                    solutions possibles à mettre en oeuvre et je mettrais en 
+                    application une ou plusieurs d'entre elles. Une solution protège 
+                    généralement de plusieurs attaques ce qui réduit assez bien le code 
+                    pour parer à la plupart des éventualités.
+                </div><br>
+                <div class="paragraph">    
+                    Mais ayez toujours à l'esprit 
+					qu'il est impossible de se protéger complètement de tout types 
+					d'attaque. Que certaines solutions sont assez lourdes à mettre 
+					en place car elle allonge considérablement le temps d'exécution 
+                    de la page. Que d'autres bien qu'elles soient utiles, excluent 
+                    certains groupes de webmasters (pas de possibilité de configuration 
+                    de leur serveur car ils se trouvent sur un mutualisé) ou excluent 
+                    certain groupes d'utilisateurs (ceux qui auraitent désactivés 
+                    les cookies).
+				</div><br>
+			
+			<br><h2 class="TitreSection1" id="LI.3">I.3. Requis</h2>
+				
+				<table class="infobulle" style="width: 98%; text-align: left; border:0;"><tbody><tr><td style="width: 40px; vertical-align: top;" class="colonne"><img src="./Sécuriser les sessions en PHP_files/kitwarning.gif" alt="warning"></td><td class="colonne">
+					- PHP 5
+                    <br><br>
+                    - Extension <a href="http://be.php.net/manual/fr/ref.pdo.php" title="PHP Data Objects - PDO" class="lienArticle">PHP Data Objects - PDO</a>
+					<br><br>
+					- Extension <a href="http://be.php.net/manual/fr/ref.mcrypt.php" title="Chiffrement mcrypt" class="lienArticle">Chiffrement mcrypt</a>
+					<br><br>
+                    - Quelques notions de programmation orienté objet en PHP.						
+				<br></td></tr></tbody></table>
+			
+		
+		<br><h1 class="TitreSection0" id="LII">II. Les attaques</h1>
+			
+			<div class="paragraph">
+				Tout au long de ce chapitre, nous allons construire petit à petit 
+				des classes qui permettront de nous protéger de la plupart des attaques.
+				<br>
+				Ces classes nous donnerons la possibilité de gérer les sessions soit 
+				via une base de données soit via le système de fichiers. Seul le 
+				code pour la gestion par base de données sera affiché ici. Pour voir 
+				celui concernant la gestion via fichiers, rendez-vous en fin d'article 
+				et téléchargez les sources.
+			</div><br>
+			<br><h2 class="TitreSection1" id="LII.1">II.1. Session Exposure</h2>
+				
+				<br><h3 class="TitreSection2" id="LII.1.1">II.1.1. Problème</h3>
+					
+					<div class="paragraph">
+						Cette vulnérabilité est étroitement liée au hébergement 
+                        mutualisé. Dans ce type d'hébergement, un serveur est 
+                        partagé entre plusieurs sites. Toutefois, PHP <b>enregistre</b> 
+                        les sessions dans le <b>même répertoire</b> (/tmp par défaut).
+                        PHP crée un fichier de session par session utilisateur 
+                        nommé par l'identifiant de session. Ces fichiers sont de 
+                        bêtes fichiers texte qu'il suffit d'ouvrir avec votre 
+                        éditeur de texte favori et contiennent les variables de 
+                        session <b>en texte clair</b> !
+                    </div><br>
+                    <div class="paragraph">
+                        Imaginez alors que l'administrateur du serveur n'a pas 
+                        bien fait son travail et qu'un utilisateur puisse 
+                        remonter dans l'arborescence des répertoires. Il aurait 
+                        alors accès à toutes les sessions des sites.
+					</div><br>
+				
+				<br><h3 class="TitreSection2" id="LII.1.2">II.1.2. Solutions</h3>
+					
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 1 :</b></span>
+                        <br>
+                        Vous faite <b>confiance</b> à votre 
+                        <b>administrateur serveurs</b>.
+                    </div><br>
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 2 :</b></span>
+                        <br>
+                        Vous <b>changer</b> le <b>répertoire</b> de stockage des sessions. 
+                        Cette solutions n'est que très rarement envisageable sur 
+                        un serveur mutualisé car vous n'avez pas accès au php.ini. 
+                        Il faut pour cela changer la directive de configuration 
+                        <b><i>session.save_path</i></b>. Et même si vous pouviez 
+                        changer le répertoire, il faut encore s'assurer que 
+                        personne n'y aura accès.
+                    </div><br>
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 3 :</b></span>
+                        <br>
+                        Vous <b>sauvegardez</b> vos sessions dans 
+                        une <b>base de données</b>.  
+                        C'est un peu plus lourd à mettre en oeuvre que les autres 
+                        solutions mais c'est aussi la meilleures des protections 
+                        pour ce genre d'attaques.
+                    </div><br>
+                    <div class="paragraph">
+                        C'est donc cette dernière solution qui va être envisagée ici.
+					</div><br>
+					<div class="paragraph">
+					   Un autre problème mineure survient alors. Si on vous volait 
+					   votre login/mot de passe de votre compte pour accéder à la 
+					   base de données, cet utilisateur pourrait aussi voir les 
+					   variables de sessions. C'est pour cela que j'ai décidé 
+					   tout simplement de crypter en plus les données.
+					</div><br>
+				
+				<br><h3 class="TitreSection2" id="LII.1.3">II.1.3. Code</h3>
+					
+					<div class="paragraph">
+						Pour pouvoir stocker les variables de session dans la 
+						base de données ou dans des fichiers , il faut bien évidemment 
+                        utiliser l'handler de session via la fonction 
+                        <b><i><a href="http://be.php.net/session_set_save_handler" title="session_set_save_handler()" class="lienArticle">session_set_save_handler()</a></i></b> 
+                        et dans notre cas avoir une base de données !
+					</div><br>
+					<div class="paragraph">
+					   Initialement cette base de données sera construite comme ceci :
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e316"><tbody><tr><td class="titre_code">sql</td></tr><tr><td class="code"><div id="codeWrapperd0e316" class="codeWrapper"><div id="codeOverflowd0e316" style="overflow: auto;"><pre><code id="contenuCoded0e316" class="contenuCode">
+CREATE TABLE <code class="php_literal1">"</code><code class="php_literal1">sessions</code><code class="php_literal1">"</code> (
+  <code class="php_literal1">"</code><code class="php_literal1">session_id</code><code class="php_literal1">"</code> varchar(32) NOT <code class="php_keyword1">NULL</code><code class="php_operator">,</code>
+  <code class="php_literal1">"</code><code class="php_literal1">session_data</code><code class="php_literal1">"</code> text NOT <code class="php_keyword1">NULL</code><code class="php_operator">,</code>
+  <code class="php_literal1">"</code><code class="php_literal1">session_time</code><code class="php_literal1">"</code> datetime NOT <code class="php_keyword1">NULL</code><code class="php_operator">,</code>
+  PRIMARY <a class="php_function" href="http://www.php.net/manual/fr/function.key.php"><span class="php_function">KEY</span></a>  (<code class="php_literal1">"</code><code class="php_literal1">session_id</code><code class="php_literal1">"</code>)
+)<code class="php_operator">;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+					   Passons maintenant à la création des méthodes pour l'handler 
+					   de session.
+					</div><br>
+					<div class="paragraph">
+						Pour faire les choses proprement, j'ai créé une interface 
+						qui contiendra les prototype des méthode nécessaire pour 
+						l'handler de session, c'est à dire les méthodes <i>_open()</i>, 
+						<i>_close()</i>, <i>_read()</i>, <i>_write()</i>, 
+                        <i>_destroy()</i> et <i>_gc()</i> ainsi qu'une méthode qui 
+                        vérifiera des données par la suite.
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e399"><tbody><tr><td class="titre_code">Yume_Session_Interface - Yume/Session/Interface.php</td></tr><tr><td class="code"><div id="codeWrapperd0e399" class="codeWrapper"><div id="codeOverflowd0e399" style="overflow: auto;"><pre><code id="contenuCoded0e399" class="contenuCode">
+<code class="php_label">&lt;?php</code>
+
+<code class="php_keyword1">interface</code><code class="php_keyword1"> </code>Yume_Session_Interface
+<code class="php_operator">{</code>
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _open(<code class="php_keyword3">$</code><code class="php_keyword3">save_path</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">name</code>)<code class="php_operator">;</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _close()<code class="php_operator">;</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _read(<code class="php_keyword3">$</code><code class="php_keyword3">id</code>)<code class="php_operator">;</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _write(<code class="php_keyword3">$</code><code class="php_keyword3">id</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _destroy(<code class="php_keyword3">$</code><code class="php_keyword3">id</code>)<code class="php_operator">;</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _gc(<code class="php_keyword3">$</code><code class="php_keyword3">maxLifeTime</code>)<code class="php_operator">;</code>
+<code class="php_operator">}</code>
+
+<code class="php_label">?&gt;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+					   <br><br>
+						Ensuite, j'ai créé une classe de base abstraite. Cette 
+						classe va définir les méthodes de base nécessaire pour 
+                        sauvegarder les sessions dans une base de données ou dans 
+                        des fichiers ainsi que la fonction de cryptage des données.
+						<br>
+						Le cryptage par défaut sera le 
+						Blowfish en mode CBC via les fonctions fournies grâce à 
+						l'extension <a href="http://be.php.net/mcrypt" title="mcrypt" class="lienArticle">mcrypt</a>. 
+						Tout cryptage est le bienvenu du moment qu'il soit réversible.
+					</div><br>
+                    <table class="infobulle" style="width: 98%; text-align: left; border:0;"><tbody><tr><td style="width: 40px; vertical-align: top;" class="colonne"><img src="./Sécuriser les sessions en PHP_files/kitwarning.gif" alt="warning"></td><td class="colonne">
+						Merci de <b>changer</b> obligatoirement le <b>grain de sel</b> !
+					<br></td></tr></tbody></table>
+					<div class="paragraph">
+						Parmi ses méthodes, nous trouverons quelques unes 
+                        que voici :
+                        <br>
+						- une méthode pour définir les paramètres de sécurité tels que 
+                        l'algorithme de cryptage, son mode et le grain de sel (voir 
+						<i>setCryptOptions()</i>).
+						<br>
+                        - une méthode pour définir les paramètres de la ressource 
+                        utilisée pour sauvegarder les sessions (voir <i>setRessourceOptions()</i>).
+                        <br>
+                        - une méthode pour démarrer la session (voir <i>start()</i>).
+                        <br>
+                        - une méthode pour crypter les données (voir <i>mycrypt_encrypt()</i>).
+                        <br>
+                        - une méthode pour décrypter les données (voir <i>mycrypt_decrypt()</i>).
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e560"><tbody><tr><td class="titre_code">Yume_Session_Abstract - Yume/Session/Abstract.php</td></tr><tr><td class="code"><div id="codeWrapperd0e560" class="codeWrapper"><div id="codeOverflowd0e560" style="overflow: auto;"><pre><code id="contenuCoded0e560" class="contenuCode">
+<code class="php_label">&lt;?php</code>
+
+<a class="php_function" href="http://www.php.net/manual/fr/function.require-once.php"><span class="php_function">require_once</span></a> <code class="php_literal1">'</code><code class="php_literal1">Interface.php</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+
+<code class="php_keyword1">abstract</code> <code class="php_keyword1">class</code><code class="php_keyword1"> </code>Yume_Session_Abstract <code class="php_keyword1">implements</code> Yume_Session_Interface
+<code class="php_operator">{</code>	
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_regenerateTime</code> <code class="php_operator">=</code> <code class="php_digit">10</code><code class="php_operator">;</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> start(<code class="php_keyword3">$</code><code class="php_keyword3">params</code> <code class="php_operator">=</code> <code class="php_keyword1">false</code>)
+	<code class="php_operator">{</code>
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupère</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">paramètre</code><code class="php_comment2"> </code><code class="php_comment2">et</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">traîte</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword3">$</code><code class="php_keyword3">params</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword4">$this</code><code class="php_operator">-&gt;setRessourceOptions</code>(<code class="php_keyword3">$</code><code class="php_keyword3">params</code>)<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Vérifie</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">paramètre</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">type</code><code class="php_literal1">'</code><code class="php_operator">]</code> <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">database</code><code class="php_literal1">'</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.empty.php"><span class="php_function">empty</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">hostname</code><code class="php_literal1">'</code><code class="php_operator">]</code>) <code class="php_operator">|</code><code class="php_operator">|</code> <code class="php_operator">!</code><a class="php_function" href="http://www.php.net/manual/fr/function.is-string.php"><span class="php_function">is_string</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">hostname</code><code class="php_literal1">'</code><code class="php_operator">]</code>))
+			<code class="php_operator">{</code>
+				<code class="php_keyword1">throw</code> <code class="php_keyword1">new</code> <code class="php_keyword1">Exception</code>(<code class="php_literal1">'</code><code class="php_literal1">Unknown</code><code class="php_literal1"> </code><code class="php_literal1">database</code><code class="php_literal1"> </code><code class="php_literal1">host.</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+			<code class="php_keyword1">elseif</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.empty.php"><span class="php_function">empty</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">dbname</code><code class="php_literal1">'</code><code class="php_operator">]</code>) <code class="php_operator">|</code><code class="php_operator">|</code> <code class="php_operator">!</code><a class="php_function" href="http://www.php.net/manual/fr/function.is-string.php"><span class="php_function">is_string</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">dbname</code><code class="php_literal1">'</code><code class="php_operator">]</code>))
+			<code class="php_operator">{</code>
+				<code class="php_keyword1">throw</code> <code class="php_keyword1">new</code> <code class="php_keyword1">Exception</code>(<code class="php_literal1">'</code><code class="php_literal1">Unknown</code><code class="php_literal1"> </code><code class="php_literal1">database</code><code class="php_literal1"> </code><code class="php_literal1">name.</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+			<code class="php_keyword1">elseif</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.empty.php"><span class="php_function">empty</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">username</code><code class="php_literal1">'</code><code class="php_operator">]</code>) <code class="php_operator">|</code><code class="php_operator">|</code> <code class="php_operator">!</code><a class="php_function" href="http://www.php.net/manual/fr/function.is-string.php"><span class="php_function">is_string</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">username</code><code class="php_literal1">'</code><code class="php_operator">]</code>))
+			<code class="php_operator">{</code>
+				<code class="php_keyword1">throw</code> <code class="php_keyword1">new</code> <code class="php_keyword1">Exception</code>(<code class="php_literal1">'</code><code class="php_literal1">Unknown</code><code class="php_literal1"> </code><code class="php_literal1">database</code><code class="php_literal1"> </code><code class="php_literal1">username.</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+			<code class="php_keyword1">elseif</code> (<code class="php_operator">!</code><a class="php_function" href="http://www.php.net/manual/fr/function.is-string.php"><span class="php_function">is_string</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">password</code><code class="php_literal1">'</code><code class="php_operator">]</code>))
+			<code class="php_operator">{</code>
+				<code class="php_keyword1">throw</code> <code class="php_keyword1">new</code> <code class="php_keyword1">Exception</code>(<code class="php_literal1">'</code><code class="php_literal1">Unknown</code><code class="php_literal1"> </code><code class="php_literal1">database</code><code class="php_literal1"> </code><code class="php_literal1">password.</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">elseif</code> (<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">type</code><code class="php_literal1">'</code><code class="php_operator">]</code> <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">file</code><code class="php_literal1">'</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.isset.php"><span class="php_function">isset</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">save_path</code><code class="php_literal1">'</code><code class="php_operator">]</code>) <code class="php_operator">&amp;</code><code class="php_operator">&amp;</code> <a class="php_function" href="http://www.php.net/manual/fr/function.is-string.php"><span class="php_function">is_string</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">save_path</code><code class="php_literal1">'</code><code class="php_operator">]</code>) <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_keyword1">false</code>)
+			<code class="php_operator">{</code>
+				<code class="php_keyword1">throw</code> <code class="php_keyword1">new</code> <code class="php_keyword1">Exception</code>(<code class="php_literal1">'</code><code class="php_literal1">Invalid</code><code class="php_literal1"> </code><code class="php_literal1">save</code><code class="php_literal1"> </code><code class="php_literal1">path.</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+			<code class="php_keyword1">else</code> <code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.empty.php"><span class="php_function">empty</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">save_path</code><code class="php_literal1">'</code><code class="php_operator">]</code>))
+			<code class="php_operator">{</code>
+				<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">save_path</code><code class="php_literal1">'</code><code class="php_operator">]</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.session-save-path.php"><span class="php_function">session_save_path</span></a>()<code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+		<code class="php_operator">}</code>
+		
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Configure</code><code class="php_comment2"> </code><code class="php_comment2">l'handler</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">session</code>
+		<code class="php_keyword1">if</code> (<code class="php_operator">!</code><a class="php_function" href="http://www.php.net/manual/fr/function.session-set-save-handler.php"><span class="php_function">session_set_save_handler</span></a>(
+				<code class="php_keyword1">array</code>(<code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">,</code> <code class="php_literal1">'</code><code class="php_literal1">_open</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+				<code class="php_keyword1">array</code>(<code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">,</code> <code class="php_literal1">'</code><code class="php_literal1">_close</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+				<code class="php_keyword1">array</code>(<code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">,</code> <code class="php_literal1">'</code><code class="php_literal1">_read</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+				<code class="php_keyword1">array</code>(<code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">,</code> <code class="php_literal1">'</code><code class="php_literal1">_write</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+				<code class="php_keyword1">array</code>(<code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">,</code> <code class="php_literal1">'</code><code class="php_literal1">_destroy</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+				<code class="php_keyword1">array</code>(<code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">,</code> <code class="php_literal1">'</code><code class="php_literal1">_gc</code><code class="php_literal1">'</code>)
+			))
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">throw</code> <code class="php_keyword1">new</code> <code class="php_keyword1">Exception</code>(<code class="php_literal1">'</code><code class="php_literal1">Session</code><code class="php_literal1"> </code><code class="php_literal1">handler</code><code class="php_literal1"> </code><code class="php_literal1">error.</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupère</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">maxlifetime</code>
+		<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_maxLifeTime</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.ini-get.php"><span class="php_function">ini_get</span></a>(<code class="php_literal1">'</code><code class="php_literal1">session.gc_maxlifetime</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Enregistre</code><code class="php_comment2"> </code><code class="php_comment2">l'heure</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">début</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">session</code>
+		<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_time</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">Y-m-d</code><code class="php_literal1"> </code><code class="php_literal1">H-i-s</code><code class="php_literal1">'</code><code class="php_operator">,</code> <a class="php_function" href="http://www.php.net/manual/fr/function.time.php"><span class="php_function">time</span></a>())<code class="php_operator">;</code>
+
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Démarre</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">session</code>
+		<a class="php_function" href="http://www.php.net/manual/fr/function.session-start.php"><span class="php_function">session_start</span></a>()<code class="php_operator">;</code>
+		
+		<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> setRessourceOptions(<code class="php_keyword1">array</code> <code class="php_keyword3">$</code><code class="php_keyword3">options</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">foreach</code> (<code class="php_keyword3">$</code><code class="php_keyword3">options</code> <code class="php_keyword1">as</code> <code class="php_keyword3">$</code><code class="php_keyword3">option</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_keyword3">$</code><code class="php_keyword3">value</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_keyword3">$</code><code class="php_keyword3">option</code><code class="php_operator">]</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">value</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+				
+		<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+	
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> setCryptOptions(<code class="php_keyword3">$</code><code class="php_keyword3">salt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cypher</code> <code class="php_operator">=</code> MCRYPT_BLOWFISH<code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">mode</code> <code class="php_operator">=</code> MCRYPT_MODE_CBC)
+	<code class="php_operator">{</code>
+		<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptCypher</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">cypher</code><code class="php_operator">;</code>
+		<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptMode</code> <code class="php_operator">=</code>  <code class="php_keyword3">$</code><code class="php_keyword3">mode</code><code class="php_operator">;</code>
+		<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptSalt</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">salt</code><code class="php_operator">;</code>
+		
+		<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">this</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+	
+	<code class="php_keyword1">protected</code> <code class="php_keyword1">function</code> mycrypt_encrypt(<code class="php_keyword3">$</code><code class="php_keyword3">cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptMode</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptSalt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-get-iv-size.php"><span class="php_function">mcrypt_get_iv_size</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptMode</code>)<code class="php_operator">;</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">iv</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-create-iv.php"><span class="php_function">mcrypt_create_iv</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code><code class="php_operator">,</code> MCRYPT_RAND)<code class="php_operator">;</code>
+		
+        <code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-encrypt.php"><span class="php_function">mcrypt_encrypt</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptSalt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptMode</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv</code>)<code class="php_operator">;</code>
+		
+        <code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.base64-encode.php"><span class="php_function">base64_encode</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">iv</code><code class="php_operator">.</code><code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+		
+		<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+	
+	<code class="php_keyword1">protected</code> <code class="php_keyword1">function</code> mycrypt_decrypt(<code class="php_keyword3">$</code><code class="php_keyword3">cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptMode</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptSalt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)
+	<code class="php_operator">{</code>
+        <code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.base64-decode.php"><span class="php_function">base64_decode</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+			
+        <code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-get-iv-size.php"><span class="php_function">mcrypt_get_iv_size</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptMode</code>)<code class="php_operator">;</code>
+        <code class="php_keyword3">$</code><code class="php_keyword3">iv</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.substr.php"><span class="php_function">substr</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_digit">0</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code>)<code class="php_operator">;</code>
+		
+        <code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.substr.php"><span class="php_function">substr</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code>)<code class="php_operator">;</code>
+        <code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-decrypt.php"><span class="php_function">mcrypt_decrypt</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptSalt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">cryptMode</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv</code>)<code class="php_operator">;</code>
+	
+		<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+<code class="php_operator">}</code>
+
+<code class="php_label">?&gt;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+					    Voici maintenant la classe qui va gérer les sessions. Elle 
+					    redéfinira les méthodes <i>_open</i>, <i>_close</i>, 
+                        <i>_read</i>, <i>_write</i>, <i>_destroy</i> et <i>_gc</i>.
+                        <br>
+						Avant de vous montrer le code, il est bon d'en savoir un 
+						minimum sur ces fonction utilisés par l'handler de session.
+						<br>
+						<br>
+						<span style="text-decoration: underline;"><i>_open($save_path, $name)</i>:</span>
+						<br>
+						Cette méthode à pour but d'initialiser les ressources que 
+						vous allez utiliser pour stocker les sessions. Cette méthode 
+						prend deux arguments qui sont le chemin vers le répertoire 
+						où stocker les sessions et le nom des sessions.
+						<br>
+						Dans notre cas ni l'un, ni l'autre n'a d'utilité, ni la méthodes 
+                        elle-même car la connexion à la base de donnée est effectuée 
+                        ailleurs dans la classe.
+						<br>
+						<br>
+						<span style="text-decoration: underline;"><i>_close()</i>:</span>
+						<br>
+						Cette méthode est utilisée pour fermer les ressources. Elle ne 
+						sera pas non plus utilisée dans notre cas.
+                        <br>
+						<br>
+                        <span style="text-decoration: underline;"><i>_read($id)</i>: </span>
+                        <br>
+                        Comme son nom l'indique cette méthode sert à lire les données 
+                        contenu dans la session. Elle prend comme paramètre 
+                        l'identifiant de session.
+                        <br>
+                        Cette méthode doit <b>impérativement</b> retourner une chaîne de 
+                        caractères, même si celle-ci est vide !
+                        <br>
+                        <br>
+                        <span style="text-decoration: underline;"><i>_write($id, $data)</i>: </span>
+                        <br>
+                        Cette méthode permet d'écrire des données dans le contenu 
+                        d'une session. Elle prend comme paramètre l'identifiant de 
+                        sessin et bien entendu les données à écrire.
+                        <br>
+                        <br>
+                        <span style="text-decoration: underline;"><i>_destroy($id)</i>:</span>
+                        <br>
+                        Cette méthode supprime la session. Elle prend comme 
+                        paramètre l'identifiant de session.
+                        <br>
+                        <br>
+                        <span style="text-decoration: underline;"><i>_gc($maxLifeTime)</i>:</span>
+                        <br>
+                        Cette dernière méthode joue le rôle de ramasse miette (ou 
+                        plus couramment appelé "<i>garbage collector</i>").
+                        <br>
+                        Chaque fois qu'une session est ouverte, la probabilité que 
+                        cette méthode est exécutée dépend d'un petit calcul : 
+                        <i>session.gc_probability</i>/<i>session.gc_divisor</i>. Un nombre aléatoire 
+                        est alors généré et si celui-ci est inférieur au calcul, 
+                        la méthode est exécutée. 
+                        Par exemple 1/100 veut dire qu'il y a 1% de chance que le 
+                        garbage collector soit exécuté à chaque requête.
+                        <br>
+                        La méthode efface alors toutes les sessions qui auraient un 
+                        âge supérieur à la variable passée en paramètre.
+                        <br>
+                        <br>
+					</div>	
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e2170"><tbody><tr><td class="titre_code">Yume_Session_Abstract - Yume/Session/Database.php</td></tr><tr><td class="code"><div id="codeWrapperd0e2170" class="codeWrapper"><div id="codeOverflowd0e2170" style="overflow: auto;"><pre><code id="contenuCoded0e2170" class="contenuCode">
+<code class="php_label">&lt;?php</code>
+
+<a class="php_function" href="http://www.php.net/manual/fr/function.require-once.php"><span class="php_function">require_once</span></a> <code class="php_literal1">'</code><code class="php_literal1">Interface.php</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+
+<code class="php_keyword1">class</code><code class="php_keyword1"> </code>Yume_Session_Database <code class="php_keyword1">extends</code> Yume_Session_Abstract
+<code class="php_operator">{</code>
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_ressource</code>          <code class="php_operator">=</code> <code class="php_keyword1">null</code><code class="php_operator">;</code>
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_ressourceOptions</code>   <code class="php_operator">=</code> <code class="php_keyword1">array</code>()<code class="php_operator">;</code>
+	
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_time</code>               <code class="php_operator">=</code> <code class="php_digit">0</code><code class="php_operator">;</code>
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_maxLifeTime</code>        <code class="php_operator">=</code> <code class="php_digit">3600</code><code class="php_operator">;</code>
+	
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_cryptCypher</code>        <code class="php_operator">=</code> MCRYPT_BLOWFISH<code class="php_operator">;</code>
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_cryptMode</code>          <code class="php_operator">=</code> MCRYPT_MODE_CBC<code class="php_operator">;</code>
+	<code class="php_keyword1">protected</code> <code class="php_keyword3">$</code><code class="php_keyword3">_cryptSalt</code>          <code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">Vive</code><code class="php_literal1"> </code><code class="php_literal1">Developpez.com</code><code class="php_literal1"> </code><code class="php_literal1">!</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+		
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _open(<code class="php_keyword3">$</code><code class="php_keyword3">save_path</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">name</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressource</code> <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_keyword1">null</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressource</code> <code class="php_operator">=</code> <code class="php_keyword1">new</code> <a class="php_function" href="http://www.php.net/manual/fr/function.pdo.php"><span class="php_function">PDO</span></a>
+			(
+				<code class="php_literal1">'</code><code class="php_literal1">mysql:host=</code><code class="php_literal1">'</code><code class="php_operator">.</code><code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">hostname</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">.</code><code class="php_literal1">'</code><code class="php_literal1">;dbname=</code><code class="php_literal1">'</code><code class="php_operator">.</code><code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">dbname</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">,</code>
+				<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">username</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">,</code>
+				<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_ressourceOptions</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">password</code><code class="php_literal1">'</code><code class="php_operator">]</code>
+			)<code class="php_operator">;</code>
+	
+			<code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;setAttribute</code>(<a class="php_function" href="http://www.php.net/manual/fr/function.pdo.php"><span class="php_function">PDO</span></a><code class="php_operator">:</code><code class="php_operator">:</code>ATTR_ERRMODE<code class="php_operator">,</code> <a class="php_function" href="http://www.php.net/manual/fr/function.pdo.php"><span class="php_function">PDO</span></a><code class="php_operator">:</code><code class="php_operator">:</code>ERRMODE_EXCEPTION)<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _close()
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _read(<code class="php_keyword3">$</code><code class="php_keyword3">id</code>)
+	<code class="php_operator">{</code>
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupère</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">SELECT</code><code class="php_literal1"> </code><code class="php_literal1">session_data</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">id</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">id</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+
+		<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <code class="php_keyword4">$sql</code><code class="php_operator">-&gt;fetch</code>(<a class="php_function" href="http://www.php.net/manual/fr/function.pdo.php"><span class="php_function">PDO</span></a><code class="php_operator">:</code><code class="php_operator">:</code><code class="php_keyword2">FETCH_ASSOC</code>)<code class="php_operator">;</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">session_data</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+
+		<code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.empty.php"><span class="php_function">empty</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code>))
+		<code class="php_operator">{</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">else</code>
+		<code class="php_operator">{</code>
+			<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Decrypte</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.base64-decode.php"><span class="php_function">base64_decode</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+			
+			<code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-get-iv-size.php"><span class="php_function">mcrypt_get_iv_size</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptMode</code>)<code class="php_operator">;</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">iv</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.substr.php"><span class="php_function">substr</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_digit">0</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code>)<code class="php_operator">;</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.substr.php"><span class="php_function">substr</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv_size</code>)<code class="php_operator">;</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mcrypt-decrypt.php"><span class="php_function">mcrypt_decrypt</span></a>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptSalt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptMode</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">iv</code>)<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+
+		<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _write(<code class="php_keyword3">$</code><code class="php_keyword3">id</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)
+	<code class="php_operator">{</code>
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Crypte</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">data</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_operator">-&gt;mycrypt_encrypt</code>(<code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptCypher</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptMode</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_cryptSalt</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+		
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Met</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">jour</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">base</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">UPDATE</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">SET</code><code class="php_literal1"> </code><code class="php_literal1">session_data</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">data</code><code class="php_literal1">,</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">session_time</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">time</code><code class="php_literal1">;</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">id</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+		
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">id</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:data</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:time</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_time</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+		
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Ou</code><code class="php_comment2"> </code><code class="php_comment2">alors</code><code class="php_comment2"> </code><code class="php_comment2">insère</code><code class="php_comment2"> </code><code class="php_comment2">les</code><code class="php_comment2"> </code><code class="php_comment2">données</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;rowCount</code>() <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_digit">0</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">INSERT</code><code class="php_literal1"> </code><code class="php_literal1">INTO</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code><code class="php_literal1"> </code><code class="php_literal1">(</code><code class="php_literal1">session_id</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">session_data</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">session_time</code><code class="php_literal1">)</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">VALUES</code><code class="php_literal1"> </code><code class="php_literal1">(</code><code class="php_literal1">:</code><code class="php_literal1">id</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">data</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">time</code><code class="php_literal1">)</code><code class="php_literal1">;</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+			
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">id</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:data</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">data</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:time</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_time</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		
+		<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+	
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _destroy(<code class="php_keyword3">$</code><code class="php_keyword3">id</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">DELETE</code><code class="php_literal1"> </code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">id</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">id</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+
+		<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> _gc(<code class="php_keyword3">$</code><code class="php_keyword3">maxLifeTime</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">DELETE</code><code class="php_literal1"> </code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">DATE_ADD</code><code class="php_literal1">(</code><code class="php_literal1">session_time</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">INTERVAL</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">maxlifetime</code><code class="php_literal1"> </code><code class="php_literal1">SECOND</code><code class="php_literal1">)</code><code class="php_literal1"> </code><code class="php_literal1">&lt;</code><code class="php_literal1"> </code><code class="php_literal1">NOW</code><code class="php_literal1">(</code><code class="php_literal1">)</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:maxlifetime</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_maxLifeTime</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+
+		<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+	<code class="php_operator">}</code>
+<code class="php_operator">}</code>
+
+<code class="php_label">?&gt;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+                        Pour finir voici la classe qui permet de crééer l'objet sessions.
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e3735"><tbody><tr><td class="titre_code">Yume_Session - Yume/Session.php</td></tr><tr><td class="code"><div id="codeWrapperd0e3735" class="codeWrapper"><div id="codeOverflowd0e3735" style="overflow: auto;"><pre><code id="contenuCoded0e3735" class="contenuCode">
+<code class="php_label">&lt;?php</code>
+
+<a class="php_function" href="http://www.php.net/manual/fr/function.require-once.php"><span class="php_function">require_once</span></a> <code class="php_literal1">'</code><code class="php_literal1">Session/File.php</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+<a class="php_function" href="http://www.php.net/manual/fr/function.require-once.php"><span class="php_function">require_once</span></a> <code class="php_literal1">'</code><code class="php_literal1">Session/Database.php</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+
+<code class="php_keyword1">class</code><code class="php_keyword1"> </code>Yume_Session
+<code class="php_operator">{</code>	
+	<code class="php_keyword1">const</code> SESSION_FILE <code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">file</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+	<code class="php_keyword1">const</code> SESSION_DATABASE <code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">database</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+	
+	<code class="php_keyword1">private</code> <code class="php_keyword1">function</code> <code class="php_keyword1">__construct</code>() <code class="php_operator">{</code><code class="php_operator">}</code>
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> <code class="php_keyword1">__destruct</code>() <code class="php_operator">{</code><code class="php_operator">}</code>
+	
+	<code class="php_keyword1">public</code> <code class="php_keyword1">static</code> <code class="php_keyword1">function</code> getSession(<code class="php_keyword3">$</code><code class="php_keyword3">type</code> <code class="php_operator">=</code> <code class="php_keyword1">self</code><code class="php_operator">:</code><code class="php_operator">:</code>SESSION_FILE)
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">switch</code> (<code class="php_keyword3">$</code><code class="php_keyword3">type</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">case</code> <code class="php_keyword1">self</code><code class="php_operator">:</code><code class="php_operator">:</code>SESSION_FILE<code class="php_operator">:</code>
+				<code class="php_keyword4">$session</code> <code class="php_operator">=</code> <code class="php_keyword1">new</code> Yume_Session_File<code class="php_operator">;</code>
+				<code class="php_keyword4">$session</code><code class="php_operator">-&gt;setRessourceOptions</code>(<code class="php_keyword1">array</code>(<code class="php_literal1">'</code><code class="php_literal1">type</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_keyword1">self</code><code class="php_operator">:</code><code class="php_operator">:</code>SESSION_FILE))<code class="php_operator">;</code>
+				<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">session</code><code class="php_operator">;</code>
+			<code class="php_keyword1">case</code> <code class="php_keyword1">self</code><code class="php_operator">:</code><code class="php_operator">:</code>SESSION_DATABASE<code class="php_operator">:</code>
+				<code class="php_keyword4">$session</code> <code class="php_operator">=</code> <code class="php_keyword1">new</code> Yume_Session_Database<code class="php_operator">;</code>
+				<code class="php_keyword4">$session</code><code class="php_operator">-&gt;setRessourceOptions</code>(<code class="php_keyword1">array</code>(<code class="php_literal1">'</code><code class="php_literal1">type</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_keyword1">self</code><code class="php_operator">:</code><code class="php_operator">:</code>SESSION_DATABASE))<code class="php_operator">;</code>
+				<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">session</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+	<code class="php_operator">}</code>
+<code class="php_operator">}</code>
+
+<code class="php_label">?&gt;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+				
+			
+			<br><h2 class="TitreSection1" id="LII.2">II.2. Session Fixation</h2>
+				
+				<br><h3 class="TitreSection2" id="LII.2.1">II.2.1. Problème</h3>
+					
+					<div class="paragraph">
+						Pour qu'une session puisse transiter d'une page à l'autre, 
+						il faut évidemment sauvegarder l'identifiant de session 
+						quelque part. Généralement cet identifiant de session peut 
+						être sauvegardé de deux manières différentes.
+						<br>
+						<i>Note :</i> L'identifiant de session sera désormais noté SID.
+					</div><br>
+					<div class="paragraph">
+					   La première consiste à mettre le SID dans 
+					   l'URL via une variable GET nommée PHPSESSID par défaut.
+					   <br>
+					   Ceci est possible si la directive de configuration 
+					   <i>session.use_trans_sid</i> est activée.
+					   <br>
+					   Cette directive activée peut poser quelques problèmes 
+					   lorsqu'un utilisateurs non attentif, qui est connecté à son 
+                       compte sur un tel site, copie-colle bêtement 
+					   un lien contenant le SID. Dès lors l'utilisateur qui reçoit 
+					   ce lien aura accès au compte comme bon lui semble.
+					</div><br>
+					<div class="paragraph">
+					   La deuxième solution consiste à sauvegarder le SID dans 
+                       un <a href="http://dico.developpez.com/html/2972-Internet-cookie.php" class="lienDico" title="Dictionnaire des développeurs">cookie</a>.
+                       <br>
+                       Ceci est possible si la directive de configuration 
+                       <i>session.use_cookies</i> est activée.
+					</div><br>
+					<div class="paragraph">
+					   L'attaque dite "Session Fixation" consiste donc à faire 
+					   utiliser à la victime un SID prédéfini par l'attaquant. 
+					</div><br>
+					<div class="paragraph">
+					   Avant de vous montrer un petit exemple pour vous aider à 
+					   comprendre, il reste un point à éclaircir. C'est la restriction 
+					   des serveurs vis à vis d'un SID passé manuellement dans l'URL.
+                    </div><br>
+					<div class="paragraph">
+					   Il existe deux grandes catégories de serveurs à ce niveaux :
+                       <br>
+                       1 - Les serveurs dit "<b>permissif</b>" : c'est à dire des serveurs 
+                       qui autorisent un SID quelconque et qui créeront une 
+                       nouvelle session avec cet SID.
+                       <br>
+                       2 - Les serveurs dit "<b>strict</b>" : c'est à dire des serveurs 
+                       qui n'autorisent pas des SID externe, donc qui n'acceptent 
+                       que les SID crées par lui-même.
+                       <br>
+                       PHP se trouvant dans la première catégorie.
+					</div><br>
+					<div class="paragraph">
+					   Nous allons créer deux scripts PHP. L'un qui créera une 
+					   variable de session et l'autre qui l'affichera.
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e4076"><tbody><tr><td class="titre_code">page1.php</td></tr><tr><td class="code"><div id="codeWrapperd0e4076" class="codeWrapper"><div id="codeOverflowd0e4076" style="overflow: auto;"><pre><code id="contenuCoded0e4076" class="contenuCode">
+<code class="php_label">&lt;?php</code>
+<a class="php_function" href="http://www.php.net/manual/fr/function.error-reporting.php"><span class="php_function">error_reporting</span></a>(E_ALL <code class="php_operator">|</code> E_STRICT)<code class="php_operator">;</code>
+date_default_timezone_set(<code class="php_literal1">'</code><code class="php_literal1">Europe/Brussels</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+
+<a class="php_function" href="http://www.php.net/manual/fr/function.require-once.php"><span class="php_function">require_once</span></a> <code class="php_literal1">'</code><code class="php_literal1">Yume/Session.php</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+
+<code class="php_keyword1">try</code>
+<code class="php_operator">{</code>
+	<code class="php_keyword3">$</code><code class="php_keyword3">session</code> <code class="php_operator">=</code> Yume_Session<code class="php_operator">:</code><code class="php_operator">:</code>getSession(Yume_Session<code class="php_operator">:</code><code class="php_operator">:</code>SESSION_DATABASE)<code class="php_operator">;</code>
+	<code class="php_keyword4">$session</code><code class="php_operator">-&gt;setRessourceOptions</code>(<code class="php_keyword1">array</code>(
+				<code class="php_literal1">'</code><code class="php_literal1">hostname</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">localhost</code><code class="php_literal1">'</code><code class="php_operator">,</code>
+				<code class="php_literal1">'</code><code class="php_literal1">dbname</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">session</code><code class="php_literal1">'</code><code class="php_operator">,</code>
+				<code class="php_literal1">'</code><code class="php_literal1">username</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">root</code><code class="php_literal1">'</code><code class="php_operator">,</code>
+				<code class="php_literal1">'</code><code class="php_literal1">password</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">'</code>
+			))
+			<code class="php_operator">-</code><code class="php_operator">&gt;</code>setCryptOptions(<code class="php_literal1">'</code><code class="php_literal1">Bouhhhhhhhh</code><code class="php_literal1"> </code><code class="php_literal1">!</code><code class="php_literal1">'</code>)
+			<code class="php_operator">-</code><code class="php_operator">&gt;</code>start()<code class="php_operator">;</code>
+	
+<code class="php_operator">}</code> <code class="php_keyword1">catch</code>(<code class="php_keyword1">Exception</code> <code class="php_keyword3">$</code><code class="php_keyword3">e</code>)
+<code class="php_operator">{</code>
+	<a class="php_function" href="http://www.php.net/manual/fr/function.echo.php"><span class="php_function">echo</span></a> <code class="php_keyword4">$e</code><code class="php_operator">-&gt;getMessage</code>()<code class="php_operator">;</code>
+<code class="php_operator">}</code>
+
+<code class="php_keyword4">$session</code><code class="php_keyword3">-&gt;test</code> <code class="php_operator">=</code> <code class="php_literal1">'</code><code class="php_literal1">oki</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+
+<code class="php_label">?&gt;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e4303"><tbody><tr><td class="titre_code">page2.php</td></tr><tr><td class="code"><div id="codeWrapperd0e4303" class="codeWrapper"><div id="codeOverflowd0e4303" style="overflow: auto;"><pre><code id="contenuCoded0e4303" class="contenuCode">
+<code class="php_label">&lt;?php</code>
+<a class="php_function" href="http://www.php.net/manual/fr/function.error-reporting.php"><span class="php_function">error_reporting</span></a>(E_ALL <code class="php_operator">|</code> E_STRICT)<code class="php_operator">;</code>
+date_default_timezone_set(<code class="php_literal1">'</code><code class="php_literal1">Europe/Brussels</code><code class="php_literal1">'</code>)<code class="php_operator">;</code>
+
+<a class="php_function" href="http://www.php.net/manual/fr/function.require-once.php"><span class="php_function">require_once</span></a> <code class="php_literal1">'</code><code class="php_literal1">Yume/Session.php</code><code class="php_literal1">'</code><code class="php_operator">;</code>
+
+<code class="php_keyword1">try</code>
+<code class="php_operator">{</code>
+	<code class="php_keyword3">$</code><code class="php_keyword3">session</code> <code class="php_operator">=</code> Yume_Session<code class="php_operator">:</code><code class="php_operator">:</code>getSession(Yume_Session<code class="php_operator">:</code><code class="php_operator">:</code>SESSION_DATABASE)<code class="php_operator">;</code>
+	<code class="php_keyword4">$session</code><code class="php_operator">-&gt;setRessourceOptions</code>(<code class="php_keyword1">array</code>(
+				<code class="php_literal1">'</code><code class="php_literal1">hostname</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">localhost</code><code class="php_literal1">'</code><code class="php_operator">,</code>
+				<code class="php_literal1">'</code><code class="php_literal1">dbname</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">session</code><code class="php_literal1">'</code><code class="php_operator">,</code>
+				<code class="php_literal1">'</code><code class="php_literal1">username</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">root</code><code class="php_literal1">'</code><code class="php_operator">,</code>
+				<code class="php_literal1">'</code><code class="php_literal1">password</code><code class="php_literal1">'</code> <code class="php_operator">=</code><code class="php_operator">&gt;</code> <code class="php_literal1">'</code><code class="php_literal1">'</code>
+			))
+			<code class="php_operator">-</code><code class="php_operator">&gt;</code>setCryptOptions(<code class="php_literal1">'</code><code class="php_literal1">Bouhhhhhhhh</code><code class="php_literal1"> </code><code class="php_literal1">!</code><code class="php_literal1">'</code>)
+			<code class="php_operator">-</code><code class="php_operator">&gt;</code>start()<code class="php_operator">;</code>
+	
+<code class="php_operator">}</code> <code class="php_keyword1">catch</code>(<code class="php_keyword1">Exception</code> <code class="php_keyword3">$</code><code class="php_keyword3">e</code>)
+<code class="php_operator">{</code>
+	<a class="php_function" href="http://www.php.net/manual/fr/function.echo.php"><span class="php_function">echo</span></a> <code class="php_keyword4">$e</code><code class="php_operator">-&gt;getMessage</code>()<code class="php_operator">;</code>
+<code class="php_operator">}</code>
+
+<a class="php_function" href="http://www.php.net/manual/fr/function.echo.php"><span class="php_function">echo</span></a> <code class="php_keyword4">$session</code><code class="php_keyword3">-&gt;test</code><code class="php_operator">;</code>
+
+<code class="php_label">?&gt;</code>
+</code></pre></div></div></td></tr></tbody></table></div>					
+					<div class="paragraph">
+						Tout d'abord on va choisir un SID simple pour les test qui 
+						sera 1234. Nous voila donc avec comme URL : 
+						<br>
+						<i>http://localhost:88/dvp/MySession2-fixation/page1.php?PHPSESSID=1234</i>.
+						<br>
+						<br>
+						Maintenant, soit avec un autre navigateur, soit un autre 
+						ordinateur, vous allez visiter la page2.php avec l'URL : 
+						<br>
+						<i>http://localhost:88/dvp/MySession2-fixation/page2.php?PHPSESSID=1234</i>.
+						<br>
+						<br>
+						Bien que la session n'est pas censée être démarrée sur la 
+						page2.php, vous constaterez que on obtient bien l'affichage 
+						de "oki".
+						<br>
+						<br>
+						<img src="./Sécuriser les sessions en PHP_files/sess-fixation-page1.png" alt="Session Fixation - page1.php">
+						<br>
+                        <img src="./Sécuriser les sessions en PHP_files/sess-fixation-page2.png" alt="Session Fixation - page2.php">
+					</div><br>
+				
+				<br><h3 class="TitreSection2" id="LII.2.2">II.2.2. Solutions</h3>
+					
+					<div class="paragraph">
+                        Il existe plusieurs solutions à ce type d'attaque, toutes 
+                        ont leurs avantages et inconvénients.
+                    </div><br>
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Pour toutes solutions :</b></span>
+                        <br>
+                        <i>session.use_trans_sid</i> doit bien évidemment être à <i>0</i> 
+                        quel que soit la solution adoptée (par défaut cette directive 
+                        est désactivée).
+                    </div><br>
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 1 :</b></span>
+                        <br>
+                        La solution plus simple consiste sans doute à modifier 
+                        deux directives de configuration qui sont :
+                        <br>
+                        - <i>session.use_cookies</i> à mettre à <i>1</i>
+                        <br>
+                        - <i>session.use_only_cookies</i> à mettre à <i>1</i>
+                        <br>
+                        Les inconvénients de cette solutions sont que si l'utilisateur 
+                        n'accepte pas les cookies, il ne pourra pas démarrer une session 
+                        et que vous devez avoir accès au fichier de configuration 
+                        php.ini.
+                    </div><br>
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 2 :</b></span>
+                        <br>
+                        Une autre solution simple à mettre en place serait de 
+                        stocké des informations et vérifier par la suite si elles 
+                        ont ou pas changés. Car d'une page à l'autre il est peu 
+                        probable qu'une informations choisie change. Mais quel 
+                        information choisir ?
+                        <br>
+                        On pourrais stocker l'IP de l'utilisateur mais celle-ci 
+                        est de loin fiable à 100%. Si l'utilisateur est derrière 
+                        un proxy, il changera sans doute d'IP assez régulièrement. 
+                        L'IP n'est donc pas à stocker.
+                        <br>
+                        Par contre, d'une page à l'autre, le naviguateur ne risque 
+                        pas de changer. Nous pourrons donc utiliser cela.
+                    </div><br>
+                    <div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 3 :</b></span>
+                        <br>
+                        Sans aucun doute, la meilleure des solutions est 
+						d'utiliser la fonction <a href="http://be.php.net/session_regenerate_id" title="Fonction PHP session_regenerate_id()" class="lienArticle">session_regenerate_id()</a>.
+					</div><br>
+					<div class="paragraph">
+                        <span style="text-decoration: underline;"><b>Solution 4 :</b></span>
+                        <br>
+                        Sans aucun doute, la plus sure des solutions est 
+						d'utiliser un serveur sécurisé SSL.
+					</div><br>
+				    <div class="paragraph">
+                        Ici, je ne vais pas utiliser une seule solution mais un 
+                        mixte des solutions 2 et 3. La solution 1 ne dépendant pas du 
+                        code mais de la configuration de votre serveur, il n'y aura 
+                        donc rien de mis en plus pour celle la dans ce code.
+					</div><br>
+                
+				<br><h3 class="TitreSection2" id="LII.2.3">II.2.3. Code</h3>
+					
+					<div class="paragraph">
+						Tout d'abord on va créér une méthode qui vérifiera les 
+						informations (voir <i>checkInfo()</i>).
+                    </div><br>
+                    <div class="paragraph">
+                        Étant donné qu'il faut sauvegarder la naviguateur de 
+						l'utilisateur, il faudra créé un nouveau champ dans la 
+						base de données. Je l'ai nommé <i>session_browser</i>.
+					</div><br>
+                    <div class="paragraph">
+						Pour la gestion de la régénération du SID, ca ne sert pas 
+						à grand chose de le regénérer à chaque page. J'ai donc décidé 
+						de le sauvegarder aussi dans la base de données. Je l'ai 
+						nommé <i>session_regenerate</i>. Pour la gestion à proprement 
+						parler, après un certain nombre de secondes, on regénérera 
+						le SID. Donc le champ dans la base de données stockera la 
+						date de la dernière regénération du SID. Quand on voudra 
+						définir une nouvelle variable de session ou bien en récupérer 
+						la valeur, on regardera si il faut regénéré le SID ou pas.
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e4666"><tbody><tr><td class="titre_code">Méthode checkInfo() de la classe Yume_Session_Database - Yume/Session/Database.php</td></tr><tr><td class="code"><div id="codeWrapperd0e4666" class="codeWrapper"><div id="codeOverflowd0e4666" style="overflow: auto;"><pre><code id="contenuCoded0e4666" class="contenuCode">
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> checkInfo()
+	<code class="php_operator">{</code>
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupère</code><code class="php_comment2"> </code><code class="php_comment2">l'identifiant</code><code class="php_comment2"> </code><code class="php_comment2">de</code><code class="php_comment2"> </code><code class="php_comment2">session</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">sessId</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.session-id.php"><span class="php_function">session_id</span></a>()<code class="php_operator">;</code>
+	
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Récupère</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">navigateur</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">userAgent</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.sha1.php"><span class="php_function">sha1</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">_SERVER</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">HTTP_USER_AGENT</code><code class="php_literal1">'</code><code class="php_operator">]</code>)<code class="php_operator">;</code>
+		
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Test</code><code class="php_comment2"> </code><code class="php_comment2">si</code><code class="php_comment2"> </code><code class="php_comment2">une</code><code class="php_comment2"> </code><code class="php_comment2">session</code><code class="php_comment2"> </code><code class="php_comment2">est</code><code class="php_comment2"> </code><code class="php_comment2">sauvegardée</code><code class="php_comment2">	</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">SELECT</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">id</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">sessId</code>)<code class="php_operator">;</code>
+		<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+		
+		<code class="php_keyword3">$</code><code class="php_keyword3">result</code> <code class="php_operator">=</code> <code class="php_keyword4">$sql</code><code class="php_operator">-&gt;fetchAll</code>(<a class="php_function" href="http://www.php.net/manual/fr/function.pdo.php"><span class="php_function">PDO</span></a><code class="php_operator">:</code><code class="php_operator">:</code><code class="php_keyword2">FETCH_ASSOC</code>)<code class="php_operator">;</code>
+		
+		<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">elle</code><code class="php_comment2"> </code><code class="php_comment2">ne</code><code class="php_comment2"> </code><code class="php_comment2">l'est</code><code class="php_comment2"> </code><code class="php_comment2">pas,</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">crée</code>
+		<code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.count.php"><span class="php_function">count</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">result</code>) <code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_digit">0</code>)
+		<code class="php_operator">{</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">INSERT</code><code class="php_literal1"> </code><code class="php_literal1">INTO</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code><code class="php_literal1"> </code><code class="php_literal1">(</code><code class="php_literal1">session_id</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">session_browser</code><code class="php_literal1">)</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">VALUES</code><code class="php_literal1"> </code><code class="php_literal1">(</code><code class="php_literal1">:</code><code class="php_literal1">id</code><code class="php_literal1">,</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">browser</code><code class="php_literal1">)</code><code class="php_literal1">;</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+			
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">sessId</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:browser</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">userAgent</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">else</code>
+		<code class="php_operator">{</code>
+			<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Si</code><code class="php_comment2"> </code><code class="php_comment2">elle</code><code class="php_comment2"> </code><code class="php_comment2">est</code><code class="php_comment2"> </code><code class="php_comment2">créée</code><code class="php_comment2"> </code><code class="php_comment2">on</code><code class="php_comment2"> </code><code class="php_comment2">test</code><code class="php_comment2"> </code><code class="php_comment2">le</code><code class="php_comment2"> </code><code class="php_comment2">navigateur</code><code class="php_comment2"> </code><code class="php_comment2">et</code><code class="php_comment2"> </code><code class="php_comment2">s'il</code><code class="php_comment2"> </code><code class="php_comment2">faut</code><code class="php_comment2"> </code><code class="php_comment2">la</code><code class="php_comment2"> </code><code class="php_comment2">regénéré</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">SELECT</code><code class="php_literal1"> </code><code class="php_literal1">UNIX_TIMESTAMP</code><code class="php_literal1">(</code><code class="php_literal1">session_regenerate</code><code class="php_literal1">)</code><code class="php_literal1"> </code><code class="php_literal1">as</code><code class="php_literal1"> </code><code class="php_literal1">session_regenerate</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">FROM</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">id</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">AND</code><code class="php_literal1"> </code><code class="php_literal1">session_browser</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">browser</code><code class="php_literal1">;</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+	
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">sessId</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:browser</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">userAgent</code>)<code class="php_operator">;</code>
+			<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+			
+			<code class="php_keyword3">$</code><code class="php_keyword3">result</code> <code class="php_operator">=</code> <code class="php_keyword4">$sql</code><code class="php_operator">-&gt;fetchAll</code>(<a class="php_function" href="http://www.php.net/manual/fr/function.pdo.php"><span class="php_function">PDO</span></a><code class="php_operator">:</code><code class="php_operator">:</code><code class="php_keyword2">FETCH_ASSOC</code>)<code class="php_operator">;</code>
+			
+			<code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.count.php"><span class="php_function">count</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">result</code>) <code class="php_operator">!</code><code class="php_operator">=</code> <code class="php_digit">1</code>)
+			<code class="php_operator">{</code>
+				<code class="php_keyword1">return</code> <code class="php_keyword1">false</code><code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+			<code class="php_keyword1">else</code>
+			<code class="php_operator">{</code>
+				<code class="php_keyword3">$</code><code class="php_keyword3">rgTime</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">result</code><code class="php_operator">[</code><code class="php_digit">0</code><code class="php_operator">]</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">session_regenerate</code><code class="php_literal1">'</code><code class="php_operator">]</code><code class="php_operator">;</code>
+				
+				<code class="php_keyword3">$</code><code class="php_keyword3">now</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.mktime.php"><span class="php_function">mktime</span></a>(
+					<a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">H</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+					<a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">i</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+					<a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">s</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+					<a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">m</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+					<a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">d</code><code class="php_literal1">'</code>)<code class="php_operator">,</code>
+					<a class="php_function" href="http://www.php.net/manual/fr/function.date.php"><span class="php_function">date</span></a>(<code class="php_literal1">'</code><code class="php_literal1">Y</code><code class="php_literal1">'</code>)
+				)<code class="php_operator">;</code>
+				
+				<code class="php_keyword1">if</code> (<code class="php_keyword3">$</code><code class="php_keyword3">now</code> <code class="php_operator">-</code> <code class="php_keyword3">$</code><code class="php_keyword3">rgTime</code> <code class="php_operator">&gt;</code><code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword3">-&gt;_regenerateTime</code>)
+				<code class="php_operator">{</code>
+					<a class="php_function" href="http://www.php.net/manual/fr/function.session-regenerate-id.php"><span class="php_function">session_regenerate_id</span></a>()<code class="php_operator">;</code>
+					<code class="php_keyword3">$</code><code class="php_keyword3">sessIdNew</code> <code class="php_operator">=</code> <a class="php_function" href="http://www.php.net/manual/fr/function.session-id.php"><span class="php_function">session_id</span></a>()<code class="php_operator">;</code>
+					
+					<code class="php_comment2">//</code><code class="php_comment2"> </code><code class="php_comment2">Met</code><code class="php_comment2"> </code><code class="php_comment2">à</code><code class="php_comment2"> </code><code class="php_comment2">jour</code><code class="php_comment2"> </code><code class="php_comment2">session_regenerate</code>
+					<code class="php_keyword3">$</code><code class="php_keyword3">sql</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_keyword4">-&gt;_ressource</code><code class="php_operator">-&gt;prepare</code>(<code class="php_literal1">"</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">UPDATE</code><code class="php_literal1"> </code><code class="php_literal1">sessions</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">SET</code><code class="php_literal1"> </code><code class="php_literal1">session_regenerate</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">NOW</code><code class="php_literal1">(</code><code class="php_literal1">)</code><code class="php_literal1">,</code><code class="php_literal1"> </code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">newId</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">WHERE</code><code class="php_literal1"> </code><code class="php_literal1">session_id</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_literal1">:</code><code class="php_literal1">id</code><code class="php_literal1">;</code>
+<code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">	</code><code class="php_literal1">"</code>)<code class="php_operator">;</code>
+					
+					<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:newId</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">sessIdNew</code>)<code class="php_operator">;</code>
+					<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;bindParam</code>(<code class="php_literal1">'</code><code class="php_literal1">:id</code><code class="php_literal1">'</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">sessId</code>)<code class="php_operator">;</code>
+					<code class="php_keyword4">$sql</code><code class="php_operator">-&gt;execute</code>()<code class="php_operator">;</code>
+				<code class="php_operator">}</code>
+				
+				<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+			<code class="php_operator">}</code>
+		<code class="php_operator">}</code>
+	<code class="php_operator">}</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+					   Ensuite, il faut bien incorporer cette méthode quelque part. 
+					   Pour se faire, j'ai utilisé les méthodes magiques __set() et __get() 
+					   qui nous permettrons désormais de définir ou récupérer une valeur 
+					   pour une variable de session. Donc il ne faudra plus utiliser 
+					   la super-globale $_SESSION.
+					</div><br>
+                    <div class="paragraph">
+					   Pourquoi n'ai-je pas incorporer cela dans la classe abstraite 
+					   <i>Yume_Session</i> me direz-vous. 
+                       <br>
+                       Tout simplement parce que 
+					   pour utiliser la fonction <i>session_regenerate_id()</i>, 
+					   il le fallait. En effet cette fonction utilise celles définies 
+					   dans l'handler de session (c'est à dire _open,  _write, ...). 
+                       Donc si session_regenerate_id() 
+					   fait appels à une de ces fonctions et que une des celles la 
+					   font elles même appel à session_regenerate_id(). Il y aurait 
+					   comme un léger problème de logique.
+					   <br><br>
+					   Voici le code de __set() et __get().
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e5848"><tbody><tr><td class="titre_code">Méthode magiques __set() et __get() de la classe Yume_Session_Abstract - Yume/Session/Abstract.php</td></tr><tr><td class="code"><div id="codeWrapperd0e5848" class="codeWrapper"><div id="codeOverflowd0e5848" style="overflow: auto;"><pre><code id="contenuCoded0e5848" class="contenuCode">
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> <code class="php_keyword1">__set</code>(<code class="php_keyword3">$</code><code class="php_keyword3">key</code><code class="php_operator">,</code> <code class="php_keyword3">$</code><code class="php_keyword3">value</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword4">$this</code><code class="php_operator">-&gt;checkInfo</code>() <code class="php_operator">=</code><code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_keyword1">false</code>)
+		<code class="php_operator">{</code>
+			<a class="php_function" href="http://www.php.net/manual/fr/function.session-destroy.php"><span class="php_function">session_destroy</span></a>()<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">else</code>
+		<code class="php_operator">{</code>
+			<code class="php_keyword3">$</code><code class="php_keyword3">_SESSION</code><code class="php_operator">[</code><code class="php_keyword3">$</code><code class="php_keyword3">key</code><code class="php_operator">]</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">value</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+	<code class="php_operator">}</code>
+	
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> <code class="php_keyword1">__get</code>(<code class="php_keyword3">$</code><code class="php_keyword3">key</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword4">$this</code><code class="php_operator">-&gt;checkInfo</code>() <code class="php_operator">=</code><code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_keyword1">false</code>)
+		<code class="php_operator">{</code>
+			<a class="php_function" href="http://www.php.net/manual/fr/function.session-destroy.php"><span class="php_function">session_destroy</span></a>()<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">else</code>
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">return</code> <code class="php_keyword3">$</code><code class="php_keyword3">_SESSION</code><code class="php_operator">[</code><code class="php_keyword3">$</code><code class="php_keyword3">key</code><code class="php_operator">]</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+	<code class="php_operator">}</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+					   Bien évidemment, si on défini les méthode __set() et __get, 
+					   il faut aussi définir les méthode __isset() et __unset().
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e6020"><tbody><tr><td class="titre_code">Méthode magiques __isset() et __unset() de la classe Yume_Session_Abstract - Yume/Session/Abstract.php</td></tr><tr><td class="code"><div id="codeWrapperd0e6020" class="codeWrapper"><div id="codeOverflowd0e6020" style="overflow: auto;"><pre><code id="contenuCoded0e6020" class="contenuCode">
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> __isset(<code class="php_keyword3">$</code><code class="php_keyword3">key</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword3">$</code><code class="php_keyword3">value</code> <code class="php_operator">=</code> <code class="php_keyword4">$this</code><code class="php_operator">-&gt;__get</code>(<code class="php_keyword3">$</code><code class="php_keyword3">key</code>)<code class="php_operator">;</code>
+		
+		<code class="php_keyword1">if</code> (<a class="php_function" href="http://www.php.net/manual/fr/function.isset.php"><span class="php_function">isset</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">value</code>)) 
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">return</code> <code class="php_keyword1">true</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+		<code class="php_keyword1">else</code> 
+		<code class="php_operator">{</code>
+			<code class="php_keyword1">return</code> <code class="php_keyword1">false</code><code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+	<code class="php_operator">}</code>
+	
+	<code class="php_keyword1">public</code> <code class="php_keyword1">function</code> __unset(<code class="php_keyword3">$</code><code class="php_keyword3">key</code>)
+	<code class="php_operator">{</code>
+		<code class="php_keyword1">if</code> (<code class="php_keyword4">$this</code><code class="php_operator">-&gt;__isset</code>(<code class="php_keyword3">$</code><code class="php_keyword3">key</code>) <code class="php_operator">=</code><code class="php_operator">=</code><code class="php_operator">=</code> <code class="php_keyword1">true</code>)
+		<code class="php_operator">{</code>
+			<a class="php_function" href="http://www.php.net/manual/fr/function.unset.php"><span class="php_function">unset</span></a>(<code class="php_keyword3">$</code><code class="php_keyword3">_SESSION</code><code class="php_operator">[</code><code class="php_keyword3">$</code><code class="php_keyword3">key</code><code class="php_operator">]</code>)<code class="php_operator">;</code>
+		<code class="php_operator">}</code>
+	<code class="php_operator">}</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+				
+			
+			<br><h2 class="TitreSection1" id="LII.3">II.3. Session Sniffing</h2>
+				
+				<br><h3 class="TitreSection2" id="LII.3.1">II.3.1. Problème</h3>
+					
+					<div class="paragraph">
+						L'attaque "Session Sniffing" consiste à utiliser un 
+						<a href="http://dico.developpez.com/html/563-Securite-sniffer.php" class="lienDico" title="Dictionnaire des développeurs">sniffer</a> 
+						pour récupéré l'identifiant de session ou toute autre 
+						information utiles.
+					</div><br>
+				
+				<br><h3 class="TitreSection2" id="LII.3.2">II.3.2. Solutions</h3>
+					
+					<div class="paragraph">
+						Il n'y a qu'une solution possible pour se protéger de ce type 
+                        d'attaque. C'est de protéger son serveur en utilisant 
+                        <b><a href="http://dico.developpez.com/html/1589-Securite-SSL-Secure-Sockets-Layer.php" class="lienDico" title="Dictionnaire des développeurs">SSL</a></b>.
+					</div><br>
+				
+			
+			<br><h2 class="TitreSection1" id="LII.4">II.4. Session Prediction</h2>
+				
+				<br><h3 class="TitreSection2" id="LII.4.1">II.4.1. Problème</h3>
+					
+					<div class="paragraph">
+						L'attaque "Session Prediction" consiste comme son nom l'indique 
+						à analyser et comprendre la génération de l'identifiant de 
+						session et de pouvoir prédir cet identifiant.
+					</div><br>
+				
+				<br><h3 class="TitreSection2" id="LII.4.2">II.4.2. Solutions</h3>
+					
+					<div class="paragraph">
+						La seule solution consiste à <b>modifier</b> quelques <b>directives 
+                        de configuration</b> dans le fichier <i>php.ini</i>.
+					</div><br>
+					<div class="paragraph">
+						Ces directives sont les suivantes :
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e6235"><tbody><tr><td class="code"><div id="codeWrapperd0e6235" class="codeWrapper"><div id="codeOverflowd0e6235" style="overflow: auto;"><pre><code id="contenuCoded0e6235" class="contenuCode">
+session.entropy_length = <code class="linux_digit">0</code>
+session.entropy_file =
+session.entropy_length = <code class="linux_digit">16</code>
+session.entropy_file = /dev/urandom
+session.hash_function = <code class="linux_digit">1</code>
+session.hash_bits_per_character = <code class="linux_digit">6</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+						Il est bien au minimum de généré les identifiants de sessions 
+						avec <b>SHA1</b> et non plus MD5 (session.hash_function).
+					</div><br>
+				
+			
+			<br><h2 class="TitreSection1" id="LII.5">II.5. Session Hijacking</h2>
+				
+				<br><h3 class="TitreSection2" id="LII.3.1">II.3.1. Problème</h3>
+					
+					<div class="paragraph">
+						L'attaque "Session Hijacking" n'est rien d'autre que le 
+						résultat d'une autre attaque qui vise à récupéré un identifiant 
+                        de session valide. 
+						C'est à dire que l'attaquant a réussi à avoir un SID et 
+						qu'il peut utiliser comme il le veux.
+					</div><br>
+					<div class="paragraph">
+					    Les attaques possibles pour y arriver sont les suivantes :
+					    <br>
+						- la "Session Fixation"
+						<br>
+						- la "Session Sniffing"
+                        <br>
+                        - la vulnérabilité très connue appellée 
+						<a href="http://dico.developpez.com/html/883-Securite-cross-site-scripting.php" class="lienDico" title="Dictionnaire des développeurs">Cross-site scripting</a>.
+					</div><br>
+				
+				<br><h3 class="TitreSection2" id="LII.3.2">II.3.2. Solutions</h3>
+					
+					<div class="paragraph">
+						Toutes les solutions possibles pouvant être mise en oeuvre 
+						ont déjà été énoncée dans les parties précédantes. En gros 
+						il faut regénéré le SID, utilisé si possible un serveur 
+                        sécurisé SSL, propager le SID correctement.
+					</div><br>
+				
+			
+			<br><h2 class="TitreSection1" id="LII.6">II.6. Session Poisoning et Session Injection</h2>
+				
+				<br><h3 class="TitreSection2" id="LII.6.1">II.6.1. Problème</h3>
+					
+					<div class="paragraph">
+						Ces deux types d'attaques résulte au même problème, les 
+						données de la session se voient altérées.
+					</div><br>
+					<div class="paragraph">
+						Un exemple de code à ne pas mettre :
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e6310"><tbody><tr><td class="code"><div id="codeWrapperd0e6310" class="codeWrapper"><div id="codeOverflowd0e6310" style="overflow: auto;"><pre><code id="contenuCoded0e6310" class="contenuCode">
+<code class="php_keyword3">$</code><code class="php_keyword3">_SESSION</code><code class="php_operator">[</code><code class="php_literal1">'</code><code class="php_literal1">login</code><code class="php_literal1">'</code><code class="php_operator">]</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_REQUEST</code><code class="php_operator">[</code><code class="php_literal1">"</code><code class="php_literal1">'</code><code class="php_literal1">login</code><code class="php_literal1">'</code><code class="php_literal1">]</code><code class="php_literal1">;</code>
+<code class="php_keyword3">$</code><code class="php_keyword3">_SESSION</code><code class="php_literal1">[</code><code class="php_literal1">'</code><code class="php_literal1">password</code><code class="php_literal1">'</code><code class="php_literal1">]</code><code class="php_literal1"> </code><code class="php_literal1">=</code><code class="php_literal1"> </code><code class="php_keyword3">$</code><code class="php_keyword3">_REQUEST</code><code class="php_literal1">[</code><code class="php_literal1">'</code><code class="php_literal1">password</code><code class="php_literal1">'</code><code class="php_literal1">]</code><code class="php_literal1">;</code>
+</code></pre></div></div></td></tr></tbody></table></div>
+					<div class="paragraph">
+						On peut mettre directement ce que l'on veut dans la variable 
+						de session via l'URL : http://www.monsite.com/?login=moi&amp;password=1234.
+					</div><br>
+					<div class="paragraph">
+						Voici encore un autre exemple mauvais :
+					</div>
+<div style="text-align:center;"><table style="width:90%;margin:10px auto;border-collapse: collapse; " id="codeTabled0e6393"><tbody><tr><td class="code"><div id="codeWrapperd0e6393" class="codeWrapper"><div id="codeOverflowd0e6393" style="overflow: auto;"><pre><code id="contenuCoded0e6393" class="contenuCode">
+<code class="php_keyword3">$</code><code class="php_keyword3">var</code> <code class="php_operator">=</code> <code class="php_keyword3">$</code><code class="php_keyword3">_GET</code><code class="php_operator">[</code><code class="php_literal1">"</code><code class="php_literal1">something</code><code class="php_literal1">"</code><code class="php_operator">]</code><code class="php_operator">;</code> 
+<code class="php_keyword3">$</code><code class="php_keyword3">_SESSION</code><code class="php_operator">[</code><code class="php_keyword3">$</code><code class="php_keyword3">var</code><code class="php_operator">]</code> <code class="php_operator">=</code> <code class="php_keyword1">true</code><code class="php_operator">;</code> 
+</code></pre></div></div></td></tr></tbody></table></div>
+				
+				<br><h3 class="TitreSection2" id="LII.6.2">II.6.2. Solutions</h3>
+					
+					<div class="paragraph">
+						Il n'y a pas de solutions concernant la gestion des sessions 
+						ici. Les seules solutions possibles sont de <b>vérifier</b> toutes 
+						les <b>données</b> que vous mettez dans une variable de session. 
+						Il ne faut jamais faire confiance à l'utilisateur.
+					</div><br>
+					<div class="paragraph">
+						Il faut <b>éviter</b> aussi d'utiliser la superglobale $_REQUEST, 
+                        elle n'apporte rien de bien.
+					</div><br>
+					
+				
+			
+		
+		<br><h1 class="TitreSection0" id="LIII">III. Conclusion</h1>
+			
+			<div class="paragraph">
+
+Hébergement mutualisé :
+-----------------------
+Type d'hébergement où les utilisateurs qui louent un espace privé se partage 
+un serveur dédié.
+Un hébergement mutualisé dispose habituellement d'un nombre de services assez restreind 
+et est souvent limiter en ressources (afin de ne pas gêner les autres utilisateurs).
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Hébergement dédié :
+-------------------
+Type d'hébergement ou les utilisateurs se voient attribué un serveur comme espace 
+privé.
+Un hébergement dédié permet à l'utilisateur d'installer ce que bon lui semble.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+			</div><br>
+		
+	<br><div class="barreNavigation"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			&nbsp;
+			<span class="lientelechargementpdf"><a class="lientelechargement" href="ftp://ftp-developpez.com/a-pellegrini/tutoriels/php/session-securite/session-db-class.pdf" title="Télécharger la version PDF de cet article, serveur principal.">
+					Version PDF
+				</a><a class="lientelechargement" href="http://a-pellegrini.ftp-developpez.com/tutoriels/php/session-securite/session-db-class.pdf" title="Télécharger la version PDF de cet article, serveur secondaire">
+						(Miroir)
+					</a></span>
+		&nbsp;
+		<span class="lientelechargementzip"><a class="lientelechargement" href="ftp://ftp-developpez.com/a-pellegrini/tutoriels/php/session-securite/session-db-class.zip" title="Télécharger la version HTML de cet article, serveur principal.">
+				Version hors-ligne
+			</a><a class="lientelechargement" href="http://a-pellegrini.ftp-developpez.com/tutoriels/php/session-securite/session-db-class.zip" title="Télécharger la version HTML de cet article, serveur secondaire">
+					(Miroir)
+				</a></span><br></div><hr><p style="text-align:center;" class="cachee"><a href="http://validator.w3.org/check?uri=referer"><img src="./Sécuriser les sessions en PHP_files/valid-xhtml11" alt="Valid XHTML 1.1!" height="31" width="88"></a><a href="http://jigsaw.w3.org/css-validator/check/referer"><img style="border:0;width:88px;height:31px" src="./Sécuriser les sessions en PHP_files/vcss" alt="Valid CSS!"></a></p><div id="visites-logo" style="text-align:center;" class="cachee">
+<!-- phpmyvisites -->
+<a href="http://www.phpmyvisites.net/" title="phpMyVisites | Open source web analytics" onclick="window.open(this.href);return(false);">
+<script type="text/javascript">
+<!--
+var a_vars = Array();
+var pagename=document.title;
+	  
+var phpmyvisitesSite = 43;
+var phpmyvisitesURL = "http://visites01.developpez.com/phpmyvisites.php";
+//-->
+</script>
+<script type="text/javascript" src="./Sécuriser les sessions en PHP_files/phpmyvisites.js.téléchargement"></script>
+<noscript>
+&lt;p&gt;phpMyVisites | Open source web analytics
+&lt;img src="http://visites01.developpez.com/phpmyvisites.php" alt="phpMyVisites" style="border:0" /&gt;
+&lt;/p&gt;
+</noscript>
+</a>
+<!-- /phpmyvisites -->
+					</div>
+</div>
+<!-- Add to Favorite Link Js -->
+<script type="text/javascript">
+function addBookmark(title,url)
+{
+	if (window.sidebar) 
+    { 
+		window.sidebar.addPanel(title, url,"");
+	} 
+    else if( document.all )
+    {
+		window.external.AddFavorite( url, title);
+	} 
+    else if( window.opera && window.print )
+    {
+		return true;
+	}
+}
+</script>
+
+<!-- Social Bookmarking Link -->
+<div style="margin:0 50px; padding: 10px; text-align:right">
+	<span style="margin-right: 20px;"><img src="./Sécuriser les sessions en PHP_files/bookmark.png" alt="Ajouter aux favoris"></span>
+    <a title="Ajouter aux favoris" style="margin-right:20px;" href="http://a-pellegrini.developpez.com/tutoriels/php/session-securite/#" onmousedown="addBookmark(&#39;Sécuriser les sessions en PHP&#39;, &#39;http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&#39;);">
+        <img src="./Sécuriser les sessions en PHP_files/favorite.png" alt="Ajouter aux favoris">
+    </a>
+    <a title="Blinklist !" href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&amp;Url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;Title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/blinklist.png" alt="BlinkList"></a>
+    <a title="Blogmarks !" href="http://blogmarks.net/my/new.php?mini=1&amp;title=S%E9curiser%20les%20sessions%20en%20PHP&amp;url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/"><img src="./Sécuriser les sessions en PHP_files/blogmarks.png" alt="Blogmarks"></a>
+    <a title="del.icio.us !" href="http://del.icio.us/post?url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/delicious.png" alt="del.icio.us"></a>
+    <a title="Digg !" href="http://digg.com/submit?phase=2&amp;url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/digg.png" alt="Digg"></a>
+    <a title="Furl !" href="http://furl.net/storeIt.jsp?t=S%E9curiser%20les%20sessions%20en%20PHP&amp;u=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/"><img src="./Sécuriser les sessions en PHP_files/furl.png" alt="Furl"></a>
+    <a title="Google !" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/google.png" alt="Google"></a>
+    <a title="ma.gnolia !" href="http://ma.gnolia.com/bookmarklet/add?url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/magnola.png" alt="ma.gnolia"></a>
+    <a title="Netvouz !" href="http://www.netvouz.com/action/submitBookmark?url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP&amp;popup=no"><img src="./Sécuriser les sessions en PHP_files/netvouz.png" alt="Netvouz"></a>
+    <a title="Reddit !" href="http://reddit.com/submit?url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/reddit.png" alt="reddit"></a>
+    <a title="Simpy !" href="http://simpy.com/simpy/LinkAdd.do?note=S%E9curiser%20les%20sessions%20en%20PHP&amp;href=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/"><img src="./Sécuriser les sessions en PHP_files/simpy.png" alt="Simpy"></a>
+    <a title="Spurl !" href="http://www.spurl.net/spurl.php?url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/spurl.png" alt="Spurl"></a>
+    <a title="StumbleUpon !" href="http://www.stumbleupon.com/submit?url=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/&amp;title=S%E9curiser%20les%20sessions%20en%20PHP"><img src="./Sécuriser les sessions en PHP_files/stumbleupon.png" alt="StumbleUpon"></a>
+    <a title="Taggly !" href="http://taggly.com/bookmarks.php/pass?action=add&amp;address=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/"><img src="./Sécuriser les sessions en PHP_files/taggly.png" alt="Taggly"></a>
+    <a title="Yahoo !" href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t=S%E9curiser%20les%20sessions%20en%20PHP&amp;u=http://a-pellegrini.developpez.com/tutoriels/php/session-securite/"><img src="./Sécuriser les sessions en PHP_files/yahoomyweb.png" alt="Yahoo MyWeb"></a>
+</div>
+
+<!-- Google Analytics Stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Sécuriser les sessions en PHP_files/ga.js.téléchargement" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1859830-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+<img src="./Sécuriser les sessions en PHP_files/compter-9" alt="" width="1" height="1"><p class="licence">Copyright © 2008 Adrien Pellegrini. 
+Aucune reproduction, même partielle, ne peut être faite 
+de ce site et de l'ensemble de son contenu&nbsp;: textes, documents, images, etc.
+sans l'autorisation expresse de l'auteur. Sinon vous encourez selon la loi jusqu'à 
+trois ans de prison et jusqu'à 300&nbsp;000&nbsp;€ de dommages et intérêts. 
+</p></div>
+
+<div id="gabarit_responsable">
+		<a href="https://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique PHP
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	</li><li><a href="https://www.developpez.com/participez/">Participez</a>
+	</li><li><a href="https://www.developpez.com/hebergement/">Hébergement</a>
+	</li><li><a href="https://www.developpez.com/legal/">Informations légales</a>
+</li></ul>
+
+<p id="gabarit_copyright">Copyright © 2000-2017 - www.developpez.com</p>
+
+<!-- Google Analytics général -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'php', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Tutoriel', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+
+<span style="opacity: 0; left: 38px; padding: 50px !important; z-index: 2147483647 !important; cursor: pointer !important; position: fixed !important; bottom: 0px !important; display: block !important; width: 40px !important; height: auto !important; border-bottom: 0px none !important;"></span><iframe src="./Sécuriser les sessions en PHP_files/saved_resource.html" class="ad_oa" height="100px" width="100%" frameborder="0" scrolling="no" style="left: 0px !important; position: fixed !important; bottom: 0px !important; z-index: 2147483646 !important; display: block !important; margin: 0px !important; padding: 0px !important;"></iframe></body></html>

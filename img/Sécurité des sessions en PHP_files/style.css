@@ -1,0 +1,211 @@
+/*
+Theme Name: Brightfolio
+Theme URI: http://devisefunction.com/ourthemes/brightfolio/
+Description: Brightfolio is a professional, portfolio style CSS/HTML website template. WP Theme and modifications by Eric Couchelou.
+Version: 1.0
+Author: Matthew Heidenreich
+Author URI: http://devisefunction.com
+*/
+
+/* Common */
+body {font: 11pt Arial, Helvetica, sans-serif;background: url(images/bg_repeat_pattern.jpg) repeat;margin: 0;	padding: 0;}
+img {border: 0;}
+a {color: #fff;text-decoration: none;}
+blockquote {font-family: Georgia, "Times New Roman", Times, serif;font-size: 1em;font-style: italic;color:#d4d2d2;line-height: 1.6em;padding: 20px;background: #055068 url(images/quotes.png) no-repeat top left;width: 400px;
+-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px}
+table {background: #eee;color:#030303;font-size:0.8em}
+table td{padding:5px;border:solid 1px #ccc;}
+/* Design */
+#bg_pattern {background: url(images/bg_pattern.jpg) repeat-x;}
+#bg_wrapper {width: 100%;background: url(images/large_bg.jpg) no-repeat top center;}
+#container {	width: 960px;margin: auto;}
+/* Headings */
+#header {display: inline-block;margin:10px 0;width:965px}
+#logo {float: left;height: 51px;	width: 240px;text-indent: -999999px;background: url(images/logo.png) no-repeat;}
+.replace{
+	position:relative;
+	/* \*/
+	overflow:hidden;
+	/* */
+}
+
+/* ??? */
+.replace span{display:block;	position:absolute;top:0;left:0;	z-index:1;}
+
+/* Top Nav */
+#header .menu {float: right;}
+#header ul {	padding: 0px;}
+#header ul li {	display: inline;margin-left: 8px;}
+#header ul li a {font-family: Arial, Helvetica, sans-serif;font-size: 15px;font-weight: none;color: #fff;text-decoration: none;padding: 6px 15px;text-shadow: 1px 1px 2px #333;
+-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;}
+#header ul li a:hover {background: url(images/hover.png) 0 0 repeat;}
+#header ul li a.active {background: url(images/active.png) 0 0 repeat;}
+
+/* HOME */
+/* SlideShox */
+#slideshow {	height: 358px;background: url(images/ss_back.png) no-repeat center;margin: 0 0 20px 5px;width:965px;}
+#slider {position:relative;background:url(images/loading.gif) no-repeat 50% 50%; }
+#slider img {position:absolute;top:0px;left:0px;display:none;}
+#content_end_page_home{height: 29px;background: url(images/c_page_bottom.png) center no-repeat;clear:both}
+/* Content */
+#content_top {display: block;height: 31px;background: #03222C;margin-left:7px;width:960px;border-radius:20px 20px 0 0;-o-border-radius:20px 20px 0 0;-icab-border-radius:20px 20px 0 0;-khtml-border-radius:20px 20px 0 0;-moz-border-radius:20px 20px 0 0;-webkit-border-radius:20px 20px 0 0;}
+#content {display: inline-block;	height: 100%;margin: 0 0 0 7px;background: #02232E;width:960px}
+#intro {	display: inline-block;width: 540px;padding-left:25px;margin-bottom: 50px;float:left}
+#intro h1 {font-family: 'Yanone Kaffeesatz',sans-serif;font-size: 2.3em;font-weight: normal;line-height: 1.6em;color: #fff;text-decoration: none;margin: 0 0 10px 0;}
+#intro p {font-family: Arial, Helvetica, sans-serif;font-size: 12px;	color: #ebebeb;	line-height: 1.5em;text-align:justify;}
+#content_end {height: 53px;background: url(images/c_bottom.png) center no-repeat;}
+#content_top_page {display: block;height: 73px;margin: 0;background: url(images/c_page_top.png) center no-repeat;width:960px;margin-left:7px}
+#content_top_page h1 {font-size: 2em;font-weight: normal;line-height: 1.6em;color: #fff;margin: 0 0 0 40px;padding-top: 15px;font-family: 'Yanone Kaffeesatz',sans-serif;width: 865px;float:left}
+#content_top_page ul {display: inline-block;float: right;margin-left: 180px;margin-right: 30px;padding-top: 11px;}
+#content_top_page ul li {display: inline;margin-left: 8px;}
+#content_top_page ul li a {font-family: Arial, Helvetica, sans-serif;font-size: 13px;font-weight: none;color: #fff;text-decoration: none;padding: 6px 15px;}
+#rssfeed{float:left;margin-top:20px}
+#content_page {display: inline-block;width: 960px;height: 100%;margin: 0 0 0 7px;background: #02232E;}
+#blog h2.inner_art {display:block;border-bottom:1px dotted #eee;background:none;font-size:1.5em;
+-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;}
+#content_end_page {height: 29px;background: #03222C;width:960px;margin-left:7px;clear: both;border-radius:0 0 20px 20px;-o-border-radius:0 0 20px 20px;-icab-border-radius:0 0 20px 20px;-khtml-border-radius:0 0 20px 20px;-moz-border-radius:0 0 20px 20px;-webkit-border-radius:0 0 20px 20px;}
+/* Twitter */
+#twitter {display: inline-block;	float: right;padding: 11px 40px 0 0;}
+#twitter p {font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: italic;color: #000;line-height: 1.3em;padding: 0px 10px;}
+#twitter span {font-weight: bold;}
+#twit_t {display: block;	float: left;height: 16px;width: 249px;background: url(images/twit_t.png) no-repeat;}
+#twit_r {display: block;	width: 249px;background: url(images/twit_r.png) repeat-y;}
+#twit_r a {color:#097EA1;}
+#twit_b {display: block;	height: 40px;width: 249px;margin-top: -12px;background: url(images/twitter_b.png);}
+#follow {display: inline-block;margin: 22px 0 0 60px;}
+#follow a {font-size: 12px;color: #FFFFFF;text-decoration: none;}
+/* as */
+#as_block{width:300px;height:250px;float:right;margin:0 25px 10px 0;}
+#as_block_sb{width:300px;height:250px;float:right;}
+#as_top{height:90px;width:728px;float:right;}
+#as_inner{width:100%;text-align:center;margin:10px 0;}
+/* search home*/
+#search_home {display: inline-block;float: right;margin:0 25px 10px 0;}
+.search_home {width:280px;margin-bottom: 10px;padding: 10px;	background: #033A4E;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+/* Columns  */
+.services {margin: 0 25px;display: block;float: left;}
+.s_container {display: block;width: 300px;float:left;background: url(images/services_back.png) no-repeat bottom;}
+.services h2 {font-family: 'Yanone Kaffeesatz',sans-serif;font-size: 1.75em;font-weight: none;color: #fff;text-decoration: none;text-shadow: 1px 1px 2px #333;margin: 0 0 5px 35px;}
+.service_back a:hover{text-decoration:underline}
+p.home_cat a {background: url(images/puce.png) no-repeat left;padding-left:25px;	line-height:1.8em;}
+#news_ico {float: left;width: 32px;height: 32px;margin: 0 8px;background: url(images/news.png);}
+#ressources_ico {float: left;width: 32px;height: 32px;margin: 0 8px;background: url(images/office_folders.png);}
+#about_ico {	float: left;width: 32px;height: 32px;margin: 0 8px;background: url(images/id_card.png);}
+#home_shortcuts {float:left;padding:10px;margin:20px 10px 0 10px;background:#fff;max-height:30px;
+-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
+.title {	display: inline-block;width: 271px;}
+.title_hr {width: 280px;	height: 4px;background: url(images/title_line.png);}
+.service_back {min-height: 144px;padding-right:10px;margin-left:3px}
+.service_back p {font-family: Arial, Helvetica, sans-serif;color: #ebebeb;line-height: 1.6em;padding: 0 10px;font-size:0.8em;}
+.col_time {color:#7DD7F5;}
+.col_cat { font-style:italic;;color:#ccc}
+/*
+.thumbnail {	border: 20px;color: #ffffff;margin: 20px 0 0 0;}
+*/
+/* Pages */
+#blog {display: inline-block;float: left;width: 600px;margin: 0 20px;}
+#blog p a {color:#7DD7F5;text-decoration:none;}
+#blog p a:hover {text-decoration:underline;}
+#blog ul li a {color:#7DD7F5;}
+#blog ul li a:hover {text-decoration:underline;}
+#sa_box ul li a {color:#7DD7F5;}
+.art_infos {color:#fff;font-size:0.8em;margin-bottom:20px;background: #055068;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;padding:7px}
+.art_infos a{color:#c2eefd;}
+.art_infos a:hover{text-decoration:underline}
+#blog h2, #blog h2 a {	font-size: 18pt;font-weight: 100;line-height: 1.4em;display: block;color: #fff;padding: 2px 5px;background: #033A4E;
+-moz-border-radius:5px;-webkit-border-radius:px;border-radius:5px;}
+#blog h3, #blog h3 a {color:#43CBE3;text-transform:uppercase;border-bottom:1px solid #43CBE3} 
+#blog ul {list-style-image: url(images/puce.png);}
+#blog ul li, #blog ol li {	color: #eee;font-size: 0.9em;line-height:2em;}
+#blog p {font-size: 0.9em;color: #eee;line-height: 1.5em;margin-left: 10px;text-align:justify}
+#blog span {font-size: 13px;color: #ffffff;margin: 0 5px;}
+#blog img {border:solid 7px #1D3944;background:#fff;text-align:center;max-width: 580px;}
+#blog img.wp-smiley {border:none;}
+#blog img.alignleft {float:left;margin:0 20px 20px 0}
+.readmore {}
+.readmore span {	margin: 0 5px;}
+.readmore a {font-size: 12px;	color: #7dd7f5;}
+#blog span.required {font-weight:bold;color:#E7C815;}
+.cat_desc {display:block;font-style:italic;padding:5px 0}
+/* Sidebar */
+#sidebar {float: right;width: 300px;margin-right: 20px;}
+#sidebar ul {list-style: none;font-size: 12px;color: #d6d7d7;padding:0;}
+#sidebar ul li a {width: 257px;height: 30px;font-size: 12px;padding: 8px;margin: -5px 0 0 0;color: #7dd7f5;}
+#sidebar ul li a:hover {text-decoration:underline}
+#sidebar ul li {height: 25px;padding: 4px 0 3px;background: url(images/sidebar_link.png) no-repeat;}
+.sb_block_title {border-bottom: 1px solid #FFF;color: #FFF;display: block;font-family: 'Yanone Kaffeesatz',sans-serif;font-size: 2.1em;margin: 20px 0 20px 5px;text-align: right;margin-top:20px}
+#meta {width: 267px;	height: 34px;margin-left: 35px;background: url(images/meta.png) no-repeat;}
+.search {width:280px;margin-bottom: 10px;padding: 10px;	background: #033A4E;-moz-border-radius:0 0 5px 5px;-webkit-border-radius:0 0 5px 5px;border-radius:0 0 5px 5px;}
+.input {	background: #031014;width: 195px;height: 26px;color: #fff;border: 1px #22667D solid;padding: 2px;}
+.search_btn {height: 28px;width: 69px;margin-left: 5px;border: 0px;  font-family: 'Yanone Kaffeesatz',sans-serif;color:#030303;font-size:1.1em;text-align:center;cursor:pointer;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+	background: -moz-linear-gradient(top,  #fff,  #ccc);}
+.search_btn:hover{font-style:italic;
+background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
+background: -moz-linear-gradient(top,  #ccc,  #fff);}
+.catthumb{width:100%;text-align:center;display:block;background:#1D3944;}
+/* FOOTER */
+#footer {height: 128px;}
+#copyright {font-size: 12px;color: #FFF;margin: 15px 0px 0 15px;float:left;}
+#w3c{float:right;margin:5px 15px 0 0;}
+#foot_line {	float:left;width:945px;padding:10px 0 0 8px;margin:8px;font-size:0.8em;font-style:italic;color:#7DD7F5;border-top:dotted #eee 1px;}
+.xiti{display:none;width:200px;}
+/* PLUGINS */
+/* CTC */
+.ctc a:hover{text-decoration:underline}
+/* WP-Syntax */
+.wp_syntax { color: #100; background-color: #f9f9f9; border: 1px solid #22667D; margin: 0 0 1.5em 0; overflow: auto;}
+.wp_syntax { overflow-x: auto; overflow-y: hidden; padding-bottom: expression(this.scrollWidth > this.offsetWidth ? 15 : 0); width: 100%;}
+.wp_syntax table { border-collapse: collapse;}
+.wp_syntax div, .wp_syntax td { vertical-align: top; padding: 2px 4px;}
+.wp_syntax .line_numbers { text-align: right; background-color: #def; color: gray; overflow: visible;}
+.wp_syntax pre { margin: 0;width: auto; float: none;clear: none; overflow: visible;font-size: 12px;line-height: 1.333;white-space: pre;}
+/* WP-pagenavi */
+.wp-pagenavi {clear: both;text-align: center;margin-top:20px;}
+.wp-pagenavi a, .wp-pagenavi span {color:#033A4E;text-decoration: none;padding: 3px 5px;margin: 2px;background:#EEE;
+-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+.wp-pagenavi a:hover, .wp-pagenavi span.current {background:#22667D;color:#EEE;}
+.wp-pagenavi span.current {font-weight: bold;background:#22667D;padding:5px;color:#fff;border:1px solid #7DD7F5;}
+#blog .pages{color:#033A4E;}
+/* Similar topics */
+#sa_box {padding:5px;background:#f0dd72;
+-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+#blog #sa_box ul {list-style-type:disc;list-style-image:none;}
+#blog #sa_box li {color:#000;}
+#blog #sa_box  ul li a{color:#333;text-decoration:underline;}
+#blog #sa_box  ul li a:hover{text-decoration:none;}
+.sa_title {display:block;font-weight:bold;color:#f0dd72;font-family: 'Yanone Kaffeesatz',sans-serif;font-size:1.5em}
+/* Form */
+#blog #recaptcha_area img{border:none}
+label{font-size:0.8em;color:#fff;font-weight:bold}
+#contactForm input {border: 1px solid #000;padding: 2px;width: 214px;
+border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
+#contactForm textarea { height: 120px; width: 580px;border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border: 1px solid #000}
+#contactForm input:focus, textarea:focus {background-color: #f2f3f6; border-color: #7DD7F5; }
+#sendCopy {float:left;width:10px;}
+.recaptchatable td img{border:none}
+#blog .eccaptcha{float:left;width:100%;margin-bottom: 20px;}
+#send_error {background:#F0DD72;padding:10px;border:solid 1px #F8C40C;
+-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;margin-bottom:20px}
+#blog #send_error li {color:#333}
+#send_error ul {list-style-image: none;margin:0;}
+#send_error li {color:#030303;}
+/* Livevalid */
+#blog .recaptchatable{background:#fff}
+#blog .LV_validation_message{font-weight:700;margin:0 0 0 5px}
+#blog .LV_valid{color:#7DD7F5}
+#blog .LV_invalid{color:#E5C614}
+#blog .LV_valid_field,#blog input.LV_valid_field:hover,#blog input.LV_valid_field:active,#blog textarea.LV_valid_field:hover,#blog textarea.LV_valid_field:active{border:1px solid #7DD7F5}
+#blog .LV_invalid_field,#blog input.LV_invalid_field:hover,#blog input.LV_invalid_field:active,#blog textarea.LV_invalid_field:hover,#blog textarea.LV_invalid_field:active{border:1px solid #E5C614}
+/* ShareBox */
+#ShareBox{display:block;margin-left:-67px;width:55px;top:310px;position:fixed;padding:10px;text-align:center;-webkit-border-radius:8px 0 0 8px;-moz-border-radius:8px 0 0 8px;border-radius:8px 0 0 8px;
+background:#02232e; /* Old Browser */
+background: -moz-linear-gradient(left, #04465e 1%, #02232e 80%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(1%,#04465e), color-stop(80%,#02232e)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, #04465e 1%,#02232e 80%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, #04465e 1%,#02232e 80%); /* Opera11.10+ */
+background: -ms-linear-gradient(left, #04465e 1%,#02232e 80%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#04465e', endColorstr='#02232e',GradientType=1 ); /* IE6-9 */
+background: linear-gradient(left, #04465e 1%,#02232e 80%); /* W3C */}
+/* sray tuned */
+.tbird{vertical-align:top;}

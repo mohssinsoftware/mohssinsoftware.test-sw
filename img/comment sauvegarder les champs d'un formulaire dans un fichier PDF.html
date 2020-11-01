@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<!-- saved from url=(0125)https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr" id="vbulletin_html"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<!--<base href="https://www.developpez.net/forums/">--><base href="."><!--[if IE]></base><![endif]-->
+	
+<meta id="e_vb_meta_bburl" name="vb_meta_bburl" content="https://www.developpez.net/forums">
+
+<meta name="generator" content="vBulletin 4.2.2">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+	<link rel="Shortcut Icon" href="https://www.developpez.net/forums/favicon.ico" type="image/x-icon">
+
+
+
+
+
+
+
+
+	
+		<script type="text/javascript" async="" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/ga.js.téléchargement"></script><script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/yuiloader-dom-event.js.téléchargement"></script>
+	
+
+<script type="text/javascript">
+<!--
+	if (typeof YAHOO === 'undefined') // Load ALL YUI Local
+	{
+		document.write('<script type="text/javascript" src="https://forum.developpez.be/clientscript/yui/yuiloader-dom-event/yuiloader-dom-event.js?v=422"><\/script>');
+		document.write('<script type="text/javascript" src="https://forum.developpez.be/clientscript/yui/connection/connection-min.js?v=422"><\/script>');
+		var yuipath = 'https://forum.developpez.be/clientscript/yui';
+		var yuicombopath = '';
+		var remoteyui = false;
+	}
+	else	// Load Rest of YUI remotely (where possible)
+	{
+		var yuipath = 'https://ajax.googleapis.com/ajax/libs/yui/2.9.0/build';
+		var yuicombopath = '';
+		var remoteyui = true;
+		if (!yuicombopath)
+		{
+			document.write('<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/yui/2.9.0/build/connection/connection-min.js?v=422"><\/script>');
+		}
+	}
+	var SESSIONURL = "";
+	var SECURITYTOKEN = "guest";
+	var IMGDIR_MISC = "https://forum.developpez.be/images/misc";
+	var IMGDIR_BUTTON = "https://forum.developpez.be/images/buttons";
+	var vb_disable_ajax = parseInt("0", 10);
+	var SIMPLEVERSION = "422";
+	var BBURL = "https://www.developpez.net/forums";
+	var LOGGEDIN = 0 > 0 ? true : false;
+	var THIS_SCRIPT = "showthread";
+	var RELPATH = "showthread.php?t=1148214";
+	var PATHS = {
+		forum : "",
+		cms   : "",
+		blog  : ""
+	};
+	var AJAXBASEURL = "https://www.developpez.net/forums/";
+// -->
+</script><script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/yuiloader-dom-event.js(1).téléchargement"></script><script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/connection-min.js.téléchargement"></script>
+<script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/vbulletin-core.js.téléchargement"></script>
+<script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/jquery-1.7.2.js.téléchargement"></script>
+<script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/anokha_showthread.js.téléchargement"></script>
+<script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/ano_votes.js.téléchargement"></script>
+
+
+
+	<link rel="alternate" type="application/rss+xml" title="Forum du club des développeurs et IT Pro Flux RSS" href="https://www.developpez.net/forums/external.php?type=RSS2">
+	
+		<link rel="alternate" type="application/rss+xml" title="Forum du club des développeurs et IT Pro - FPDF - Flux RSS" href="https://www.developpez.net/forums/external.php?type=RSS2&amp;forumids=1056">
+	
+
+
+
+	<link rel="stylesheet" type="text/css" href="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/main-rollup.css">
+        
+
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/popupmenu-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/vbulletin-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/vbulletin-chrome-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/vbulletin-formcontrols-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/editor-ie.css?d=1486058850" />
+	<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/gabarit-v1483356099.css">
+	<link rel="stylesheet" type="text/css" href="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/kha_blogs.css">
+
+	<!--[if lt IE 7]>
+	<script src="https://gabarit.developpez.be/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="https://gabarit.developpez.be/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="https://gabarit.developpez.be/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="https://gabarit.developpez.be/gabarit-ie8.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="https://gabarit.developpez.be/kit/html5_ie.js"></script>
+	<![endif]--><style type="text/css">
+.doc_header { height: 85px; }
+.above_body { margin-right: 338px !important; }
+.navbar { top: -80px !important; }
+.pagination_top { margin-right: 320px; }
+#social_bookmarks_list li { display: inline; float: none; }
+#breadcrumb ul.floatcontainer { clear: both; position: relative; top: -40px; padding-right: 338px; }
+#thread_controls { float: none; width: auto; margin-right: 320px; height: 30px; }
+</style>
+	<meta name="keywords" content="sauvegarder,champs,d,formulaire,fichier,PDF,formulaire, imprimer, tous, bouton, champs, exemple, lorsque, application, clique, petite, avoir, merci, davance, veux, document, enregistrées, adresse, problème, cest, salut, fichier, sauvegarder, comment, prenom, html, remplir">
+	<meta name="description" content="salut à tous, mon problème c&#39;est que j&#39;ai un formulaire HTML à remplir ( nom , prenom, adresse, age) et un bouton imprimer, je veux une petite">
+
+	<title> comment sauvegarder les champs d'un formulaire dans un fichier PDF</title>
+	<link rel="canonical" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+		<link rel="stylesheet" type="text/css" href="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/showthread-rollup.css">
+	
+	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/toolsmenu-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/postlist-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/showthread-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/postbit-ie.css?d=1486058850" />
+	<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/poll-ie.css?d=1486058850" /><![endif]-->
+<link rel="stylesheet" type="text/css" href="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/additional.css">
+
+	<link rel="stylesheet" type="text/css" href="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/projecttools-rollup.css">
+
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="https://www.developpez.net/forums/clientscript/vbulletin_css/style00007l/projecttools-ie.css?d=1486058850" />
+<![endif]-->
+</head>
+
+<body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+
+<header>
+
+<div id="gabarit_recherche">
+<form action="https://www.google.fr/" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="12">
+    <input type="submit" name="sa" value="Rechercher">
+  </div>
+</form>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="http://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="http://magazine.developpez.com/" title="">Magazine</a></li>
+		<li><a href="http://general.developpez.com/faq/" title="">FAQs</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+		<li><a href="https://club.developpez.com/contacts/" title="">Contacts</a></li>
+	</ul>
+	</nav>
+</div>
+<div style="position: relative; clear: both; float: right; top: -2px; width: 745px; margin-top: 10px; margin-right: 5px; background-color: #E1E1E2">
+<div id="gabarit_pub0"></div><div id="md9na0m" style="display: inline-block; width: 728px; height: 90px"><style type="text/css">html, body { margin: 0; padding: 0; }</style><iframe src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/show_i.html" width="728" height="90" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe><style type="text/css"> #gabarit_pub0 { display: inline-block; }</style></div>
+</div>
+
+<div id="gabarit_logo">
+	<a href="https://www.developpez.com/" title="Accueil Developpez.com"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/logo.png" alt="" width="216" height="89"></a>
+</div>
+
+<nav>
+
+<div id="gabarit_mobile">
+	<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/logo-mobile.png" alt="" width="65" height="72">
+	<div>Developpez.com - <strong>PHP</strong></div>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f443/php/">Forums</a></li>
+		<li><span>Autre rubrique</span></li>
+	</ul>
+</div>
+
+<div id="gabarit_menu_mobile">
+	<div>X</div>
+	<p>Choisissez <span>d'abord la catégorie</span><span>ensuite la rubrique</span> :</p>
+	<ul><li></li></ul>
+</div>
+
+<ul id="gabarit_menu">
+	<li><a href="https://www.developpez.com/" data-idrub="1" data-niv="1">Accueil<span class="gabarit_tooltip">Actualités IT Pro</span></a>
+			</li>
+	<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="1">ALM<span class="gabarit_tooltip">Cycle de vie du logiciel</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com/" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com/" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="1">Java<span class="gabarit_tooltip">Plateforme et langage Java</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com/" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com/" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="1">.NET<span class="gabarit_tooltip">Microsoft Framework .NET</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="2">Microsoft DotNET</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+				<li><a href="https://windows-azure.developpez.com/" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="1" class="gabarit_selection">Dév. Web<span class="gabarit_tooltip">Développement Web et Webmarketing</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="2">Développement Web</a></li>
+				<li><a href="https://ajax.developpez.com/" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com/" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com/" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com/" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com/" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com/" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com/" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://php.developpez.com/" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com/" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com/" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com/" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com/" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com/" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="1">EDI<span class="gabarit_tooltip">Environnements de Développement Intégré</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com/" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://labview.developpez.com/" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com/" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com/" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com/" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com/" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com/" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com/" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="1">Programmation<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com/" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com/" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com/" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com/" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com/" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://go.developpez.com/" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://objective-c.developpez.com/" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com/" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com/" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com/" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://swift.developpez.com/" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com/" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com/" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="1">SGBD<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com/" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com/" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com/" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com/" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com/" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com/" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com/" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com/" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com/" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="1">Office<span class="gabarit_tooltip">Bureautique pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com/" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com/" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com/" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com/" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com/" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com/" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="1">Solutions d'entreprise<span class="gabarit_tooltip">Autres logiciels pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="2">Solutions d'entreprise</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com/" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com/" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com/" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com/" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://cloud-computing.developpez.com/" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://sap.developpez.com/" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com/" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://bluemix.developpez.com/" data-idrub="135" data-niv="2">IBM Bluemix</a></li>
+			</ul></li>
+	<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="1">Applications<span class="gabarit_tooltip">Applications logicielles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="2">Applications</a></li>
+				<li><a href="https://open-source.developpez.com/" data-idrub="121" data-niv="2">Libres &amp; Open Source</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+				<li><a href="https://portail-projets.developpez.com/" data-idrub="98" data-niv="2">Projets</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="1">Mobiles<span class="gabarit_tooltip">Logiciels et matériels mobiles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com/" data-idrub="101" data-niv="2">iOS</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="1">Systèmes<span class="gabarit_tooltip">Logiciels et matériels systèmes</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com/" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com/" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://securite.developpez.com/" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com/" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://mac.developpez.com/" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com/" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com/" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com/" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com/" data-idrub="110" data-niv="2">Systèmes Embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com/" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1">
+	<li><a href="http://web.developpez.com/">Dév. Web</a></li>
+	<li><a href="http://ajax.developpez.com/">AJAX</a></li>
+	<li><a href="http://apache.developpez.com/">Apache</a></li>
+	<li><a href="http://asp.developpez.com/">ASP</a></li>
+	<li><a href="http://css.developpez.com/">CSS</a></li>
+	<li><a href="http://dart.developpez.com/">Dart</a></li>
+	<li><a href="http://flash.developpez.com/">Flash / Flex</a></li>
+	<li><a href="http://javascript.developpez.com/">JavaScript</a></li>
+	<li class="gabarit_selection"><a href="http://php.developpez.com/">PHP</a></li>
+	<li><a href="http://ruby.developpez.com/">Ruby</a></li>
+	<li><a href="http://typescript.developpez.com/">TypeScript</a></li>
+	<li><a href="http://web-semantique.developpez.com/">Web sémantique</a></li>
+	<li><a href="http://webmarketing.developpez.com/">Webmarketing</a></li>
+	<li><a href="http://xhtml.developpez.com/">(X)HTML</a></li>
+</ul>
+
+<div id="gabarit_barre2">
+	<a rel="nofollow" class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/PHP/109797105707485" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a rel="nofollow" class="gabarit_social gabarit_twitter" href="http://twitter.com/php_DVP" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://php.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+		<li><a href="http://www.developpez.net/forums/f443/php/">Forum PHP</a></li>
+		<li><a href="http://php.developpez.com/faq/">FAQ PHP</a></li>
+		<li><a href="http://php.developpez.com/cours/">Cours PHP</a></li>
+		<li><a href="http://php.developpez.com/telecharger/index/categorie/18/Sources-PHP">Sources PHP</a></li>
+		<li><a href="http://php.developpez.com/livres/">Livres PHP</a></li>
+		<li><a href="http://php.developpez.com/scripts/">Scripts PHP</a></li>
+		<li><a href="http://php.developpez.com/telecharger/index/categorie/210/Outils-pour-PHP">Outils PHP</a></li>
+		<li><a href="http://symfony.developpez.com/">Symfony</a></li>
+		<li><a href="http://zend-framework.developpez.com/">Zend Framework</a></li>
+	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div class="contenuPage">
+
+<div style="float: right; width: 300px; height: 125px; margin-right: 18px; position: relative; top: 15px; overflow: visible"><div id="adl_300x250">
+<div id="aa9ah1x" style="display: inline-block; width: 300px; height: 250px"><style type="text/css">html, body { margin: 0; padding: 0; }</style><iframe src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/show_i(1).html" width="300" height="250" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe><style type="text/css"> #gabarit_pub1 { display: block; }</style></div><div id="gabarit_pub1"></div>
+</div></div>
+<div class="above_body"> <!-- closing tag is in template navbar -->
+<div id="header" class="floatcontainer doc_header">
+	<div id="toplinks" class="toplinks">
+		
+			<ul class="nouser">
+			
+				<li><a href="https://www.developpez.net/forums/inscription/" rel="nofollow">S'inscrire</a></li>
+			
+				<li><a rel="help" href="https://www.developpez.net/forums/faq.php">Aide</a></li>
+				<li>
+			<script type="text/javascript" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/vbulletin_md5.js.téléchargement"></script>
+			<form id="navbar_loginform" action="https://www.developpez.net/forums/login.php?do=login" method="post" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, 0)">
+				<fieldset id="logindetails" class="logindetails">
+					<div>
+						<div>
+					<input type="text" class="textbox default-value" name="vb_login_username" id="navbar_username" size="10" accesskey="u" tabindex="101" value="Identifiant">
+					<input type="password" class="textbox" tabindex="102" name="vb_login_password" id="navbar_password" size="10" style="display: none;">
+					<input type="text" class="textbox default-value" tabindex="102" name="vb_login_password_hint" id="navbar_password_hint" size="10" value="Mot de passe" style="display: inline;">
+					<input type="hidden" name="cookieuser" value="1">
+					<input type="submit" class="loginbutton" tabindex="104" value="S&#39;identifier" title="Insérez votre identifiant et mot de passe dans les cases correspondantes pour vous connecter, ou cliquez sur le bouton « S&#39;inscrire » pour créer un profil personnel." accesskey="s">
+						</div>
+					</div>
+				</fieldset>
+
+				<input type="hidden" name="s" value="">
+				<input type="hidden" name="securitytoken" value="guest">
+				<input type="hidden" name="do" value="login">
+				<input type="hidden" name="vb_login_md5password">
+				<input type="hidden" name="vb_login_md5password_utf">
+			</form>
+			<script type="text/javascript">
+			YAHOO.util.Dom.setStyle('navbar_password_hint', "display", "inline");
+			YAHOO.util.Dom.setStyle('navbar_password', "display", "none");
+			vB_XHTML_Ready.subscribe(function()
+			{
+			//
+				YAHOO.util.Event.on('navbar_username', "focus", navbar_username_focus);
+				YAHOO.util.Event.on('navbar_username', "blur", navbar_username_blur);
+				YAHOO.util.Event.on('navbar_password_hint', "focus", navbar_password_hint);
+				YAHOO.util.Event.on('navbar_password', "blur", navbar_password);
+			});
+			
+			function navbar_username_focus(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				if (textbox.value == 'Identifiant')
+				{
+				//
+					textbox.value='';
+					textbox.style.color='#000000';
+				}
+			}
+
+			function navbar_username_blur(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				if (textbox.value == '')
+				{
+				//
+					textbox.value='Identifiant';
+					textbox.style.color='#777777';
+				}
+			}
+			
+			function navbar_password_hint(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				
+				YAHOO.util.Dom.setStyle('navbar_password_hint', "display", "none");
+				YAHOO.util.Dom.setStyle('navbar_password', "display", "inline");
+				YAHOO.util.Dom.get('navbar_password').focus();
+			}
+
+			function navbar_password(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				
+				if (textbox.value == '')
+				{
+					YAHOO.util.Dom.setStyle('navbar_password_hint', "display", "inline");
+					YAHOO.util.Dom.setStyle('navbar_password', "display", "none");
+				}
+			}
+			</script>
+				</li>
+				
+			</ul>
+		
+	</div>
+	<div class="ad_global_header">
+		
+		
+	</div>
+	<hr>
+</div>
+<div id="navbar" class="navbar">
+	<ul id="navtabs" class="navtabs floatcontainer">
+		
+		
+	
+		<li id="vbtab_whatsnew">
+			<a class="navtab" href="https://www.developpez.net/forums/activity.php">Quoi de neuf ?</a>
+		</li>
+		
+		
+
+	
+		<li class="selected" id="vbtab_forum">
+			<a class="navtab" href="http://www.developpez.net/forums/">Forum</a>
+		</li>
+		
+		
+			<ul class="floatcontainer">
+				
+					
+						<li class="popupmenu" id="vbmenu_actions">
+							<a href="javascript://" class="popupctrl">Actions</a>
+							<ul class="popupbody popuphover">
+								
+									<li id="vbalink_mfr"><a rel="nofollow" href="https://www.developpez.net/forums/forumdisplay.php?do=markread&amp;markreadhash=guest">Marquer les forums comme lus</a></li>
+								
+									<li id="link_mtg4_835"><a href="http://www.developpez.net/forums/project.php">Bugs &amp; Suggestions</a></li>
+								
+							</ul>
+						</li>
+					
+				
+					
+						<li class="popupmenu" id="vbmenu_community">
+							<a href="javascript://" class="popupctrl">Réseau social</a>
+							<ul class="popupbody popuphover">
+								
+									<li id="vbclink_groups"><a href="https://www.developpez.net/forums/group.php">Groupes</a></li>
+								
+									<li id="vbclink_members"><a href="https://www.developpez.net/forums/memberlist.php">Liste des utilisateurs</a></li>
+								
+									<li id="vbflink_faq"><a href="https://www.developpez.net/forums/faq.php">FAQ forum</a></li>
+								
+									<li id="vbqlink_leaders"><a href="https://www.developpez.net/forums/showgroups.php">Voir l'équipe du site</a></li>
+								
+							</ul>
+						</li>
+					
+				
+					
+						
+							<li id="link_nde2_515"><a href="http://www.developpez.net/forums/blogs/">Blogs</a></li>
+						
+					
+				
+					
+						
+							<li id="vbflink_calendar"><a href="https://www.developpez.net/forums/agenda/">Agenda</a></li>
+						
+					
+				
+					
+						
+							<li id="link_nta3_958"><a target="_blank" href="http://club.developpez.com/regles/">Règles</a></li>
+						
+					
+				
+			</ul>
+		
+
+	
+		<li id="vbtab_blog">
+			<a class="navtab" href="https://www.developpez.net/forums/blogs/">Blogs</a>
+		</li>
+		
+		
+
+	
+		<li id="vbtab_project">
+			<a class="navtab" href="https://www.developpez.net/forums/project.php">Projets</a>
+		</li>
+		
+		
+
+		
+	</ul>
+	
+		<div id="globalsearch" class="globalsearch">
+			<form action="https://www.developpez.net/forums/search.php?do=process" method="post" id="navbar_search" class="navbar_search">
+				
+				<input type="hidden" name="securitytoken" value="guest">
+				<input type="hidden" name="do" value="process">
+				<span class="textboxcontainer"><span><input type="text" value="" name="query" class="textbox" tabindex="99"></span></span>
+				<span class="buttoncontainer"><span><input type="image" class="searchbutton" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/search.png" name="submit" onclick="document.getElementById(&#39;navbar_search&#39;).submit;" tabindex="100"></span></span>
+			</form>
+			<ul class="navbar_advanced_search">
+				<li><a href="https://www.developpez.net/forums/search.php" accesskey="4">Recherche avancée</a></li>
+				
+			</ul>
+		</div>
+	
+</div>
+</div><!-- closing div for above_body -->
+
+<div class="body_wrapper">
+<div id="breadcrumb" class="breadcrumb">
+	<ul class="floatcontainer">
+		<li class="navbithome"><a href="https://www.developpez.net/forums/" accesskey="1"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/navbit-home.png" width="12" height="12" alt="Accueil"></a></li>
+		
+	<li class="navbit"><a href="https://www.developpez.net/forums/">Index du forum</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f443/php/">PHP</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f238/php/bibliotheques-frameworks/">Bibliothèques et frameworks</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f613/php/bibliotheques-frameworks/pdf/">PDF</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f1056/php/bibliotheques-frameworks/pdf/fpdf/">FPDF</a></li>
+
+		
+	<li class="navbit lastnavbit"><span> comment sauvegarder les champs d'un formulaire dans un fichier PDF</span></li>
+
+	</ul>
+	<hr>
+</div>
+
+
+
+
+
+
+
+
+
+	<div id="above_postlist" class="above_postlist">
+		
+			<a rel="nofollow" href="https://www.developpez.net/forums/newreply.php?p=6526251&amp;noquote=1" class="newcontent_textcontrol" id="newreplylink_top"><span>+</span> Répondre à la discussion</a>
+			<img style="display:none" id="progress_newreplylink_top" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/progress.gif" alt="">
+
+		
+		<div id="pagination_top" class="pagination_top">
+		
+
+		</div>
+	</div>
+	<div id="pagetitle" class="pagetitle">
+		<h1>
+			Discussion: <span class="threadtitle"><a href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/" title="Recharger cette page">comment sauvegarder les champs d'un formulaire dans un fichier PDF</a></span>
+		</h1>
+		
+	</div>
+	<div id="thread_controls" class="thread_controls toolsmenu">
+		<div>
+		<ul id="postlist_popups" class="postlist_popups popupgroup">
+			
+			
+			<li class="popupmenu" id="threadtools">
+				<h6><a class="popupctrl" href="javascript://">Outils de la discussion</a></h6>
+				<ul class="popupbody popuphover">
+					<li><a href="https://www.developpez.net/forums/i1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/" accesskey="3" rel="nofollow">Afficher une version imprimable</a></li>
+					
+					<li>
+						
+							<a href="https://www.developpez.net/forums/subscription.php?do=addsubscription&amp;t=1148214" rel="nofollow">S'abonner à cette discussion…</a>
+						
+					</li>
+					
+				</ul>
+			</li>
+
+			
+
+			
+
+			
+
+			
+				<li class="popupmenu" id="displaymodes">
+					<h6><a class="popupctrl" href="javascript://">Affichage</a></h6>
+					<ul class="popupbody popuphover">
+						<li><label>Mode linéaire</label></li>
+						<li><a rel="nofollow" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/?mode=hybrid"> Choisir le mode hybride</a></li>
+						<li><a rel="nofollow" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/?mode=threaded#post6323420"> Choisir le mode arborescent</a></li>
+					</ul>
+				</li>
+			
+
+			
+			</ul>
+		</div>
+	</div>
+
+<div id="postlist" class="postlist restrain">
+	
+
+	
+		<ol id="posts" class="posts" start="1">
+			
+<li class="postbitlegacy postbitim postcontainer old" id="post_6323420">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+	<div class="posthead" style="">
+			<span class="postdate old">
+				
+					<span class="date">01/11/2011,&nbsp;<span class="time">23h34</span></span>
+				
+			</span>
+			<span class="nodecontrols">
+				
+					<a name="post6323420" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/#post6323420" class="postcounter">#1</a><a id="postcount6323420" name="1"></a>
+				
+				
+				
+			</span>
+	</div>
+	<div class="postdetails" style="">
+		<div class="userinfo" style="">
+			<div class="username_container">
+			
+				<div class="popupmenu memberaction">
+	<a rel="nofollow" class="username offline " href="https://www.developpez.net/forums/u393059/yacineing/" title="yacineing est déconnecté"><strong>yacineing</strong></a>
+	
+</div>
+				<img class="inlineimg onlinestatus" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/user-offline.png" alt="yacineing est déconnecté" border="0">
+
+			
+			</div>
+			<span class="usertitle">
+				Futur Membre du Club
+			</span>
+			
+				<span class="rank"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/nv-barre-4.png" alt="" border=""></span>
+			
+			
+			
+			 
+			
+				<hr>
+				<dl class="userinfo_extra">
+					<div style="float: left; width: 154px"><dt>Inscrit en</dt><dd>octobre 2010</dd><dt>Messages</dt><dd>5</dd></div><div style="float: right; margin-top: 5px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/profil-etendu.gif" title="Plus de détails..." role="profiletendu" userid="393059" style="cursor: pointer;"></div><div style="clear: both"></div><div style="display: none" role="profiletendu" userid="393059"><div class="kha_titleBar">Détails du profil<img style="float: right; cursor: pointer" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/cross.gif"></div><div class="kha_content"><div><b>Informations forums :</b></div><div>Inscription : octobre 2010</div><div>Messages : 5</div><div>Points : 9</div></div></div><dt>Points</dt><dd><span role="points" userid="393059" style="cursor: pointer;">9</span></dd>
+				</dl>
+				
+				
+				<div class="imlinks">
+					    
+				</div>
+			
+		</div>
+		<div class="postbody">
+			<div class="postrow">
+				
+				
+				<h2 class="title icon">
+					<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon1.png" alt="Par défaut"> comment sauvegarder les champs d'un formulaire dans un fichier PDF
+				</h2>
+				
+
+
+						
+							
+							
+						
+						
+				<div class="content">
+					<div id="post_message_6323420">
+						<blockquote class="postcontent restore ">
+							salut à tous, mon problème c'est que j'ai un formulaire HTML à remplir ( nom , prenom, adresse, age) et un bouton imprimer, je veux une petite application (exemple) lorsque je clique le bouton imprimer les champs du formulaire sont enregistrées dans un document PDF pour avoir imprimer. Merci d'avance à tous <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon_cry.gif" border="0" alt="" title=":cry:" class="inlineimg"> <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon_cry.gif" border="0" alt="" title=":cry:" class="inlineimg"> <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon_cry.gif" border="0" alt="" title=":cry:" class="inlineimg">
+						</blockquote>
+					</div>
+
+					
+				</div>
+			</div>
+			
+			<div class="cleardiv"></div>
+		</div>
+	</div>
+		<div class="postfoot">
+			<!-- <div class="postfoot_container"> -->
+			<div class="textcontrols floatcontainer">
+				<span class="postcontrols">
+					<img style="display:none" id="progress_6323420" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/progress.gif" alt="">
+					
+					
+					
+						<a id="qrwq_6323420" class="newreply" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;p=6323420" rel="nofollow" title="Répondre avec citation"><img id="quoteimg_6323420" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/clear.gif" alt="Répondre avec citation">  Répondre avec citation</a> 
+					
+					
+					
+<span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucehautgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6323420"> 0</a><span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucebasgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6323420"> 0</a>
+				</span>
+				<span class="postlinking">
+					
+						
+					
+
+					
+					
+					
+					
+
+					
+					
+
+					
+					
+					
+					
+					
+				</span>
+			<!-- </div> -->
+			</div>
+		</div>
+	<hr>
+</li>
+
+<li class="postbitlegacy postbitim postcontainer old" id="post_6323630">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+	<div class="posthead" style="">
+			<span class="postdate old">
+				
+					<span class="date">02/11/2011,&nbsp;<span class="time">09h41</span></span>
+				
+			</span>
+			<span class="nodecontrols">
+				
+					<a name="post6323630" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/#post6323630" class="postcounter">#2</a><a id="postcount6323630" name="2"></a>
+				
+				
+				
+			</span>
+	</div>
+	<div class="postdetails" style="">
+		<div class="userinfo" style="">
+			<div class="username_container">
+			
+				<div class="popupmenu memberaction">
+	<a rel="nofollow" class="username offline " href="https://www.developpez.net/forums/u130448/climoo/" title="Climoo est déconnecté"><strong>Climoo</strong></a>
+	
+</div>
+				<img class="inlineimg onlinestatus" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/user-offline.png" alt="Climoo est déconnecté" border="0">
+
+			
+			</div>
+			<span class="usertitle">
+				Membre averti
+			</span>
+			
+				<span class="rank"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/etoiles-1-0.png" alt="" border=""></span>
+			
+			<div style="text-align: center; margin-bottom: 4px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/embleme-trophee1.png" role="trophees" userid="130448" title="1 trophée reçu" style="cursor: pointer;"></div>
+			
+			 
+			
+				<hr>
+				<dl class="userinfo_extra">
+					<div style="float: left; width: 154px"><div><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/france.gif" title="France">  <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/male.png" alt="Homme"> <a href="http://www.developpez.com/user/profil/130448/Climoo"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/pro.png" alt="Profil pro"></a> </div><div>Développeur informatique</div><dt>Inscrit en</dt><dd>décembre 2006</dd><dt>Messages</dt><dd>242</dd></div><div style="float: right; margin-top: 5px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/profil-etendu.gif" title="Plus de détails..." role="profiletendu" userid="130448" style="cursor: pointer;"></div><div style="clear: both"></div><div style="display: none" role="profiletendu" userid="130448"><div class="kha_titleBar">Détails du profil<img style="float: right; cursor: pointer" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/cross.gif"></div><div class="kha_content"><div><b>Informations personnelles :</b></div><div>Sexe : <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/male.png" alt="Homme"></div><div>Localisation : France</div><div><br><b>Informations professionnelles :</b></div><div>Activité : Développeur informatique</div><div><br><b>Informations forums :</b></div><div>Inscription : décembre 2006</div><div>Messages : 242</div><div>Points : 354</div></div></div><dt>Points</dt><dd><span role="points" userid="130448" style="cursor: pointer;">354</span></dd>
+				</dl>
+				
+				
+				<div class="imlinks">
+					    
+				</div>
+			
+		</div>
+		<div class="postbody">
+			<div class="postrow">
+				
+				
+				<h2 class="title icon">
+					<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon1.png" alt="Par défaut"> 
+				</h2>
+				
+
+
+						
+						
+				<div class="content">
+					<div id="post_message_6323630">
+						<blockquote class="postcontent restore ">
+							Ne pleure pas, tu trouveras bien la réponse à ton problème...<br>
+Tu dois tout simplement écrire un programme qui te permet d'écrire des fichiers PDF. Des librairies existent déjà pour ça, en voici une : <a rel="nofollow" href="http://html2pdf.fr/" target="_blank">html2pdf</a>
+						</blockquote>
+					</div>
+
+					
+				</div>
+			</div>
+			
+			<div class="cleardiv"></div>
+		</div>
+	</div>
+		<div class="postfoot">
+			<!-- <div class="postfoot_container"> -->
+			<div class="textcontrols floatcontainer">
+				<span class="postcontrols">
+					<img style="display:none" id="progress_6323630" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/progress.gif" alt="">
+					
+					
+					
+						<a id="qrwq_6323630" class="newreply" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;p=6323630" rel="nofollow" title="Répondre avec citation"><img id="quoteimg_6323630" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/clear.gif" alt="Répondre avec citation">  Répondre avec citation</a> 
+					
+					
+					
+<span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucehautgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6323630"> 0</a><span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucebasgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6323630"> 0</a>
+				</span>
+				<span class="postlinking">
+					
+						
+					
+
+					
+					
+					
+					
+
+					
+					
+
+					
+					
+					
+					
+					
+				</span>
+			<!-- </div> -->
+			</div>
+		</div>
+	<hr>
+</li>
+
+<li class="postbitlegacy postbitim postcontainer old" id="post_6421062">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+	<div class="posthead" style="">
+			<span class="postdate old">
+				
+					<span class="date">28/12/2011,&nbsp;<span class="time">14h18</span></span>
+				
+			</span>
+			<span class="nodecontrols">
+				
+					<a name="post6421062" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/#post6421062" class="postcounter">#3</a><a id="postcount6421062" name="3"></a>
+				
+				
+				
+			</span>
+	</div>
+	<div class="postdetails" style="">
+		<div class="userinfo" style="">
+			<div class="username_container">
+			
+				<div class="popupmenu memberaction">
+	<a rel="nofollow" class="username offline " href="https://www.developpez.net/forums/u59095/miltonis/" title="miltonis est déconnecté"><strong>miltonis</strong></a>
+	
+</div>
+				<img class="inlineimg onlinestatus" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/user-offline.png" alt="miltonis est déconnecté" border="0">
+
+			
+			</div>
+			<span class="usertitle">
+				Membre du Club
+			</span>
+			
+				<span class="rank"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/nv-carres-2.png" alt="" border=""></span>
+			
+			
+			
+			 
+			
+				<hr>
+				<dl class="userinfo_extra">
+					<div style="float: left; width: 154px"><div><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/france.gif" title="France">   <a href="http://www.developpez.com/user/profil/59095/miltonis"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/pro.png" alt="Profil pro"></a> </div><dt>Inscrit en</dt><dd>avril 2005</dd><dt>Messages</dt><dd>198</dd></div><div style="float: right; margin-top: 5px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/profil-etendu.gif" title="Plus de détails..." role="profiletendu" userid="59095" style="cursor: pointer;"></div><div style="clear: both"></div><div style="display: none" role="profiletendu" userid="59095"><div class="kha_titleBar">Détails du profil<img style="float: right; cursor: pointer" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/cross.gif"></div><div class="kha_content"><div><b>Informations personnelles :</b></div><div>Localisation : France</div><div><br><b>Informations forums :</b></div><div>Inscription : avril 2005</div><div>Messages : 198</div><div>Points : 64</div></div></div><dt>Points</dt><dd><span role="points" userid="59095" style="cursor: pointer;">64</span></dd>
+				</dl>
+				
+				
+				<div class="imlinks">
+					    
+				</div>
+			
+		</div>
+		<div class="postbody">
+			<div class="postrow">
+				
+				
+				<h2 class="title icon">
+					<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon1.png" alt="Par défaut"> 
+				</h2>
+				
+
+
+						
+						
+				<div class="content">
+					<div id="post_message_6421062">
+						<blockquote class="postcontent restore ">
+							Bonjour,<br>
+<br>
+Créer un pdf : est-ce le seul moyen d'imprimer un formulaire avec les champs remplis ?
+						</blockquote>
+					</div>
+
+					
+				</div>
+			</div>
+			
+			<div class="cleardiv"></div>
+		</div>
+	</div>
+		<div class="postfoot">
+			<!-- <div class="postfoot_container"> -->
+			<div class="textcontrols floatcontainer">
+				<span class="postcontrols">
+					<img style="display:none" id="progress_6421062" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/progress.gif" alt="">
+					
+					
+					
+						<a id="qrwq_6421062" class="newreply" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;p=6421062" rel="nofollow" title="Répondre avec citation"><img id="quoteimg_6421062" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/clear.gif" alt="Répondre avec citation">  Répondre avec citation</a> 
+					
+					
+					
+<span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucehautgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6421062"> 0</a><span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucebasgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6421062"> 0</a>
+				</span>
+				<span class="postlinking">
+					
+						
+					
+
+					
+					
+					
+					
+
+					
+					
+
+					
+					
+					
+					
+					
+				</span>
+			<!-- </div> -->
+			</div>
+		</div>
+	<hr>
+</li>
+
+<li class="postbitlegacy postbitim postcontainer old" id="post_6422376">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+	<div class="posthead" style="">
+			<span class="postdate old">
+				
+					<span class="date">29/12/2011,&nbsp;<span class="time">10h28</span></span>
+				
+			</span>
+			<span class="nodecontrols">
+				
+					<a name="post6422376" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/#post6422376" class="postcounter">#4</a><a id="postcount6422376" name="4"></a>
+				
+				
+				
+			</span>
+	</div>
+	<div class="postdetails" style="">
+		<div class="userinfo" style="">
+			<div class="username_container">
+			
+				<div class="popupmenu memberaction">
+	<a rel="nofollow" class="username offline " href="https://www.developpez.net/forums/u130448/climoo/" title="Climoo est déconnecté"><strong>Climoo</strong></a>
+	
+</div>
+				<img class="inlineimg onlinestatus" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/user-offline.png" alt="Climoo est déconnecté" border="0">
+
+			
+			</div>
+			<span class="usertitle">
+				Membre averti
+			</span>
+			
+				<span class="rank"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/etoiles-1-0.png" alt="" border=""></span>
+			
+			<div style="text-align: center; margin-bottom: 4px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/embleme-trophee1.png" role="trophees" userid="130448" title="1 trophée reçu" style="cursor: pointer;"></div>
+			
+			 
+			
+				<hr>
+				<dl class="userinfo_extra">
+					<div style="float: left; width: 154px"><div><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/france.gif" title="France">  <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/male.png" alt="Homme"> <a href="http://www.developpez.com/user/profil/130448/Climoo"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/pro.png" alt="Profil pro"></a> </div><div>Développeur informatique</div><dt>Inscrit en</dt><dd>décembre 2006</dd><dt>Messages</dt><dd>242</dd></div><div style="float: right; margin-top: 5px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/profil-etendu.gif" title="Plus de détails..." role="profiletendu" userid="130448" style="cursor: pointer;"></div><div style="clear: both"></div><div style="display: none" role="profiletendu" userid="130448"><div class="kha_titleBar">Détails du profil<img style="float: right; cursor: pointer" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/cross.gif"></div><div class="kha_content"><div><b>Informations personnelles :</b></div><div>Sexe : <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/male.png" alt="Homme"></div><div>Localisation : France</div><div><br><b>Informations professionnelles :</b></div><div>Activité : Développeur informatique</div><div><br><b>Informations forums :</b></div><div>Inscription : décembre 2006</div><div>Messages : 242</div><div>Points : 354</div></div></div><dt>Points</dt><dd><span role="points" userid="130448" style="cursor: pointer;">354</span></dd>
+				</dl>
+				
+				
+				<div class="imlinks">
+					    
+				</div>
+			
+		</div>
+		<div class="postbody">
+			<div class="postrow">
+				
+				
+				<h2 class="title icon">
+					<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon1.png" alt="Par défaut"> 
+				</h2>
+				
+
+
+						
+						
+				<div class="content">
+					<div id="post_message_6422376">
+						<blockquote class="postcontent restore ">
+							Non, tu peux toujours imprimer une page web normale (en ajoutant éventuellement un petit bouton sur ta page pour l'imprimer, ça se fait avec du javascript).<br>
+Mais faut faire gaffe à la compatibilité avec la navigateurs quand on imprime (si tu veux que ça fonctionne aussi avec des vieux IE, ça va être difficile...)
+						</blockquote>
+					</div>
+
+					
+				</div>
+			</div>
+			
+			<div class="cleardiv"></div>
+		</div>
+	</div>
+		<div class="postfoot">
+			<!-- <div class="postfoot_container"> -->
+			<div class="textcontrols floatcontainer">
+				<span class="postcontrols">
+					<img style="display:none" id="progress_6422376" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/progress.gif" alt="">
+					
+					
+					
+						<a id="qrwq_6422376" class="newreply" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;p=6422376" rel="nofollow" title="Répondre avec citation"><img id="quoteimg_6422376" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/clear.gif" alt="Répondre avec citation">  Répondre avec citation</a> 
+					
+					
+					
+<span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucehautgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6422376"> 0</a><span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucebasgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6422376"> 0</a>
+				</span>
+				<span class="postlinking">
+					
+						
+					
+
+					
+					
+					
+					
+
+					
+					
+
+					
+					
+					
+					
+					
+				</span>
+			<!-- </div> -->
+			</div>
+		</div>
+	<hr>
+</li>
+
+<li class="postbitlegacy postbitim postcontainer old" id="post_6526251">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+	<div class="posthead" style="">
+			<span class="postdate old">
+				
+					<span class="date">24/02/2012,&nbsp;<span class="time">13h37</span></span>
+				
+			</span>
+			<span class="nodecontrols">
+				
+					<a name="post6526251" href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/#post6526251" class="postcounter">#5</a><a id="postcount6526251" name="5"></a>
+				
+				
+				
+			</span>
+	</div>
+	<div class="postdetails" style="">
+		<div class="userinfo" style="">
+			<div class="username_container">
+			
+				<div class="popupmenu memberaction">
+	<a rel="nofollow" class="username offline " href="https://www.developpez.net/forums/u447946/grab76/" title="grab76 est déconnecté"><strong>grab76</strong></a>
+	
+</div>
+				<img class="inlineimg onlinestatus" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/user-offline.png" alt="grab76 est déconnecté" border="0">
+
+			
+			</div>
+			<span class="usertitle">
+				Membre du Club
+			</span>
+			
+				<span class="rank"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/nv-carres-2.png" alt="" border=""></span>
+			
+			<div style="text-align: center; margin-bottom: 4px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/embleme-faq.png" title="1 Q/R de FAQ rédigée" user="447946" role="faq" style="cursor: pointer;"> <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/embleme-uploadeur.png" title="Posteur de sources - 1 source postée" user="447946" role="uploads" style="cursor: pointer;"></div>
+			
+			 
+			
+				<hr>
+				<dl class="userinfo_extra">
+					<div style="float: left; width: 154px"><div><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/france.gif" title="France">  <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/male.png" alt="Homme"> <a href="http://www.developpez.com/user/profil/447946/grab76"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/pro.png" alt="Profil pro"></a> </div><div>Développeur Web</div><dt>Inscrit en</dt><dd>août 2011</dd><dt>Messages</dt><dd>16</dd></div><div style="float: right; margin-top: 5px"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/profil-etendu.gif" title="Plus de détails..." role="profiletendu" userid="447946" style="cursor: pointer;"></div><div style="clear: both"></div><div style="display: none" role="profiletendu" userid="447946"><div class="kha_titleBar">Détails du profil<img style="float: right; cursor: pointer" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/cross.gif"></div><div class="kha_content"><div><b>Informations personnelles :</b></div><div>Sexe : <img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/male.png" alt="Homme"></div><div>Localisation : France</div><div><br><b>Informations professionnelles :</b></div><div>Activité : Développeur Web</div><div>Secteur : Industrie</div><div><br><b>Informations forums :</b></div><div>Inscription : août 2011</div><div>Messages : 16</div><div>Points : 48</div></div></div><dt>Points</dt><dd><span role="points" userid="447946" style="cursor: pointer;">48</span></dd>
+				</dl>
+				
+				
+				<div class="imlinks">
+					    
+				</div>
+			
+		</div>
+		<div class="postbody">
+			<div class="postrow">
+				
+				
+				<h2 class="title icon">
+					<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/icon1.png" alt="Par défaut"> En Php c'est possible
+				</h2>
+				
+
+
+						
+						
+							
+						
+				<div class="content">
+					<div id="post_message_6526251">
+						<blockquote class="postcontent restore ">
+							Salut je suis justement en train de développer ce dont tu as besoin pour un client. <br>
+En gros c'est assez simple en php:<br>
+1. Tu fais ton formulaire en php.<br>
+2. Tu envoies les données via un tableau $_POST[]<br>
+3. Sur ton script tu sort "déserialise" tes données avec un foreach ($tachaine,$taclef,$tavaleur){}<br>
+4. En fin de script FPDF tu ajoutes <br>
+$pdf-&gt;output('letitredetondocument.pdf','option');<br>
+I pour une lecture via ton browser<br>
+F pour forcer l'enregistrement sur la machine.<br>
+<br>
+Après si le browser force la lecture tu fais imprimer et c'est beau...<br>
+<br>
+j'éspère que cela va t'aider.
+						</blockquote>
+					</div>
+
+					
+				</div>
+			</div>
+			
+			<div class="cleardiv"></div>
+		</div>
+	</div>
+		<div class="postfoot">
+			<!-- <div class="postfoot_container"> -->
+			<div class="textcontrols floatcontainer">
+				<span class="postcontrols">
+					<img style="display:none" id="progress_6526251" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/progress.gif" alt="">
+					
+					
+					
+						<a id="qrwq_6526251" class="newreply" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;p=6526251" rel="nofollow" title="Répondre avec citation"><img id="quoteimg_6526251" src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/clear.gif" alt="Répondre avec citation">  Répondre avec citation</a> 
+					
+					
+					
+<span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucehautgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6526251"> 0</a><span class="seperator">&nbsp;</span><a title="Connectez-vous pour voter" style="background: url(images/buttons/poucebasgris.gif) no-repeat scroll left center transparent; cursor: pointer" p="6526251"> 0</a>
+				</span>
+				<span class="postlinking">
+					
+						
+					
+
+					
+					
+					
+					
+
+					
+					
+
+					
+					
+					
+					
+					
+				</span>
+			<!-- </div> -->
+			</div>
+		</div>
+	<hr>
+</li>
+
+		</ol>
+		<div class="separator"></div>
+		<div class="postlistfoot">
+			
+		</div>
+
+	
+
+</div>
+
+<div id="below_postlist" class="noinlinemod below_postlist">
+	
+		<a rel="nofollow" href="https://www.developpez.net/forums/newreply.php?p=6526251&amp;noquote=1" class="newcontent_textcontrol" id="newreplylink_bottom"><span>+</span> Répondre à la discussion</a>
+
+	
+	<div id="pagination_bottom" class="pagination_bottom">
+	
+		
+	</div>
+</div>
+
+<div class="above_threadlist_controls toolsmenu"><center><table style="width: 75%"><tbody><tr><td><a href="http://php.developpez.com/" target="_blank">Actualités</a></td><td><a href="http://php.developpez.com/faq/" target="_blank">FAQ PHP</a></td><td><a href="http://php.developpez.com/cours/" target="_blank">Cours PHP</a></td><td><a href="http://php.developpez.com/telecharger/index/categorie/18/Sources-PHP" target="_blank">Sources PHP</a></td><td><a href="http://php.developpez.com/livres/" target="_blank">Livres PHP</a></td><td><a href="http://php.developpez.com/scripts/" target="_blank">Scripts PHP</a></td><td><a href="http://php.developpez.com/telecharger/index/categorie/210/Outils-pour-PHP" target="_blank">Outils PHP</a></td><td><a href="http://symfony.developpez.com/" target="_blank">Symfony</a></td><td><a href="http://zend-framework.developpez.com/" target="_blank">Zend Framework</a></td></tr></tbody></table></center></div>
+<div class="breadcrumb" style="margin-bottom: 1em">
+	<ul class="floatcontainer">
+		<li class="navbithome"><a href="https://www.developpez.net/forums/"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/navbit-home.png" alt="Accueil"></a></li>
+		
+	<li class="navbit"><a href="https://www.developpez.net/forums/">Index du forum</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f443/php/">PHP</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f238/php/bibliotheques-frameworks/">Bibliothèques et frameworks</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f613/php/bibliotheques-frameworks/pdf/">PDF</a></li>
+
+	<li class="navbit"><a href="https://www.developpez.net/forums/f1056/php/bibliotheques-frameworks/pdf/fpdf/">FPDF</a></li>
+
+		
+	<li class="navbit lastnavbit"><span> comment sauvegarder les champs d'un formulaire dans un fichier PDF</span></li>
+
+	</ul>
+	<hr>
+</div>
+
+
+
+
+
+
+
+
+	<!-- next / previous links -->
+	<div class="navlinks">
+		
+			<strong>«</strong>
+			<a href="https://www.developpez.net/forums/d1148214-precedent/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/" rel="nofollow">Discussion précédente</a>
+			|
+			<a href="https://www.developpez.net/forums/d1148214-suivant/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/" rel="nofollow">Discussion suivante</a>
+			<strong>»</strong>
+		
+	</div>
+	<!-- / next / previous links -->
+
+<div id="thread_info" class="thread_info block">
+	
+	
+	<div id="similar_threads">
+		<h4 class="threadinfohead blockhead">Discussions similaires</h4>
+		<div id="similar_threads_list" class="thread_info_block blockbody formcontrols">
+			<ol class="similar_threads">
+			<li class="floatcontainer">
+  <div class="titleblock">
+    <h6><a href="https://www.developpez.net/forums/d140595/logiciels/microsoft-office/access/access-2003-recuperer-champs-d-formulaire-formulaire/" title="Bonjour à tous  
+  
+Comment...">[ACCESS 2003]Comment récuperer le champs d'un formulaire dans un autre formulaire?</a></h6>
+    <div class="starter_forum">
+      Par steeves5 dans le forum Access
+    </div>
+  </div>
+  <div class="dateblock">
+    <span class="shade">Réponses:</span> 3
+      <div class="starter_forum">
+        <span class="shade">Dernier message:</span> 04/05/2006, <span class="time">10h26</span>
+      </div>
+  </div>
+</li><li class="floatcontainer">
+  <div class="titleblock">
+    <h6><a href="https://www.developpez.net/forums/d140594/logiciels/microsoft-office/access/access-2003-recuperer-champs-d-formulaire-formulaire/" title="Bonjour à tous  
+  
+Comment...">[ACCESS 2003]Comment récuperer le champs d'un formulaire dans un autre formulaire?</a></h6>
+    <div class="starter_forum">
+      Par steeves5 dans le forum Access
+    </div>
+  </div>
+  <div class="dateblock">
+    <span class="shade">Réponses:</span> 1
+      <div class="starter_forum">
+        <span class="shade">Dernier message:</span> 04/05/2006, <span class="time">10h26</span>
+      </div>
+  </div>
+</li><li class="floatcontainer">
+  <div class="titleblock">
+    <h6><a href="https://www.developpez.net/forums/d107428/bases-donnees/mysql/sql-procedural/inserer-entree-d-formulaire-mysql/" title="salut  
+j&#39;ai besoin d&#39;une...">comment inserer les entrée d'une formulaire dans MySQL</a></h6>
+    <div class="starter_forum">
+      Par horri dans le forum SQL Procédural
+    </div>
+  </div>
+  <div class="dateblock">
+    <span class="shade">Réponses:</span> 3
+      <div class="starter_forum">
+        <span class="shade">Dernier message:</span> 28/02/2006, <span class="time">20h16</span>
+      </div>
+  </div>
+</li><li class="floatcontainer">
+  <div class="titleblock">
+    <h6><a href="https://www.developpez.net/forums/d98460/php/langage/formulaires/recuperer-champs-d-formulaire/" title="Salut à tous  
+ 
+J&#39;ai réalisé...">Comment récuperer les champs d'un formulaire?</a></h6>
+    <div class="starter_forum">
+      Par steeves5 dans le forum Formulaires
+    </div>
+  </div>
+  <div class="dateblock">
+    <span class="shade">Réponses:</span> 5
+      <div class="starter_forum">
+        <span class="shade">Dernier message:</span> 08/02/2006, <span class="time">11h54</span>
+      </div>
+  </div>
+</li><li class="floatcontainer">
+  <div class="titleblock">
+    <h6><a href="https://www.developpez.net/forums/d97159/webmasters-developpement-web/balisage-x-html-validation-w3c/dreamweaver-8-tester-champs-d-formulaire/" title="Salut  
+  
+je viens de créer...">[DREAMWEAVER 8] Comment tester les champs d'un formulaire</a></h6>
+    <div class="starter_forum">
+      Par steeves5 dans le forum Balisage (X)HTML et validation W3C
+    </div>
+  </div>
+  <div class="dateblock">
+    <span class="shade">Réponses:</span> 3
+      <div class="starter_forum">
+        <span class="shade">Dernier message:</span> 05/02/2006, <span class="time">22h43</span>
+      </div>
+  </div>
+</li>
+			</ol>
+		</div>
+	</div>
+
+
+	
+	
+	
+	
+	<div class="options_block_container">
+		
+		<div class="options_block2">
+			<h4 class="blockhead options_correct">Partager</h4>
+			<div id="social_bookmarks_list" class="thread_info_block blockbody formcontrols floatcontainer options_correct">
+				<h5 class="blocksubhead">Partager</h5>
+				<ul class="icon_list"><li class="smallfont">
+	
+		<a rel="nofollow" href="http://www.viadeo.com/shareit/share/?url=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214&amp;title=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_viadeo.gif" alt="Envoyer la discussion sur Viadeo"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://twitter.com/timeline/home?status=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF+https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_twitter.png" alt="Envoyer la discussion sur Twitter"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://www.google.com/bookmarks/mark?op=edit&amp;output=popup&amp;bkmk=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214&amp;title=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_google.gif" alt="Envoyer la discussion sur Google"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_facebook.gif" alt="Envoyer la discussion sur Facebook"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://digg.com/submit?phrase=2&amp;url=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214&amp;title=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_digg.gif" alt="Envoyer la discussion sur Digg"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://del.icio.us/post?url=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214&amp;title=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_delicious.gif" alt="Envoyer la discussion sur Delicious"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://www.myspace.com/Modules/PostTo/Pages/?u=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214&amp;t=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_myspace.gif" alt="Envoyer la discussion sur MySpace"></a>
+	
+</li><li class="smallfont">
+	
+		<a rel="nofollow" href="http://bookmarks.yahoo.com/toolbar/savebm?opener=&amp;u=https%3A%2F%2Fwww.developpez.net%2Fforums%2Fshowthread.php%3Ft%3D1148214&amp;t=comment+sauvegarder+les+champs+d%27un+formulaire+dans+un+fichier+PDF" target="socialbookmark"><img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/bookmarksite_yahoo.gif" alt="Envoyer la discussion sur Yahoo"></a>
+	
+</li></ul>
+			</div>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div id="footer" class="floatcontainer footer">
+
+	<form action="https://www.developpez.net/forums/" method="get" id="footer_select" class="footer_select">
+
+		
+		
+		
+	</form>
+
+	<ul id="footer_links" class="footer_links">
+		<li><a href="https://www.developpez.net/forums/sendmessage.php" rel="nofollow" accesskey="9">Nous contacter</a></li>
+		<li><a href="http://www.developpez.com/">Developpez.com</a></li>
+		
+		
+		
+		
+		
+		
+		<li><a href="https://www.developpez.net/forums/d1148214/php/bibliotheques-frameworks/pdf/fpdf/sauvegarder-champs-d-formulaire-fichier-pdf/#top" onclick="document.location.hash=&#39;top&#39;; return false;">Haut de page</a></li>
+	</ul>
+	
+	
+	
+	
+	<script type="text/javascript">
+	<!--
+		// Main vBulletin Javascript Initialization
+		vBulletin_init();
+	//-->
+	</script>
+        
+</div>
+</div> <!-- closing div for body_wrapper -->
+
+<div class="below_body">
+
+
+<div id="footer_morecopyright" class="shade footer_morecopyright">
+	<!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+	
+	<!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+	
+</div>
+ 
+
+</div>
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-2']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'php', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Autre', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<img src="./comment sauvegarder les champs d&#39;un formulaire dans un fichier PDF_files/compter-9" alt="" width="1" height="1"><script type="text/javascript">$(function(){$("#md9na0m").load("/template/md9na0m.jpg");$("#aa9ah1x").load("/template/aa9ah1x.jpg");});</script>
+</div>
+</section>
+
+<footer>
+<div id="gabarit_responsable">
+		<a href="http://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique PHP
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	</li><li><a href="https://www.developpez.com/participez/">Participez</a>
+	</li><li><a href="https://www.developpez.com/hebergement/">Hébergement</a>
+	</li><li><a href="https://www.developpez.com/legal/">Informations légales</a>
+</li></ul>
+
+<p id="gabarit_copyright">Copyright © 2000-2017 - www.developpez.com</p>
+
+</footer>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+window.orig_onload = window.onload;
+window.onload = function() {
+var cpost=document.location.hash.substring(1);var cpost2='';if(cpost && (typeof fetch_object != 'undefined')){ var ispost=cpost.substring(0,4)=='post';if(ispost)cpost2='post_'+cpost.substring(4);if((cobj = fetch_object(cpost))||(cobj = fetch_object(cpost2))){cobj.scrollIntoView(true);}else if(ispost){cpostno = cpost.substring(4,cpost.length);if(parseInt(cpostno)>0){location.replace('https://www.developpez.net/forums/showthread.php?p='+cpostno);};} }
+
+if(typeof window.orig_onload == "function") window.orig_onload();
+}
+
+//]]>
+</script>
+
+</body></html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.lephpfacile.com/cours/18-les-sessions -->
+<html lang="fr" xml:lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if lt IE 9]>
+<script src="http://static.lephpfacile.com/js/html5shiv.js"></script>
+<![endif]-->
+
+<title>Les sessions - Le PHP Facile</title>
+<meta name="description" content="Un cours de PHP présentant la simulation d&#39;un système de connexion presistantes afin de créer un espace membre">
+<meta name="keywords" content="php, cours, session, espace, protégé">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="http://static.lephpfacile.com/img/favicon.png">
+<link rel="stylesheet" type="text/css" media="screen" href="./Les sessions - Le PHP Facile_files/main_v13.css">
+<script async="" type="text/javascript" src="./Les sessions - Le PHP Facile_files/gpt.js.téléchargement"></script><script type="text/javascript" async="" src="./Les sessions - Le PHP Facile_files/ga.js.téléchargement"></script><script type="text/javascript" src="./Les sessions - Le PHP Facile_files/js.php"></script>
+<script type="text/javascript" src="./Les sessions - Le PHP Facile_files/main_v13.js.téléchargement"></script>
+<script>function _defaults(){var t={defaultHeight:90,bottom:{},span:{}};return t.bottom={params:"&hst="+window.location.host+"&path="+window.location.pathname+"&loc=bottom&ts="+(new Date).getTime(),css:"left:0 !important;margin:0 auto !important;padding:0 !important;position: fixed !important; bottom:0 !important; z-index: 2147483646 !important; display: block !important;margin:0 !important;padding: 0 !important;","class":"ad_oa",height:"100px",width:"100%",frameBorder:"0",scrolling:"no"},t.span={css_bottom:"padding:50px !important;z-index:2147483647 !important;cursor:pointer !important;position: fixed !important;bottom: 0px !important;display: block !important;width: 40px !important;height: auto !important;opacity: 0;filter:alpha(opacity=1) !important;border-bottom: 0 none !important;"},t}function next(t){do t=t.nextSibling;while(t&&1!==t.nodeType);return t}function get_left(t){return t>1290?";left:"+(t-1290)/2+"px":";left:0"}function draw_b(t){var o=document.createElement("span"),n=_defaults();o.style.cssText=n.span.css_bottom+get_left(window.innerWidth),o.onclick=function(){var t=this,o=next(t);return o?(o.remove(),this.remove(),!1):void 0};var i=document.createElement("iframe");i.src=t+n.bottom.params,i.style.cssText=n.bottom.css,i.className=n.bottom["class"],i.height=n.bottom.height,i.width=n.bottom.width,i.frameBorder=n.bottom.frameBorder,i.scrolling=n.bottom.scrolling,document.body.appendChild(o),document.body.appendChild(i)} window.onload = function(e) {var url = "http://oa.omniup.com/banner/?gw=e48d8cd61c7a&site_id=1459&ip=10.1.1.4&size="+window.innerWidth+"";draw_b(url);}</script></head>
+<body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+
+<div id="page">
+	<header>
+		<a class="fleft sprite logo" href="http://www.lephpfacile.com/"></a>
+
+		<div id="search">
+			<div class="search_form">
+				<input type="text" autocomplete="off" name="search" id="search_value" class="search_input_form" style="border-bottom: 1px solid rgb(204, 204, 204); border-bottom-left-radius: 3px;">
+				<ul class="search_suggest" style="width: 280px; max-height: 250px; overflow-y: scroll; display: none;"></ul>
+			</div>
+			<div data-id="search_check" class="search_submit"><span class="sprite ico_search"></span></div>
+		</div>
+
+		<script type="text/javascript">
+		<!--
+		try {
+			$(document).myComplete([{
+				'container' : $('#search'),
+				'name' : 'search',
+				'free_input': true,
+				'label_default' : 'Rechercher...',
+				'ajax': {
+					'param' : ['query'],
+					'url' : '/ajax/suggest/index.php',
+				},
+				'submit': 'search'
+			}]);
+		} catch(e) { console.log(e.message, e.stack); }
+		// -->
+		</script>
+
+		<div id="user">
+			<div id="info_account">
+		<a class="btn btn-small btn-php" href="http://www.lephpfacile.com/compte/inscription"><i class="icon-wrench icon-white"></i> Créer un compte</a>
+		<a class="btn btn-small btn-php" href="http://www.lephpfacile.com/compte/login"><i class="icon-user icon-white"></i> S'identifier</a>
+	</div>
+	
+<script type="text/javascript">
+<!--
+try {
+	core.draw_fbox();
+} catch(e) { console.log(e.message, e.stack); }
+// -->
+</script>		</div>
+
+		<div class="clr"></div>
+	</header>
+
+	<nav id="breadcrumbstrail"><ul><li><a href="http://www.lephpfacile.com/">Accueil</a></li><li><a href="http://www.lephpfacile.com/cours/">Cours de PHP</a></li><li><a href="http://www.lephpfacile.com/cours/18-les-sessions">Les sessions</a></li></ul></nav>
+
+	<nav id="nav">
+	<h1>PHP</h1>
+<ul>
+	<li><a href="http://www.lephpfacile.com/cours/">Cours de PHP</a></li>
+	<li><a href="http://www.lephpfacile.com/howto/">Comment faire ?</a></li>
+	<li><a href="http://www.lephpfacile.com/manuel-php/">Manuel PHP</a></li>
+</ul>
+
+<h1>Communauté</h1>
+<ul>
+	<li><a href="http://www.lephpfacile.com/news/">News</a></li>
+	<li><a href="http://www.lephpfacile.com/forum/">Forum</a></li>
+</ul>
+
+<div id="them_haut">
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-1406038392674816";
+	google_ad_width = 120;
+	google_ad_height = 90;
+	google_ad_format = "120x90_0ads_al";
+	google_ad_type = "text";
+	google_ad_channel = "4248167405";
+	google_color_border = "E4E8F2";
+	google_color_bg = "E4E8F2";
+	google_color_link = "404966";
+	google_color_url = "404966";
+	google_color_text = "404966";
+	//--></script>
+
+	<script type="text/javascript" src="./Les sessions - Le PHP Facile_files/show_ads.js.téléchargement"></script>
+</div>
+
+<h1>Divers</h1>
+<ul>
+	<li><a href="http://www.lephpfacile.com/annuaire/">Annuaire</a></li>
+		<li><a href="http://www.lephpfacile.com/wall/">Wall</a></li>
+	<li><a href="http://www.lephpfacile.com/contact">Contact</a></li>
+	<li><a href="http://www.lephpfacile.com/recherche/">Recherche</a></li>
+</ul>
+
+	</nav>
+
+	<div id="content">	<article id="content_data1">
+		
+<h1>Les sessions</h1>
+
+<div id="rect_moy_1" class="ads fleft mtop0 mbot5"></div>Voyons maintenant un tutorial vraiment important pour la <span class="fbold">sécurité</span> de vos scripts : <span class="fbold">les sessions</span>.<br>
+<br>
+En effet, afin de transmettre des variables de pages en pages, plusieurs possibilités s'offrent à vous :<br>
+<ul style="margin-left: 325px;"><li>les divers champs des formulaires, qu'ils soient <span class="fbold">hidden</span> ou non.</li><li>passer les variables directement à travers les <span class="fbold">liens</span>.</li><li>utiliser les <span class="fbold">cookies</span>.</li><li>utiliser les <span class="fbold">sessions</span>.</li></ul><br>
+<br>
+Cependant, toutes ces possibilités n'offrent pas le même niveau de sécurité.<br>
+<br>
+En effet, certaines de ces possibilités sont vraiment pratiquent dans leurs modes d'utilisation (comme les cookies par exemple mais tout le monde n'est pas obligé d'accepter les cookies), ce qui implique, dans la majorité des cas, un bas niveau de sécurité (cas du passage des variables par les liens, ce qui implique que les variables seront visibles de tout le monde).<br>
+<br>
+De même, faire dans chaque page un formulaire contenant des champs hidden permettant de faire circuler les différentes variables à travers toutes les pages du site n'est pas vraiment pratique.<br>
+<br>
+C'est pourquoi, dans tous ces cas où la sécurité de vos données est primordiale, vous devrez utiliser <span class="fbold">les sessions</span> qui vous permettront de faire circuler différentes variables (comme un mot de passe par exemple) à travers les pages de votre site, tout en étant assez confortables à l'emploi.<br>
+<br>
+Pour utiliser les sessions, différentes fonctions PHP s'offrent à nous. Voici déjà un petit tableau vous permettant de vous familiariser avec ces différentes fonctions (que nous détaillerons bien sur dans la suite de ce tutorial) :<br>
+<br><table>
+	<tbody><tr><th>Fonction</th><th>Signification</th></tr>
+	<tr><td><span class="fbold">session_start</span></td><td>Démarre une session</td></tr>
+	<tr><td><span class="fbold">session_register</span></td><td>Enregistre une variable de session</td></tr>
+	<tr><td><span class="fbold">session_unregister </span></td><td>Efface une variable de session</td></tr>
+	<tr><td><span class="fbold">session_is_registered</span></td><td>Vérifie si une variable est déclarée pour la session en cours</td></tr>
+	<tr><td><span class="fbold">session_id</span></td><td>Retourne l'id de la session en cours</td></tr>
+	<tr><td><span class="fbold">session_name</span></td><td>Retourne le nom de la session en cours</td></tr>
+	<tr><td><span class="fbold">session_unset </span></td><td>Detruit toutes les variables de la session en cours</td></tr>
+	<tr><td><span class="fbold">session_destroy</span></td><td>Destruit la session en cours</td></tr>
+</tbody></table><br>
+<br>
+Sachez également qu'ils existent d'autres fonctions agissant sur les sessions.<br>
+En revanche, étant donné qu'elles ne sont pas nécessaires à la compréhension de notre tutorial, nous ne les détaillerons pas ici (cf. la documentation pour de plus amples informations).<br>
+Cependant, ces fonctions commencent toujours par <span class="fbold">session</span>.<br>
+<br>
+<br>
+<span class="fbold">Attention !!!</span><br>
+<br>
+Avant d'aller plus loin dans le tutorial, vous devez savoir que les sessions ne sont accessibles qu'à partir de <span class="fbold">PHP 4</span>.<br>
+Cependant, je vous rassure, la plupart des hébergeurs sont aujourd'hui fait évoluer leur PHP en PHP 4.<br>
+<br>
+<br>
+Afin de voir concrètement comment fonctionnent les <span class="fbold">sessions</span>, prenons alors un exemple simple :<br>
+<ul><li>imaginons que notre site possède une <span class="fbold">section membre</span> où chaque membre devra se logué avant de pouvoir y entrer.</li><li>de plus, on aimerait bien être sur qu'il s'agisse toujours de ce <span class="fbold">même membre qui est connecté</span>.</li></ul><br>
+<br>
+On aura alors une page contenant un formulaire permettant à notre visiteur de se connecter à une section membre (page <span class="fbold">index.htm</span>) :<br>
+<br>
+<div class="mtop5"><div class="oh"><div class="code_header">exemple1.php</div><span data-dl="1" style="padding-bottom: 3px" class="dblock fright sprite attach"></span></div><pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><span class="tag">&lt;html&gt;</span><br></li><li class="L1"><span class="tag">&lt;head&gt;</span><br></li><li class="L2"><span class="tag">&lt;title&gt;</span><span class="pln">Formulaire d'identification</span><span class="tag">&lt;/title&gt;</span><br></li><li class="L3"><span class="tag">&lt;/head&gt;</span><br></li><li class="L4"><br></li><li class="L5"><span class="tag">&lt;body&gt;</span><br></li><li class="L6"><span class="tag">&lt;form</span><span class="pln"> </span><span class="atn">action</span><span class="pun">=</span><span class="atv">"login.php"</span><span class="pln"> </span><span class="atn">method</span><span class="pun">=</span><span class="atv">"post"</span><span class="tag">&gt;</span><br></li><li class="L7"><span class="pln">Votre login : </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"login"</span><span class="tag">&gt;</span><br></li><li class="L8"><span class="tag">&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span><br></li><li class="L9"><span class="pln">Votre mot de passé : </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"password"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"pwd"</span><span class="tag">&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span><br></li><li class="L0"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"submit"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"Connexion"</span><span class="tag">&gt;</span><br></li><li class="L1"><span class="tag">&lt;/form&gt;</span><br></li><li class="L2"><br></li><li class="L3"><span class="tag">&lt;/body&gt;</span><br></li><li class="L4"><span class="tag">&lt;/html&gt;</span></li></ol></pre></div><br>
+<br>
+D'après cette page, vous pouvez remarquer que lorsque le visiteur le remplira et qu'il cliquera sur le bouton de connexion, on se retrouvera au niveau de la page <span class="fbold">login.php</span> avec une variable <span class="fbold">$pseudo</span> qui contiendra le login de notre visiteur ainsi qu'une variable <span class="fbold">$pwd</span> contenant son mot de passe ; variables qu'il faudra naturrellement tester avant de démarrer notre session (car seuls les membres pourront accéder à notre espace membre, espace où l'on utilisera notre session).<br>
+<br><div id="leaderboard_1" class="ads"></div><br>
+<br>
+On aura alors par exemple (page <span class="fbold">login.php</span>) :<br>
+<br>
+<div class="mtop5"><div class="oh"><div class="code_header">exemple2.php</div><span data-dl="1" style="padding-bottom: 3px" class="dblock fright sprite attach"></span></div><pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span><br></li><li class="L1"><span class="com">// On définit un login et un mot de passe de base pour tester notre exemple. Cependant, vous pouvez très bien interroger votre base de données afin de savoir si le visiteur qui se connecte est bien membre de votre site</span><br></li><li class="L2"><span class="pln">$login_valide </span><span class="pun">=</span><span class="pln"> </span><span class="str">"moi"</span><span class="pun">;</span><br></li><li class="L3"><span class="pln">$pwd_valide </span><span class="pun">=</span><span class="pln"> </span><span class="str">"lemien"</span><span class="pun">;</span><br></li><li class="L4"><br></li><li class="L5"><span class="com">// on teste si nos variables sont définies</span><br></li><li class="L6"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.isset.php" data-hovercard_type="manuel_php" data-hovercard_data="isset" data-hovercard_callback="manuel.card">isset</a></span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">])</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.isset.php" data-hovercard_type="manuel_php" data-hovercard_data="isset" data-hovercard_callback="manuel.card">isset</a></span><span class="pun">(</span><span class="pln">$_POST</span><span class="pun">[</span><span class="str">'pwd'</span><span class="pun">]))</span><span class="pln"> </span><span class="pun">{</span><br></li><li class="L7"><br></li><li class="L8"><span class="pln">	</span><span class="com">// on vérifie les informations du formulaire, à savoir si le pseudo saisi est bien un pseudo autorisé, de même pour le mot de passe</span><br></li><li class="L9"><span class="pln">	</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$login_valide </span><span class="pun">==</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> $pwd_valide </span><span class="pun">==</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'pwd'</span><span class="pun">])</span><span class="pln"> </span><span class="pun">{</span><br></li><li class="L0"><span class="pln">		</span><span class="com">// dans ce cas, tout est ok, on peut démarrer notre session</span><br></li><li class="L1"><br></li><li class="L2"><span class="pln">		</span><span class="com">// on la démarre :)</span><br></li><li class="L3"><span class="pln">		</span><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.session-start.php" data-hovercard_type="manuel_php" data-hovercard_data="session_start" data-hovercard_callback="manuel.card">session_start</a></span><span class="pln"> </span><span class="pun">();</span><br></li><li class="L4"><span class="pln">		</span><span class="com">// on enregistre les paramètres de notre visiteur comme variables de session ($login et $pwd) (notez bien que l'on utilise pas le $ pour enregistrer ces variables)</span><br></li><li class="L5"><span class="pln">		$_SESSION</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">];</span><br></li><li class="L6"><span class="pln">		$_SESSION</span><span class="pun">[</span><span class="str">'pwd'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> $_POST</span><span class="pun">[</span><span class="str">'pwd'</span><span class="pun">];</span><br></li><li class="L7"><br></li><li class="L8"><span class="pln">		</span><span class="com">// on redirige notre visiteur vers une page de notre section membre</span><br></li><li class="L9"><span class="pln">		</span><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.header.php" data-hovercard_type="manuel_php" data-hovercard_data="header" data-hovercard_callback="manuel.card">header</a></span><span class="pln"> </span><span class="pun">(</span><span class="str">'location: page_membre.php'</span><span class="pun">);</span><br></li><li class="L0"><span class="pln">	</span><span class="pun">}</span><br></li><li class="L1"><span class="pln">	</span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><br></li><li class="L2"><span class="pln">		</span><span class="com">// Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait</span><br></li><li class="L3"><span class="pln">		echo </span><span class="str">'&lt;body onLoad="alert(\'Membre non reconnu...\')"&gt;'</span><span class="pun">;</span><br></li><li class="L4"><span class="pln">		</span><span class="com">// puis on le redirige vers la page d'accueil</span><br></li><li class="L5"><span class="pln">		echo </span><span class="str">'&lt;meta http-equiv="refresh" content="0;URL=index.htm"&gt;'</span><span class="pun">;</span><br></li><li class="L6"><span class="pln">	</span><span class="pun">}</span><br></li><li class="L7"><span class="pun">}</span><br></li><li class="L8"><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><br></li><li class="L9"><span class="pln">	echo </span><span class="str">'Les variables du formulaire ne sont pas déclarées.'</span><span class="pun">;</span><br></li><li class="L0"><span class="pun">}</span><br></li><li class="L1"><span class="pun">?&gt;</span></li></ol></pre></div><br>
+<br>
+Remarquer également que nous utilisons notre <span class="fbold">session_start</span> avant tout code HTML.<br>
+<br>
+Voyons alors le code de la page de notre section membre, la page <span class="fbold">page_membre.php</span>.<br>
+On a :<br>
+<br>
+<div class="mtop5"><div class="oh"><div class="code_header">exemple3.php</div><span data-dl="1" style="padding-bottom: 3px" class="dblock fright sprite attach"></span></div><pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span><br></li><li class="L1"><span class="com">// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)</span><br></li><li class="L2"><span class="pln">session_start </span><span class="pun">();</span><br></li><li class="L3"><br></li><li class="L4"><span class="com">// On récupère nos variables de session</span><br></li><li class="L5"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.isset.php" data-hovercard_type="manuel_php" data-hovercard_data="isset" data-hovercard_callback="manuel.card">isset</a></span><span class="pun">(</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">])</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.isset.php" data-hovercard_type="manuel_php" data-hovercard_data="isset" data-hovercard_callback="manuel.card">isset</a></span><span class="pun">(</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">'pwd'</span><span class="pun">]))</span><span class="pln"> </span><span class="pun">{</span><br></li><li class="L6"><br></li><li class="L7"><span class="pln">	</span><span class="com">// On teste pour voir si nos variables ont bien été enregistrées</span><br></li><li class="L8"><span class="pln">	echo </span><span class="str">'&lt;html&gt;'</span><span class="pun">;</span><br></li><li class="L9"><span class="pln">	echo </span><span class="str">'&lt;head&gt;'</span><span class="pun">;</span><br></li><li class="L0"><span class="pln">	echo </span><span class="str">'&lt;title&gt;Page de notre section membre&lt;/title&gt;'</span><span class="pun">;</span><br></li><li class="L1"><span class="pln">	echo </span><span class="str">'&lt;/head&gt;'</span><span class="pun">;</span><br></li><li class="L2"><br></li><li class="L3"><span class="pln">	echo </span><span class="str">'&lt;body&gt;'</span><span class="pun">;</span><br></li><li class="L4"><span class="pln">	echo </span><span class="str">'Votre login est '</span><span class="pun">.</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">'login'</span><span class="pun">].</span><span class="str">' et votre mot de passe est '</span><span class="pun">.</span><span class="pln">$_SESSION</span><span class="pun">[</span><span class="str">'pwd'</span><span class="pun">].</span><span class="str">'.'</span><span class="pun">;</span><br></li><li class="L5"><span class="pln">	echo </span><span class="str">'&lt;br /&gt;'</span><span class="pun">;</span><br></li><li class="L6"><br></li><li class="L7"><span class="pln">	</span><span class="com">// On affiche un lien pour fermer notre session</span><br></li><li class="L8"><span class="pln">	echo </span><span class="str">'&lt;a href="./logout.php"&gt;Déconnection&lt;/a&gt;'</span><span class="pun">;</span><br></li><li class="L9"><span class="pun">}</span><br></li><li class="L0"><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><br></li><li class="L1"><span class="pln">	echo </span><span class="str">'Les variables ne sont pas déclarées.'</span><span class="pun">;</span><br></li><li class="L2"><span class="pun">}</span><br></li><li class="L3"><span class="pun">?&gt;</span></li></ol></pre></div><br>
+<br>
+Voyons alors le code de la page permettant au membre de se déconnecter (la page <span class="fbold">logout.php</span>).<br>
+On aura alors :<br>
+<br>
+<div class="mtop5"><div class="oh"><div class="code_header">exemple4.php</div><span data-dl="1" style="padding-bottom: 3px" class="dblock fright sprite attach"></span></div><pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span><br></li><li class="L1"><span class="com">// On démarre la session</span><br></li><li class="L2"><span class="pln">session_start </span><span class="pun">();</span><br></li><li class="L3"><br></li><li class="L4"><span class="com">// On détruit les variables de notre session</span><br></li><li class="L5"><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.session-unset.php" data-hovercard_type="manuel_php" data-hovercard_data="session_unset" data-hovercard_callback="manuel.card">session_unset</a></span><span class="pln"> </span><span class="pun">();</span><br></li><li class="L6"><br></li><li class="L7"><span class="com">// On détruit notre session</span><br></li><li class="L8"><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.session-destroy.php" data-hovercard_type="manuel_php" data-hovercard_data="session_destroy" data-hovercard_callback="manuel.card">session_destroy</a></span><span class="pln"> </span><span class="pun">();</span><br></li><li class="L9"><br></li><li class="L0"><span class="com">// On redirige le visiteur vers la page d'accueil</span><br></li><li class="L1"><span class="nocode"><a href="http://www.lephpfacile.com/manuel-php/function.header.php" data-hovercard_type="manuel_php" data-hovercard_data="header" data-hovercard_callback="manuel.card">header</a></span><span class="pln"> </span><span class="pun">(</span><span class="str">'location: index.htm'</span><span class="pun">);</span><br></li><li class="L2"><span class="pun">?&gt;</span></li></ol></pre></div><br>
+<br>
+Résumons alors tout ce que nous venons de voir :<br>
+<ul><li>chaque session à un <span class="fbold">id différent</span> (ce qui permet d'éviter la confusion entre les connexions).</li><li>à chaque page où notre session doit être active, on doit placer un <span class="fbold">session_start</span> en tout début de page (<span class="fbold">avant tout code HTML</span>).</li><li>toutes les <span class="fbold">variables enregistrées</span> au cours de notre session, seront <span class="fbold">accessibles dans les pages de notre session</span>.</li><li>n'oubliez <span class="fbold">JAMAIS de détruire vos variables de session</span> lors de la déconnexion.</li></ul><br>
+<br>
+En respectant ces règles vous pourrez très rapidement faire vous-même votre espace membre, voir même pourquoi pas une boutique en ligne :)
+<script type="text/javascript">
+<!--
+try {
+	var launch = function() {
+		ads.set_position('#content');
+	}
+
+			CONFIG.onready['func_' + core.uniqid()] = launch;
+		
+} catch(e) { console.log(e.message, e.stack); }
+// -->
+</script>
+
+
+<div class="mtop7">
+	
+<div class="share">
+
+	<div class="fleft" style="margin: 3px 10px 0px 10px; color: #fff; text-align: center; color: #404966">Partager<br>cet élément</div>
+
+	<div class="oh" style="background: #fff; padding: 5px 5px 5px 5px; border-left: 1px solid #CDCFD6; border-top-left-radius: 3px; border-bottom-left-radius: 3px;">
+
+		<a class="dblock share_item sprite share_email fleft mright5" href="http://www.lephpfacile.com/share?type=article&amp;key=YToyOntpOjA7czoyOiIxOCI7aToxO3M6MToiMCI7fQ=="></a>
+
+		<a class="dblock share_item sprite share_fb fleft mright5" href="https://www.facebook.com/dialog/feed?app_id=617204011648158&amp;link=http%3A%2F%2Fwww.lephpfacile.com%2Fcours%2F18-les-sessions&amp;name=Les%20sessions&amp;description=Le%20PHP%20Facile%20-%20Apprendre%20le%20PHP&amp;redirect_uri=http%3A%2F%2Fwww.lephpfacile.com%2Fcours%2F18-les-sessions"></a>
+
+		<a class="dblock share_item sprite share_twitter fleft mright5" href="http://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.lephpfacile.com%2Fcours%2F18-les-sessions&amp;text=Les%20sessions&amp;hashtags=php,cours,session,espace,prot%C3%A9g%C3%A9" target="_blank"></a>
+
+		<a class="dblock share_item sprite share_google fleft mright5" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.lephpfacile.com%2Fcours%2F18-les-sessions" target="_blank"></a>
+
+		<div class="fleft mleft10 mtop2">Lien : <input type="text" value="http://www.lephpfacile.com/cours/18-les-sessions" readonly="readonly" onclick="this.select(); event.stopPropagation(); return false;" style="padding: 3px; font-size: 12px; width: 150px"></div>
+	</div>
+
+</div></div>		<script type="text/javascript">
+		<!--
+		try {
+			CONFIG.breadcrumbstrail = [
+				{'txt':'Accueil', 'url':'/'},
+									{'txt':'Cours de PHP', 'url':'/cours/'},
+									{'txt':'Les sessions', 'url':'/cours/18-les-sessions'},
+			];
+		} catch(e) { console.log(e.message, e.stack); }
+		// -->
+		</script>
+	</article>
+		</div>
+
+	<footer>
+		<div id="copyright">© 2002 - 2017 <a href="http://www.lephpfacile.com/">Le PHP Facile</a></div>
+	</footer>
+</div>
+
+<ul id="backlink">
+	<li><a href="http://www.jammaplay.com/">Jamma Play</a></li>
+	<li><a href="http://www.editeurjavascript.com/">L'éditeur javascript</a></li>
+	<li><a href="http://www.cssdebutant.com/">CSS</a></li>
+	<li><a href="http://www.webdesign-tutoriaux.com/categorie-PHP-11-1.html">Tutoriaux PHP</a></li>
+	<li><a href="http://www.apprendre-php.com/">Tutoriels PHP</a></li>
+   <li><a href="http://www.breizhblog.com/">Bretagne</a></li>
+   <li><a href="http://www.manuelphp.com/">php</a></li>
+	<li><a href="http://www.comparatif-moto.fr/">Moto</a></li>
+	<li><a href="http://www.graphiques-kits.com/">Kit graphique</a></li>
+</ul>
+
+<div id="go_up" statut="open" style="opacity: 1; display: block;"><div class="sprite go_up fright pointer" onclick="core.go_to(&#39;&lt;body&gt;&#39;); return false;"></div></div>
+
+<div id="loading"><img class="dinbl" src="./Les sessions - Le PHP Facile_files/loading.gif" alt="Loading"><span>Chargement en cours</span></div>			<script type="text/javascript">
+			<!--
+			try {
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-118988-1']);
+				_gaq.push(['_trackPageview']);
+
+				(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			} catch(e) { console.log(e.message, e.stack); }
+			// -->
+			</script>
+						<script type="text/javascript">
+			<!--
+			try {
+				var googletag = googletag || {};
+				googletag.cmd = googletag.cmd || [];
+				(function() {
+					var gads = document.createElement('script');
+					gads.async = true;
+					gads.type = 'text/javascript';
+					var useSSL = 'https:' == document.location.protocol;
+					gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+					var node = document.getElementsByTagName('script')[0];
+					node.parentNode.insertBefore(gads, node);
+				})();
+			} catch(e) { console.log(e.message, e.stack); }
+			// -->
+			</script>
+					<script type="text/javascript">
+		<!--
+		try {
+			$(document).ready(function() {
+
+									CONFIG.onready['func_' + core.uniqid()] = core.init_page;
+					
+				CONFIG.hash = 'cours/18-les-sessions';
+
+				config.init(CONFIG);
+			});
+		} catch(e) { console.log(e.message, e.stack); }
+		// -->
+		</script>
+		
+<span style="opacity: 0; left: 38px; padding: 50px !important; z-index: 2147483647 !important; cursor: pointer !important; position: fixed !important; bottom: 0px !important; display: block !important; width: 40px !important; height: auto !important; border-bottom: 0px none !important;"></span><iframe src="./Les sessions - Le PHP Facile_files/saved_resource.html" class="ad_oa" height="100px" width="100%" frameborder="0" scrolling="no" style="left: 0px !important; position: fixed !important; bottom: 0px !important; z-index: 2147483646 !important; display: block !important; margin: 0px !important; padding: 0px !important;"></iframe></body></html>

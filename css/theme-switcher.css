@@ -1,0 +1,211 @@
+/* --------------------------------------------------------------------------
+ * Prodigystudio  : Maleo - Multipurpose HTML Template
+ *  
+ * file           : theme-switcher.css
+ * Desc           : Maleo Framework - Core
+ * Version        : 1.0
+ * Date           : 08/21/2014
+ * Author         : Imam Firmansyah and Prodigystudio - team
+ * Author URI     : http://prodigystudio.net
+ * Email          : Hello@prodigystudio.net
+ *
+ * Prodigy Studio. Copyright 2014. All Rights Reserved.
+ * -------------------------------------------------------------------------- */
+#theme-switcher {
+  position: fixed;
+  z-index: 999;
+  top: 44px;
+  left: -220px;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid #f7f7f7;
+  -webkit-border-bottom-right-radius: 12px;
+  -moz-border-radius-bottomright: 12px;
+  border-bottom-right-radius: 12px;
+  -webkit-box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.15);
+}
+#theme-switcher .heading-switcher {
+  height: 48px;
+  display: block;
+  padding: 13px;
+}
+#theme-switcher .container-switcher {
+  padding: 0px 10px 20px;
+}
+#theme-switcher .footer-switcher {
+  padding: 0px 10px 20px;
+}
+#theme-switcher .pattern-theme {
+  margin-top: 15px;
+  display: none;
+}
+#theme-switcher h4 {
+  display: block;
+  margin-bottom: 0;
+  font-size: 22px;
+  padding: 0;
+}
+#theme-switcher h5 {
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+#theme-switcher .form-control {
+  height: 32px;
+  padding: 0 10px;
+  font-size: 14px;
+}
+#theme-switcher .option a {
+  text-align: center;
+  min-width: 55px;
+  display: inline-block;
+  background: #f7f7f7;
+  padding: 5px 15px;
+  font-size: 14px;
+  margin-right: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+#theme-switcher .option a.active, #theme-switcher .option a:hover {
+  background: #36c1c8;
+  color: #fff;
+}
+#theme-switcher .reset {
+  text-align: center;
+  min-width: 55px;
+  display: block;
+  background: #36c1c8;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+#theme-switcher hr {
+  content: "";
+  border: none;
+  margin: 15px 0 15px;
+  background-image: linear-gradient(to right, #36c1c8 40%, rgba(255, 255, 255, 0) 20%);
+  background-position: top;
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+  display: block;
+  height: 1px;
+}
+#theme-switcher ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+#theme-switcher ul li {
+  padding: 0 5px 10px;
+}
+#theme-switcher span {
+  display: block;
+  height: 40px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+#theme-switcher span:hover, #theme-switcher span:focus, #theme-switcher span.active {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+}
+#theme-switcher #blue {
+  background: #3498db;
+}
+#theme-switcher #green {
+  background: #36c1c8;
+}
+#theme-switcher #yellow {
+  background: #f1c40f;
+}
+#theme-switcher #red {
+  background: #ed4f4f;
+}
+#theme-switcher #indigo {
+  background: #8c9eff;
+}
+#theme-switcher #orange {
+  background: #F78F39;
+}
+#theme-switcher #gray {
+  background: #95a5a6;
+}
+#theme-switcher #yellow-light {
+  background: #f7dc6f;
+}
+#theme-switcher #green-light {
+  background: #86dade;
+}
+#theme-switcher #lime {
+  background: #cddc39;
+}
+#theme-switcher #grass {
+  background: #8bc34a;
+}
+#theme-switcher #purple {
+  background: #ea80fc;
+}
+#theme-switcher #pattern1 {
+  background: url(theme/pattern/pattern1.png) repeat repeat;
+}
+#theme-switcher #pattern2 {
+  background: url(theme/pattern/pattern2.png) repeat repeat;
+}
+#theme-switcher #pattern3 {
+  background: url(theme/pattern/pattern3.png) repeat repeat;
+}
+#theme-switcher #pattern4 {
+  background: url(theme/pattern/pattern4.png) repeat repeat;
+}
+
+#toggle-switcher {
+  display: block;
+  width: 50px;
+  height: 50px;
+  left: 218px;
+  top: -1px;
+  background: #fff;
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #f7f7f7;
+  border-left: none;
+  -webkit-border-top-right-radius: 12px;
+  -webkit-border-bottom-right-radius: 12px;
+  -moz-border-radius-topright: 12px;
+  -moz-border-radius-bottomright: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+#toggle-switcher i {
+  font-size: 26px;
+  line-height: 48px;
+  color: #36c1c8;
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+#toggle-switcher:hover {
+  background: #36c1c8;
+}
+#toggle-switcher:hover i {
+  color: #f7f7f7;
+}

@@ -1,0 +1,304 @@
+<html>
+<head>
+<title>formulaire</title>
+<style type="text/css">
+h3{font-family: Calibri;
+font-size: 22pt;
+font-style: normal;
+font-weight: bold; 
+color:SlateBlue;
+text-align: center; 
+text-decoration: underline }
+table{
+font-family: Calibri; 
+color:white; 
+font-size: 11pt; 
+font-style: normal;
+text-align:; background-color: #eff3f6; 
+color: #000; border-collapse: collapse; 
+border: 2px solid navy}
+table.inner{border: 0px}
+
+.btnLogin
+{
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:15px;
+    background:#a1d8f0;
+    background:-moz-linear-gradient(top, #badff3, #7acbed);
+    background:-webkit-gradient(linear, center top, 
+    center bottom, from(#badff3), to(#7acbed));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient
+    (startColorStr='#badff3', EndColorStr='#7acbed')";
+    border:1px solid #7db0cc !important;
+    cursor: pointer;
+    padding:11px 16px;
+    font:bold 11px/14px Verdana, Tahomma, Geneva;
+    text-shadow:rgba(0,0,0,0.2) 0 1px 0px; 
+    color:#fff;
+    -moz-box-shadow:inset rgba(255,255,255,0.6) 0 1px 1px, 
+    rgba(0,0,0,0.1) 0 1px 1px;
+    -webkit-box-shadow:inset rgba(255,255,255,0.6) 0 1px 1px, 
+    rgba(0,0,0,0.1) 0 1px 1px;
+    box-shadow:inset rgba(255,255,255,0.6) 0 1px 1px, 
+    rgba(0,0,0,0.1) 0 1px 1px;
+    margin-center:12px;
+    float:center;
+ padding:7px 21px;
+}
+
+.btnLogin:hover,
+.btnLogin:focus,
+.btnLogin:active{
+ background:#a1d8f0;
+ background:-moz-linear-gradient(top, #7acbed, #badff3);
+ background:-webkit-gradient(linear, center top, center bottom, 
+ from(#7acbed), to(#badff3));
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient
+(startColorStr='#7acbed', EndColorStr='#badff3')";
+}
+.btnLogin:active
+{
+    text-shadow:rgba(0,0,0,0.3) 0 -1px 0px; 
+}
+
+</style>
+</head>
+
+<body>
+<h3></h3>
+<div id="mo-wrapper">
+     <center><img src="img/5.jpg"><center/>
+	 </div>
+	 <br>
+<form action="../add.php" method="POST">
+  
+<table align="center" cellpadding = "10">
+ <!----- leNom ------------------->
+<td>LE NOM</td>
+<td><input type="search" placeholder="Entrez votre-nome" name="login"/>
+</td>
+ </tr>
+  
+ <!----- PreNom -------------------->
+ <tr>
+ <td>PR&Eacute;NOM</td>
+ <td><input type="search" placeholder="Entrez votre_prenome" name="prenom"/>
+
+ </td>
+ </tr>
+ 
+   <tr>
+ <td>PASSWORD</td>
+ <td> <input type="password" name="type_user"/>
+
+
+ </td>
+ </tr>
+
+   <tr>
+ <td>NIVEAU</td>
+ <td><input type="text" name="niv"/>
+
+
+ </td>
+ </tr>
+
+  <!-----numero de téléphone --------->
+ <tr>
+ <td>LA NUM&Eacute;RO DE T&Eacute;L&Eacute;PHONE</td>
+ <td>
+ <input type="number" value="06" name="num_tetephone" maxlength="10" />
+ </td>
+ </tr>
+ <!----- Email Id -------------->
+ <tr>
+ <td>EMAIL ID</td>
+ <td><input type="email" value="@gmail.com" name="Gmail">
+        </td>
+ </tr>
+  
+ <!----- Adress -------------->
+ <tr>
+ <td>ADRESS <br /><br /><br /></td>
+ <td><textarea name="Address" rows="4" cols="150">
+        </textarea></td>
+ </tr>
+  
+ <!----- sexe ---------------->
+ <tr>
+ <td>SEXE</td>
+ <td>
+ Homme <input type="radio" name="sexe" value="homme" />
+ Femme <input type="radio" name="sexe" value="femme" />
+ </td>
+ </tr>
+  
+ <!----- Date de naissance----------------->
+ <!--<tr>
+ <td>DATE D'EFFET</td>
+ <td><input type="date" name="anniversaire"></td>
+ </tr>-->
+   <!----- Adress -------------->
+ <!--<tr>
+ <td>REFERENCE SINISTRE <br /><br /><br /></td>
+ <td><textarea name="Address" rows="4" cols="150">
+        </textarea></td>
+ </tr>-->
+  <!----- Date de naissance----------------->
+ <!--<tr>
+ <td>DATE D'EFFET</td>
+ <td><input type="date" name="anniversaire"></td>
+ </tr>
+  <td>RESILIATION</td>
+ <td><input type="search" placeholder="Entrez votre_prenome" name="the_search">
+
+ </td>
+ </tr>-->
+ <!----- Ville ----------------->
+ <tr>
+ <td>VILLE</td>
+ <td> <select  name="vile">
+ <option value="-1">Tinejdad</option>
+ <option value="January">Errachidia</option>
+ <option value="February">Arfoude</option>
+ <option value="March">Errisani</option>
+ <option value="April">Goulmima</option>
+ <option value="May">Tinghir</option>
+ <option value="June">CasaBlanca</option>
+ <option value="July">Rabat</option>
+ <option value="August">Agadir</option>
+ <option value="September">Marrackech</option>
+ <option value="October">Tanger</option>
+ <option value="November">Meknes</option>
+ <option value="December">middelte</option>
+  <option value="December">Tetwan</option>
+ </select>
+ </td>
+ </tr>
+  
+ <!-----Code  Pin ------------->
+ <!--<tr>
+ <td>CODE PIN </td>
+ <td><input type="password" name="CodePin" maxlength="6" />
+
+ </td>
+ </tr>-->
+  
+
+ <!----- pays ------------->
+ <tr>
+ <td>PAYS</td>
+ <td><input type="text" name="pays" value="Maroc"  readonly="readonly" /></td>
+ </tr>
+  
+ <!----- Hobbies ------------->
+  
+ <!--<tr>
+ <td>FAVORI<br /><br /><br /></td>
+  
+ <td>
+ FootBall
+ <input type="checkbox" name="favori1" value=" FootBall" />
+ Configuration
+ <input type="checkbox" name="favori2" value=" Configuration" />
+Danse
+ <input type="checkbox" name="favori3" value="Danse" />
+Lisibilit&eacute;
+ <input type="checkbox" name="favori4" value="Lisibilité" />
+ <br />
+ Autres    :
+ <input type="checkbox" name="Autres_" value="Autres">
+ <input type="text" name="OAutres" maxlength="30" />
+ </td>
+ </tr>
+  <tr>
+  <td>le coleur qui tu p&eacute;f&egrave;re</td>
+  <td><input type="color" value="#fad345" name="textcolor"></td></tr>
+ <!----- Qualification---------->
+ <!--<tr>
+ <td>QUALIFICATION <br /><br /><br /><br />
+       <br /><br /><br /></td>
+  
+<td>
+ <table class="inner">
+  
+ <tr>
+ <td align="center"><b></b></td>
+ <td align="center"><b></b></td>
+ <td align="center"><b>note de TP</b></td>
+ <td align="center"><b>note de TD & coure</b></td>
+ <td align="center"><b>note globale</b></td>
+ </tr>
+  
+ <tr>
+ <td>1</td>
+ <td>l'annee I</td>
+ <td><input type="text" name="note " 
+             maxlength="30" /></td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+ </tr>
+  
+ <tr>
+ <td>2</td>
+ <td>l'annee II</td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+ </tr>
+  
+ <tr>
+<td>3</td>
+ <td>licence</td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+ <td><input type="text" name="note" 
+             maxlength="30" /></td>
+        <td><input type="text" name="note" 
+             maxlength="30" /></td>
+
+ </table>
+  
+ </td>
+ </tr>
+  
+ <!----- Course ------------->
+ <!--<tr>
+ <td>COURSES<br />qui tu peut travaille</td>
+ <td>
+programmation C:
+ <input type="radio" name="Course_BCA" value="BCA">
+programmation java:
+ <input type="radio" name="Course_BCom" value="B.Com">
+programmation assembleur:
+ <input type="radio" name="Course_BSc" value="B.Sc">
+PHP :
+ <input type="radio" name="Course_BA" value="B.A">
+ </td>
+ </tr>
+  
+ <!----- envoier ------>
+ <!-- <tr>
+ <td>donner le lien de votre &eacute;cole :</td>
+ <td><input type="url" value="http://" name="website"></td>
+ </tr>
+ <tr>-->
+ <td colspan="2" align="center">
+<input type="submit" class="btnLogin" value="envoier" 
+ tabindex="4">
+ </td>
+ </tr>
+
+
+ </table>
+  
+ </form>
+  
+ </body>
+ </html>
